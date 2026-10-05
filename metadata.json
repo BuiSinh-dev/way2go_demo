@@ -1,0 +1,6 @@
+{
+  "name": "Way2Go - eSIM Store & Global Travel Connectivity",
+  "description": "Nền tảng mua eSIM du lịch quốc tế, kích hoạt nhanh chóng hơn 200 quốc gia, tích điểm Way2Go Coin, chương trình Affiliate và trung tâm hỗ trợ chuyên nghiệp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
