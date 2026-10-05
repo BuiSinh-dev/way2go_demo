@@ -58,7 +58,7 @@ export const UspSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white text-[#1A2340] border-t border-slate-100 relative">
+    <section className="py-16 bg-[#FAF5EE] text-[#1A2340] border-t border-slate-100 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Highlight Banner with #1A2340 Primary Color */}

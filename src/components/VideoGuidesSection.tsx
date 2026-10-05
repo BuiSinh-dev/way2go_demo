@@ -9,6 +9,8 @@ export const VideoGuidesSection: React.FC = () => {
 
   const guides = {
     ios: {
+      youtubeId: 'B7dorRdzQG4',
+      youtubeUrl: 'https://youtu.be/B7dorRdzQG4',
       titleVi: 'Hướng dẫn cài đặt eSIM trên iPhone (iOS 16, 17, 18)',
       titleEn: 'How to Install eSIM on iPhone (iOS 16, 17, 18)',
       duration: '1:45',
@@ -44,6 +46,8 @@ export const VideoGuidesSection: React.FC = () => {
       ]
     },
     android: {
+      youtubeId: 'B7dorRdzQG4',
+      youtubeUrl: 'https://youtu.be/B7dorRdzQG4',
       titleVi: 'Hướng dẫn cài đặt eSIM trên Samsung & Google Pixel',
       titleEn: 'How to Install eSIM on Samsung & Google Pixel',
       duration: '2:10',
@@ -83,7 +87,7 @@ export const VideoGuidesSection: React.FC = () => {
   const activeContent = guides[activeGuideTab];
 
   return (
-    <section id="video-guides" className="py-14 bg-white border-t border-slate-100">
+    <section id="video-guides" className="py-14 bg-[#FAF5EE] border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -130,27 +134,36 @@ export const VideoGuidesSection: React.FC = () => {
         {/* Video Player Mockup & Step-by-Step Breakdown - Pure White Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white text-[#1A2340] rounded-3xl p-6 sm:p-8 border border-[#E2E8F0] shadow-sm">
 
-          {/* Simulated Video Player */}
+          {/* Video Player */}
           <div className="lg:col-span-6">
             <div className="relative aspect-video rounded-xl overflow-hidden bg-[#1A2340] border border-[#2b3a62] shadow-md group">
-              {/* Video Backdrop Graphic */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#1A2340] via-[#131b33] to-slate-950">
-                <div className="w-14 h-14 rounded-full bg-[#00D2B8] text-[#1A2340] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform cursor-pointer">
-                  <Play className="w-6 h-6 ml-1 fill-[#1A2340]" />
+              {isPlayingSim ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${activeContent.youtubeId}?autoplay=1&rel=0`}
+                  title={language === 'vi' ? activeContent.titleVi : activeContent.titleEn}
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <div
+                  onClick={() => setIsPlayingSim(true)}
+                  className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center cursor-pointer group bg-slate-900 overflow-hidden"
+                >
+                  {/* Real YouTube Video Thumbnail Image */}
+                  <img
+                    src={`https://img.youtube.com/vi/${activeContent.youtubeId}/hqdefault.jpg`}
+                    alt={language === 'vi' ? activeContent.titleVi : activeContent.titleEn}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-90"
+                  />
+                  {/* Subtle dark gradient overlay for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-slate-950/50" />
+                  {/* Play Icon */}
+                  <div className="relative z-10 w-16 h-16 rounded-full bg-[#fdfdfd] text-[#1A2340] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform cursor-pointer">
+                    <Play className="w-7 h-7  fill-[#1A2340]" />
+                  </div>
                 </div>
-                <h4 className="mt-4 text-base font-bold text-white max-w-sm">
-                  {language === 'vi' ? activeContent.titleVi : activeContent.titleEn}
-                </h4>
-                <div className="mt-2 text-xs text-[#00D2B8] font-mono font-bold">
-                  {language === 'vi' ? `Thời lượng: ${activeContent.duration}` : `Length: ${activeContent.duration}`} · 1080p HD
-                </div>
-              </div>
-
-              {/* Video control bottom bar */}
-              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950 to-transparent flex items-center justify-between text-xs text-slate-300">
-                <span>Way2Go Official Guide</span>
-                <span className="bg-[#00D2B8] text-[#1A2340] px-2 py-0.5 rounded text-[10px] font-bold">Auto Subtitles</span>
-              </div>
+              )}
             </div>
 
             <div className="mt-4 flex items-center justify-between text-xs text-[#1A2340]/80">

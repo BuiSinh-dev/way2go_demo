@@ -305,7 +305,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   // ===========================================================================
   if (storeView === 'catalog') {
     return (
-      <div className="bg-white min-h-screen py-10 text-left">
+      <div className="bg-[#FAF5EE] min-h-screen py-10 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
           {/* Header */}
@@ -381,10 +381,10 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
             <div className="border-b border-slate-700/60 pb-0 mb-6">
               <div className="flex items-center justify-start gap-8 overflow-x-auto no-scrollbar">
                 {[
-                  { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular', icon: '🚀' },
-                  { id: 'local', labelVi: 'Quốc gia', labelEn: 'Local eSIM', icon: '⚓' },
-                  { id: 'regional', labelVi: 'Khu vực (Regional)', labelEn: 'Regional', icon: '🗺️' },
-                  { id: 'global', labelVi: 'Toàn cầu (Global)', labelEn: 'Global', icon: '🌍' },
+                  { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular' },
+                  { id: 'local', labelVi: 'Quốc gia', labelEn: 'Local eSIM' },
+                  { id: 'regional', labelVi: 'Khu vực (Regional)', labelEn: 'Regional' },
+                  { id: 'global', labelVi: 'Toàn cầu (Global)', labelEn: 'Global' },
                 ].map((cat) => {
                   const isActive = catalogCategory === cat.id;
                   return (
@@ -394,7 +394,6 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                       className={`relative pb-3 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-2 text-sm sm:text-base font-bold ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'
                         }`}
                     >
-                      <span className="text-base">{cat.icon}</span>
                       <span>{language === 'vi' ? cat.labelVi : cat.labelEn}</span>
                       {isActive && (
                         <motion.span

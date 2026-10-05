@@ -17,14 +17,14 @@ export const HomePopularLocations: React.FC = () => {
   });
 
   const categories = [
-    { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular', icon: '🚀' },
-    { id: 'local', labelVi: 'Địa phương', labelEn: 'Local', icon: '⚓' },
-    { id: 'regional', labelVi: 'Khu vực', labelEn: 'Regional', icon: '🗺️' },
-    { id: 'global', labelVi: 'Toàn cầu', labelEn: 'Global', icon: '🌍' },
+    { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular' },
+    { id: 'local', labelVi: 'Địa phương', labelEn: 'Local' },
+    { id: 'regional', labelVi: 'Khu vực', labelEn: 'Regional' },
+    { id: 'global', labelVi: 'Toàn cầu', labelEn: 'Global' },
   ];
 
   return (
-    <section id="popular-locations" className="py-12 bg-white">
+    <section id="popular-locations" className="py-12 bg-[#FAF5EE]">
       <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8">
         {/* Visite Travel Header Illustration Banner */}
         <div className="flex justify-center">
@@ -51,7 +51,6 @@ export const HomePopularLocations: React.FC = () => {
                       : 'text-slate-300 hover:text-white'
                       }`}
                   >
-                    <span className="text-base">{cat.icon}</span>
                     <span>{language === 'vi' ? cat.labelVi : cat.labelEn}</span>
                     {isActive && (
                       <motion.span

@@ -230,8 +230,6 @@ export const EarnWithWay2go: React.FC = () => {
     e.preventDefault();
     setAffiliateSubmitted(true);
   };
-
-  // FAQ state specific to Earn with Way2Go
   const [expandedFaq, setExpandedFaq] = useState<number | null>(0);
 
   const earnFaqs = [
@@ -268,7 +266,7 @@ export const EarnWithWay2go: React.FC = () => {
   ];
 
   return (
-    <div className="py-10 bg-white">
+    <div className="py-10 bg-[#FAF5EE]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* ========================================================================= */}
@@ -1298,9 +1296,7 @@ export const EarnWithWay2go: React.FC = () => {
           </div>
         )}
 
-        {/* ========================================================================= */}
-        {/* COMMON FAQS SECTION FOR EARN WITH WAY2GO                                  */}
-        {/* ========================================================================= */}
+
         <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 text-left space-y-6 shadow-xs">
           <div className="space-y-1">
             <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
