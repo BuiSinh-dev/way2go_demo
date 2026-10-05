@@ -949,7 +949,7 @@ export const EarnWithWay2go: React.FC = () => {
               </div>
 
               {/* Slider Control */}
-              <div className="space-y-3 bg-[#243356] text-white p-6 rounded-2xl border border-[#31436e]">
+              <div className="space-y-3 bg-[#1A2340] text-white p-6 rounded-2xl border border-[#31436e]">
                 <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="text-slate-200 font-bold">
                     {language === 'vi' ? 'Số lượng eSIM bán được mỗi tháng:' : 'Monthly eSIM Orders:'}
@@ -979,13 +979,13 @@ export const EarnWithWay2go: React.FC = () => {
 
               {/* Earnings Output Display */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
-                <div className="p-5 bg-[#243356] text-white rounded-2xl border border-[#31436e] space-y-1">
+                <div className="p-5 bg-[#1A2340] text-white rounded-2xl border border-[#31436e] space-y-1">
                   <div className="text-xs text-slate-300 uppercase font-bold">Tỷ lệ hoa hồng</div>
                   <div className="text-3xl font-black text-[#00D2B8]">{tierInfo.percent}%</div>
                   <div className="text-[11px] text-slate-400">Áp dụng cho mọi đơn hàng</div>
                 </div>
 
-                <div className="p-5 bg-[#243356] text-white rounded-2xl border border-[#31436e] space-y-1">
+                <div className="p-5 bg-[#1A2340] text-white rounded-2xl border border-[#31436e] space-y-1">
                   <div className="text-xs text-slate-300 uppercase font-bold">Hoa hồng mỗi tháng</div>
                   <div className="text-3xl font-black text-white">
                     {new Intl.NumberFormat('vi-VN').format(estimatedMonthlyVnd)} đ
@@ -995,7 +995,7 @@ export const EarnWithWay2go: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-5 bg-[#243356] text-white rounded-2xl border border-[#31436e] space-y-1">
+                <div className="p-5 bg-[#1A2340] text-white rounded-2xl border border-[#31436e] space-y-1">
                   <div className="text-xs text-slate-300 uppercase font-bold">Thu nhập ước tính cả năm</div>
                   <div className="text-3xl font-black text-amber-400">
                     {new Intl.NumberFormat('vi-VN').format(estimatedYearlyVnd)} đ
@@ -1105,7 +1105,7 @@ export const EarnWithWay2go: React.FC = () => {
                 </div>
 
                 <div className="p-6 bg-white rounded-3xl border border-slate-200 space-y-2">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-bold flex items-center justify-center text-xs">4</div>
+                  <div className="w-8 h-8 rounded-xl bg-[#1A2340] text-white font-bold flex items-center justify-center text-xs">4</div>
                   <h4 className="font-extrabold text-sm text-slate-900">Nhận hoa hồng định kỳ</h4>
                   <p className="text-xs text-slate-600">Theo dõi doanh số trực tiếp và nhận tiền chuyển khoản tự động mỗi 2 tuần.</p>
                 </div>
@@ -1285,7 +1285,7 @@ export const EarnWithWay2go: React.FC = () => {
 
                     <button
                       type="submit"
-                      className="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer flex items-center gap-2"
+                      className="px-8 py-3.5 rounded-xl bg-[#1A2340] hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer flex items-center gap-2"
                     >
                       <span>Gửi đơn đăng ký trở thành Đối tác</span>
                       <ArrowRight className="w-4 h-4" />

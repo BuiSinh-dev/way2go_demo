@@ -9,17 +9,17 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#1A2340] text-white pt-16 pb-12 border-t border-slate-800 text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         {/* Top 4-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          
+
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center">
               <img
                 src={logoWhite}
                 alt="Way2Go Logo"
-                className="h-8 sm:h-9 w-auto object-contain"
+                className="h-[230px] sm:h-[100px] w-auto object-contain"
               />
             </div>
 
@@ -107,54 +107,74 @@ export const Footer: React.FC = () => {
               <li>
                 <button
                   onClick={() => navigateToDestination('japan')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-1.5"
+                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
                 >
-                  <span>🇯🇵</span>
+                  <img
+                    src="https://flagsapi.com/JP/flat/64.png"
+                    alt="Nhật Bản"
+                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
+                  />
                   <span>Nhật Bản (SoftBank 5G)</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => navigateToDestination('europe-33')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-1.5"
+                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
                 >
-                  <span>🇪🇺</span>
+                  <img
+                    src="https://flagsapi.com/BE/flat/64.png"
+                    alt="Châu Âu"
+                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
+                  />
                   <span>Châu Âu 33 Nước (Orange)</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => navigateToDestination('thailand')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-1.5"
+                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
                 >
-                  <span>🇹🇭</span>
+                  <img
+                    src="https://flagsapi.com/TH/flat/64.png"
+                    alt="Thái Lan"
+                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
+                  />
                   <span>Thái Lan (AIS 5G)</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => navigateToDestination('south-korea')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-1.5"
+                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
                 >
-                  <span>🇰🇷</span>
+                  <img
+                    src="https://flagsapi.com/KR/flat/64.png"
+                    alt="Hàn Quốc"
+                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
+                  />
                   <span>Hàn Quốc (SK Telecom)</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => navigateToDestination('usa')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-1.5"
+                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
                 >
-                  <span>🇺🇸</span>
+                  <img
+                    src="https://flagsapi.com/US/flat/64.png"
+                    alt="Mỹ"
+                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
+                  />
                   <span>Mỹ & Canada (AT&T)</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => navigateToDestination('global-130')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-1.5"
+                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
                 >
-                  <span>🌐</span>
+                  <Globe className="w-4 h-4 text-[#00D2B8] shrink-0" />
                   <span>Toàn Cầu (130+ Nước)</span>
                 </button>
               </li>

@@ -167,33 +167,33 @@ export const Header: React.FC = () => {
 
             {/* Cart Dropdown */}
             {isCartOpen && (
-              <div className="absolute right-0 mt-2 w-80 bg-[#1A2340] rounded-xl shadow-xl border border-[#2b3a62] p-4 z-50 text-white">
-                <div className="flex items-center justify-between pb-3 border-b border-[#2b3a62]">
-                  <h4 className="font-bold text-sm text-white">
+              <div className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 p-4 z-50 text-[#1A2340]">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <h4 className="font-bold text-sm text-[#1A2340]">
                     {language === 'vi' ? 'Giỏ hàng của bạn' : 'Your Shopping Bag'} ({totalCartCount})
                   </h4>
                   <button
                     onClick={() => setIsCartOpen(false)}
-                    className="text-slate-400 hover:text-white p-1"
+                    className="text-slate-400 hover:text-[#1A2340] p-1 transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 </div>
 
                 {cart.length === 0 ? (
-                  <div className="py-8 text-center text-slate-300 text-xs">
+                  <div className="py-8 text-center text-slate-400 text-xs">
                     {language === 'vi' ? 'Giỏ hàng trống. Hãy chọn điểm đến!' : 'Cart is empty. Choose a destination!'}
                   </div>
                 ) : (
                   <div className="py-2 space-y-3 max-h-64 overflow-y-auto">
                     {cart.map((item, idx) => (
-                      <div key={idx} className="flex items-start justify-between text-xs py-2 border-b border-[#2b3a62] last:border-0">
+                      <div key={idx} className="flex items-start justify-between text-xs py-2 border-b border-slate-100 last:border-0">
                         <div>
-                          <div className="font-semibold text-white flex items-center gap-1.5">
+                          <div className="font-semibold text-[#1A2340] flex items-center gap-1.5">
                             <span>{item.destination.flag}</span>
                             <span>{language === 'vi' ? item.destination.nameVi : item.destination.nameEn}</span>
                           </div>
-                          <div className="text-slate-300 mt-0.5">{item.plan.name}</div>
+                          <div className="text-slate-500 mt-0.5">{item.plan.name}</div>
                           <div className="text-[#00D2B8] font-bold mt-1">
                             {currency === 'VND'
                               ? new Intl.NumberFormat('vi-VN').format(item.plan.priceVnd * item.quantity) + ' đ'
@@ -205,7 +205,7 @@ export const Header: React.FC = () => {
                             openCheckout(item.destination, item.plan);
                             setIsCartOpen(false);
                           }}
-                          className="bg-[#00D2B8] hover:bg-[#00bda6] text-[#1A2340] px-2.5 py-1 rounded-full text-[11px] font-bold transition-colors cursor-pointer shadow-xs"
+                          className="bg-[#1A2340] hover:bg-[#243056] text-white px-3 py-1 rounded-full text-[11px] font-bold transition-colors cursor-pointer shadow-xs"
                         >
                           {language === 'vi' ? 'Mua' : 'Checkout'}
                         </button>
@@ -240,25 +240,25 @@ export const Header: React.FC = () => {
 
               {/* User Dropdown */}
               {isUserMenuOpen && (
-                <div className="absolute right-0 mt-2 w-64 bg-[#1A2340] rounded-xl shadow-xl border border-[#2b3a62] py-2 z-50 text-white">
-                  <div className="px-4 py-2.5 border-b border-[#2b3a62]">
-                    <p className="text-xs font-semibold text-white">{user.fullName}</p>
-                    <p className="text-[11px] text-slate-300 truncate">{user.email}</p>
-                    <div className="mt-2 bg-[#243056] border border-[#314373] rounded-lg p-2 flex items-center justify-between text-xs">
-                      <span className="text-slate-300 font-medium">Số dư W2G Coin:</span>
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 py-2.5 z-50 text-[#1A2340]">
+                  <div className="px-4 py-2.5 border-b border-slate-100">
+                    <p className="text-xs font-black text-[#1A2340]">{user.fullName}</p>
+                    <p className="text-[11px] text-slate-500 truncate mt-0.5">{user.email}</p>
+                    <div className="mt-2.5 bg-slate-50 border border-slate-200/80 rounded-xl p-2.5 flex items-center justify-between text-xs">
+                      <span className="text-slate-600 font-semibold">Số dư W2G Coin:</span>
                       <span className="font-extrabold text-[#00D2B8]">🪙 {user.coins} Coin</span>
                     </div>
                   </div>
 
-                  <div className="py-1 text-xs text-slate-200">
+                  <div className="py-1 text-xs">
                     <button
                       onClick={() => {
                         navigateToEarn('coin');
                         setIsUserMenuOpen(false);
                       }}
-                      className="w-full text-left px-4 py-2 hover:bg-[#243056] flex items-center gap-2 cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 hover:bg-slate-50 text-[#1A2340] font-medium flex items-center gap-2.5 transition-colors cursor-pointer"
                     >
-                      <Coins className="w-4 h-4 text-amber-400" />
+                      <Coins className="w-4 h-4 text-amber-500" />
                       <span>{language === 'vi' ? 'Ví Coin & Giới thiệu bạn bè' : 'Coin Wallet & Referrals'}</span>
                     </button>
                     <button
@@ -266,20 +266,20 @@ export const Header: React.FC = () => {
                         setActiveTab('helps');
                         setIsUserMenuOpen(false);
                       }}
-                      className="w-full text-left px-4 py-2 hover:bg-[#243056] flex items-center gap-2 cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 hover:bg-slate-50 text-[#1A2340] font-medium flex items-center gap-2.5 transition-colors cursor-pointer"
                     >
-                      <User className="w-4 h-4 text-slate-400" />
+                      <User className="w-4 h-4 text-slate-500" />
                       <span>{language === 'vi' ? 'Trung tâm hỗ trợ' : 'Help & Support'}</span>
                     </button>
                   </div>
 
-                  <div className="pt-1 border-t border-[#2b3a62]">
+                  <div className="pt-1.5 border-t border-slate-100">
                     <button
                       onClick={() => {
                         logoutUser();
                         setIsUserMenuOpen(false);
                       }}
-                      className="w-full text-left px-4 py-2 text-xs font-semibold text-rose-400 hover:bg-[#243056] transition-colors cursor-pointer"
+                      className="w-full text-left px-4 py-2 text-xs font-bold text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
                     >
                       {language === 'vi' ? 'Đăng xuất' : 'Sign Out'}
                     </button>

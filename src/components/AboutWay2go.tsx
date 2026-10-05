@@ -2,6 +2,8 @@ import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Globe, Users, Award, Shield, CheckCircle2, Heart, ArrowRight } from 'lucide-react';
 
+import readyTravelSvg from '../../assets/image/common/ready_travel.svg';
+
 export const AboutWay2go: React.FC = () => {
   const { language, setActiveTab } = useApp();
 
@@ -124,7 +126,12 @@ export const AboutWay2go: React.FC = () => {
         </div>
 
         {/* CTA Banner */}
-        <div className="bg-white border border-[#E2E8F0] text-[#1A2340] rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-sm">
+        <div className="bg-white border border-[#E2E8F0] text-[#1A2340] rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-sm flex flex-col items-center justify-center">
+          <img
+            src={readyTravelSvg}
+            alt="Ready for Travel"
+            className="h-32 sm:h-44 w-auto object-contain mb-2 mx-auto"
+          />
           <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1A2340]">
             {language === 'vi' ? 'Sẵn sàng cho chuyến đi tiếp theo của bạn?' : 'Ready for Your Next Trip?'}
           </h3>
@@ -136,7 +143,7 @@ export const AboutWay2go: React.FC = () => {
           <div className="pt-2">
             <button
               onClick={() => setActiveTab('store')}
-              className="px-6 py-3 rounded-xl bg-[#00D2B8] hover:bg-[#00bda6] text-white font-black text-sm shadow-md transition-all cursor-pointer"
+              className="px-6 py-3 rounded-xl bg-[#1A2340] hover:opacity-80 text-white font-black text-sm shadow-md transition-all cursor-pointer"
             >
               {language === 'vi' ? 'Xem các gói eSIM du lịch →' : 'Explore Travel eSIM Plans →'}
             </button>

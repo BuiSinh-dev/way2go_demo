@@ -157,7 +157,7 @@ export const VideoGuidesSection: React.FC = () => {
               <span>Được biên soạn bởi đội ngũ Kỹ thuật viễn thông Way2Go</span>
               <button
                 onClick={() => setCompatibilityModalOpen(true)}
-                className="text-[#00D2B8] font-bold hover:underline cursor-pointer"
+                className="text-[#1A2340] font-bold hover:underline cursor-pointer"
               >
                 Kiểm tra máy bạn →
               </button>
@@ -176,7 +176,7 @@ export const VideoGuidesSection: React.FC = () => {
                   key={st.step}
                   className="p-3.5 bg-slate-50 rounded-xl border border-[#E2E8F0] shadow-2xs flex items-start gap-3.5"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-[#00D2B8] text-[#1A2340] font-black text-xs flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-[#1A2340] text-white font-black text-xs flex items-center justify-center shrink-0">
                     {st.step}
                   </div>
                   <div>
