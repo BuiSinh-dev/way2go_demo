@@ -100,84 +100,36 @@ export const Footer: React.FC = () => {
 
           {/* Popular Destinations Col */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">
-              Điểm đến nổi bật
+            <h4 className="text-sm font-extrabold text-white tracking-tight mb-4">
+              Điểm đến phổ biến
             </h4>
-            <ul className="space-y-2 text-xs text-slate-300">
-              <li>
-                <button
-                  onClick={() => navigateToDestination('japan')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <img
-                    src="https://flagsapi.com/JP/flat/64.png"
-                    alt="Nhật Bản"
-                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
-                  />
-                  <span>Nhật Bản (SoftBank 5G)</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateToDestination('europe-33')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <img
-                    src="https://flagsapi.com/BE/flat/64.png"
-                    alt="Châu Âu"
-                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
-                  />
-                  <span>Châu Âu 33 Nước (Orange)</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateToDestination('thailand')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <img
-                    src="https://flagsapi.com/TH/flat/64.png"
-                    alt="Thái Lan"
-                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
-                  />
-                  <span>Thái Lan (AIS 5G)</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateToDestination('south-korea')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <img
-                    src="https://flagsapi.com/KR/flat/64.png"
-                    alt="Hàn Quốc"
-                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
-                  />
-                  <span>Hàn Quốc (SK Telecom)</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateToDestination('usa')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <img
-                    src="https://flagsapi.com/US/flat/64.png"
-                    alt="Mỹ"
-                    className="w-5 h-3.5 object-cover rounded-xs shrink-0"
-                  />
-                  <span>Mỹ & Canada (AT&T)</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => navigateToDestination('global-130')}
-                  className="hover:text-[#00D2B8] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <Globe className="w-4 h-4 text-[#00D2B8] shrink-0" />
-                  <span>Toàn Cầu (130+ Nước)</span>
-                </button>
-              </li>
+            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
+              {[
+                { id: 'usa', label: 'United States', flagCode: 'US' },
+                { id: 'uk', label: 'United Kingdom', flagCode: 'GB' },
+                { id: 'south-korea', label: 'South Korea', flagCode: 'KR' },
+                { id: 'japan', label: 'Japan', flagCode: 'JP' },
+                { id: 'china', label: 'China', flagCode: 'CN' },
+                { id: 'thailand', label: 'Thailand', flagCode: 'TH' },
+                { id: 'taiwan', label: 'Taiwan', flagCode: 'TW' },
+                { id: 'singapore', label: 'Singapore', flagCode: 'SG' },
+                { id: 'vietnam-local', label: 'Vietnam', flagCode: 'VN' },
+                { id: 'malaysia', label: 'Malaysia', flagCode: 'MY' },
+              ].map((dest) => (
+                <li key={dest.id}>
+                  <button
+                    onClick={() => navigateToDestination(dest.id)}
+                    className="hover:text-[#00D2B8] transition-colors cursor-pointer text-slate-300 flex items-center gap-2 text-left"
+                  >
+                    <img
+                      src={`https://flagsapi.com/${dest.flagCode}/flat/64.png`}
+                      alt={dest.label}
+                      className="w-5 h-3.5 object-cover rounded-xs shrink-0"
+                    />
+                    <span>{dest.label}</span>
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 

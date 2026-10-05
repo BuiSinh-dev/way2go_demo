@@ -93,25 +93,12 @@ export const NewsSection: React.FC = () => {
                       WAY2GO INSIGHT
                     </div>
                   )}
-                  {/* Gradient overlay for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/30" />
-
-                  {/* Floating Category & Read Time Badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
-                    <span className="bg-[#1A2340]/85 backdrop-blur-md border border-white/20 text-white px-2.5 py-1 rounded-lg text-xs font-bold shadow-xs">
-                      {language === 'vi' ? article.categoryVi : article.categoryEn}
-                    </span>
-                    <span className="bg-black/60 backdrop-blur-md text-white px-2.5 py-1 rounded-lg text-[11px] font-semibold flex items-center gap-1 border border-white/10">
-                      <Clock className="w-3 h-3 text-[#00D2B8]" />
-                      {article.readTime}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Card content */}
                 <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between text-left">
                   <div>
-                    <h3 className="font-bold text-base sm:text-lg text-[#1A2340] group-hover:text-[#00D2B8] transition-colors line-clamp-2 leading-snug">
+                    <h3 className="font-bold text-base sm:text-lg text-[#1A2340] group-hover:opacity-60 transition-colors line-clamp-2 leading-snug">
                       {language === 'vi' ? article.titleVi : article.titleEn}
                     </h3>
                     <p className="mt-2 text-xs sm:text-sm text-[#1A2340]/75 line-clamp-3 leading-relaxed">
@@ -157,25 +144,12 @@ export const NewsSection: React.FC = () => {
                       WAY2GO INSIGHT
                     </div>
                   )}
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/30" />
-
-                  {/* Floating Category & Read Time Badges */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
-                    <span className="bg-[#1A2340]/85 backdrop-blur-md border border-white/20 text-white px-2.5 py-1 rounded-lg text-xs font-bold shadow-xs">
-                      {language === 'vi' ? article.categoryVi : article.categoryEn}
-                    </span>
-                    <span className="bg-black/60 backdrop-blur-md text-white px-2.5 py-1 rounded-lg text-[11px] font-semibold flex items-center gap-1 border border-white/10">
-                      <Clock className="w-3 h-3 text-[#00D2B8]" />
-                      {article.readTime}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Card content */}
                 <div className="p-5 flex-1 flex flex-col justify-between text-left">
                   <div>
-                    <h3 className="font-bold text-sm sm:text-base text-[#1A2340] group-hover:text-[#00D2B8] transition-colors line-clamp-2 leading-snug">
+                    <h3 className="font-bold text-sm sm:text-base text-[#1A2340] group-hover:opacity-70 transition-colors line-clamp-2 leading-snug">
                       {language === 'vi' ? article.titleVi : article.titleEn}
                     </h3>
                     <p className="mt-2 text-xs text-[#1A2340]/75 line-clamp-3 leading-relaxed">

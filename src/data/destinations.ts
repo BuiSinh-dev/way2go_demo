@@ -436,6 +436,24 @@ export const DESTINATIONS: Destination[] = [
     accentGradient: 'from-blue-600/20 via-indigo-600/10 to-transparent',
     descriptionVi: '1 mã QR duy nhất dùng xuyên biên giới 33 nước Châu Âu.',
     descriptionEn: 'Single eSIM for travel across 33 European countries.'
+  },
+  {
+    id: 'uk',
+    nameVi: 'Vương Quốc Anh',
+    nameEn: 'United Kingdom',
+    code: 'GB',
+    flag: '🇬🇧',
+    flagCode: 'GB',
+    category: 'popular',
+    region: 'Europe',
+    startingPriceVnd: 125000,
+    startingPriceUsd: 5.0,
+    topCarriers: ['EE 5G', 'O2 UK', 'Vodafone UK'],
+    plans: generatePlans(5.0, ['EE', 'O2']),
+    tag: 'Sóng tốc độ cao EE & O2 5G',
+    accentGradient: 'from-blue-700/20 via-red-600/10 to-transparent',
+    descriptionVi: 'Mạng viễn thông EE & O2 5G phủ khắp Vương Quốc Anh.',
+    descriptionEn: 'EE and O2 5G networks across the United Kingdom.'
   }
 ];
 
