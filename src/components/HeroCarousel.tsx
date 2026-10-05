@@ -140,7 +140,7 @@ export const HeroCarousel: React.FC = () => {
                   <div className="flex flex-wrap items-center gap-3 pt-2">
                     <button
                       onClick={s.onPrimaryClick}
-                      className="px-6 py-3 rounded-full bg-[#00D2B8] hover:bg-[#00bda6] text-[#1A2340] font-black text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer"
+                      className="px-6 py-3 rounded-full bg-[#ff7a5c] hover:opacity-80 text-white font-black text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer"
                     >
                       <span>{language === 'vi' ? s.ctaPrimaryVi : s.ctaPrimaryEn}</span>
                       <ArrowRight className="w-4 h-4" />
@@ -149,7 +149,7 @@ export const HeroCarousel: React.FC = () => {
                     <button
                       onClick={s.onSecondaryClick}
                       className={`px-5 py-3 rounded-full font-bold text-sm transition-all cursor-pointer shadow-md hover:shadow-lg ${s.isSecondarySignUp
-                        ? 'bg-[#FF7A5C] hover:bg-[#e6694c] text-white border border-[#FF7A5C]'
+                        ? 'bg-white hover:bg-slate-50 text-[#1A2340] border border-[#E2E8F0]'
                         : 'bg-white hover:bg-slate-50 text-[#1A2340] border border-[#E2E8F0]'
                         }`}
                     >
