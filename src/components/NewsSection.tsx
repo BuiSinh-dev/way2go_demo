@@ -218,7 +218,7 @@ export const NewsSection: React.FC = () => {
               <p className="text-xs sm:text-sm text-[#1A2340]/80 leading-relaxed max-w-lg">
                 {language === 'vi'
                   ? 'Kiếm thêm thu nhập thụ động mỗi ngày cùng Way2go, dễ dàng và nhanh chóng.'
-                  : "Get USD $3.00 in Airmoney for each referral — they'll get a discount on their first purchase."}
+                  : "Earn extra passive income every day with Way2go, easy and fast."}
               </p>
               <div className="pt-2">
                 <button

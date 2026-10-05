@@ -13,7 +13,7 @@ export const AppDownloadBanner: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Soft Cyan Banner matching Reference Image 1 */}
-        <div className="bg-[#86D0DF] rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 md:p-14 relative overflow-hidden shadow-xs border border-[#71C7D7]/50">
+        <div className="bg-[#FAF5EE] rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 md:p-14 relative overflow-hidden shadow-xs border border-[#FAF5EE]">
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
 
