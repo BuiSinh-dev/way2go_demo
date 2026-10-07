@@ -458,17 +458,35 @@ export const DESTINATIONS: Destination[] = [
 ];
 
 export const COUNTRY_DIAL_CODES = [
-  { code: '+84', country: 'Việt Nam', flag: '🇻🇳' },
-  { code: '+1', country: 'Hoa Kỳ / Canada', flag: '🇺🇸' },
-  { code: '+81', country: 'Nhật Bản', flag: '🇯🇵' },
-  { code: '+82', country: 'Hàn Quốc', flag: '🇰🇷' },
-  { code: '+66', country: 'Thái Lan', flag: '🇹🇭' },
-  { code: '+65', country: 'Singapore', flag: '🇸🇬' },
-  { code: '+60', country: 'Malaysia', flag: '🇲🇾' },
-  { code: '+886', country: 'Đài Loan', flag: '🇹🇼' },
-  { code: '+86', country: 'Trung Quốc', flag: '🇨🇳' },
-  { code: '+44', country: 'Vương Quốc Anh', flag: '🇬🇧' },
-  { code: '+33', country: 'Pháp', flag: '🇫🇷' },
-  { code: '+49', country: 'Đức', flag: '🇩🇪' },
-  { code: '+61', country: 'Úc', flag: '🇦🇺' },
+  { code: '+84', country: 'Việt Nam', flag: '🇻🇳', flagCode: 'VN' },
+  { code: '+1', country: 'Hoa Kỳ / Canada', flag: '🇺🇸', flagCode: 'US' },
+  { code: '+81', country: 'Nhật Bản', flag: '🇯🇵', flagCode: 'JP' },
+  { code: '+82', country: 'Hàn Quốc', flag: '🇰🇷', flagCode: 'KR' },
+  { code: '+66', country: 'Thái Lan', flag: '🇹🇭', flagCode: 'TH' },
+  { code: '+65', country: 'Singapore', flag: '🇸🇬', flagCode: 'SG' },
+  { code: '+60', country: 'Malaysia', flag: '🇲🇾', flagCode: 'MY' },
+  { code: '+886', country: 'Đài Loan', flag: '🇹🇼', flagCode: 'TW' },
+  { code: '+86', country: 'Trung Quốc', flag: '🇨🇳', flagCode: 'CN' },
+  { code: '+44', country: 'Vương Quốc Anh', flag: '🇬🇧', flagCode: 'GB' },
+  { code: '+33', country: 'Pháp', flag: '🇫🇷', flagCode: 'FR' },
+  { code: '+49', country: 'Đức', flag: '🇩🇪', flagCode: 'DE' },
+  { code: '+61', country: 'Úc', flag: '🇦🇺', flagCode: 'AU' },
 ];
+
+export const RESIDENCE_COUNTRIES = [
+  { name: 'Việt Nam', flagCode: 'VN' },
+  { name: 'Nhật Bản', flagCode: 'JP' },
+  { name: 'Hàn Quốc', flagCode: 'KR' },
+  { name: 'Hoa Kỳ (USA)', flagCode: 'US' },
+  { name: 'Úc (Australia)', flagCode: 'AU' },
+  { name: 'Singapore', flagCode: 'SG' },
+  { name: 'Vương Quốc Anh', flagCode: 'GB' },
+  { name: 'Thái Lan', flagCode: 'TH' },
+  { name: 'Malaysia', flagCode: 'MY' },
+  { name: 'Đài Loan', flagCode: 'TW' },
+  { name: 'Trung Quốc', flagCode: 'CN' },
+  { name: 'Pháp', flagCode: 'FR' },
+  { name: 'Đức', flagCode: 'DE' },
+  { name: 'Quốc gia khác', flagCode: 'UN' },
+];
+

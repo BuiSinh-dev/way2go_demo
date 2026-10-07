@@ -7,19 +7,13 @@ import {
   Users,
   Gift,
   TrendingUp,
-  ShieldCheck,
   CheckCircle2,
   ArrowRight,
   Copy,
   Check,
   QrCode,
-  DollarSign,
-  Award,
-  Sparkles,
-  Calculator,
   ChevronDown,
   ChevronUp,
-  ExternalLink,
   Clock,
   CreditCard,
   Smartphone,
@@ -27,12 +21,9 @@ import {
   Camera,
   Globe,
   Percent,
-  Heart,
-  HelpCircle,
   X,
-  Send,
-  Sliders,
-  Compass
+  Compass,
+  Sparkles
 } from 'lucide-react';
 
 interface RewardItem {
@@ -739,10 +730,7 @@ export const EarnWithWay2go: React.FC = () => {
 
             {/* 3 USPs as requested in OCR / Holafly style notes */}
             <div className="text-left space-y-5">
-              <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
-                {language === 'vi' ? 'LỢI THẾ ĐỐI TÁC TIẾP THỊ LIÊN KẾT' : 'PARTNERSHIP ADVANTAGES'}
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 m-0">
                 {language === 'vi'
                   ? 'Tại sao hơn 1.200 Creator & Đối tác chọn Way2Go?'
                   : 'Why 1,200+ Creators & Partners Choose Way2Go?'}
@@ -806,9 +794,6 @@ export const EarnWithWay2go: React.FC = () => {
             {/* 3-Tier Commission Structure */}
             <div className="text-left space-y-6">
               <div>
-                <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
-                  {language === 'vi' ? 'CHÍNH SÁCH HOA HỒNG LŨY TIẾN' : 'PROGRESSIVE COMMISSION MODEL'}
-                </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
                   {language === 'vi' ? 'Bảng 3 Hạng Hoa Hồng Đối Tác' : '3-Tier Affiliate Commission Structure'}
                 </h2>
@@ -927,10 +912,6 @@ export const EarnWithWay2go: React.FC = () => {
             <div className="bg-white/90 rounded-3xl p-6 sm:p-10 border border-[#e2d5c7] text-slate-900 text-left space-y-8 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="space-y-1">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase">
-                    <Calculator className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>{language === 'vi' ? 'DỰ TÍNH THU NHẬP AFFILIATE' : 'AFFILIATE EARNINGS CALCULATOR'}</span>
-                  </div>
                   <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
                     {language === 'vi' ? 'Bạn có thể kiếm được bao nhiêu?' : 'How Much Can You Earn?'}
                   </h3>
@@ -1006,9 +987,6 @@ export const EarnWithWay2go: React.FC = () => {
             {/* Who should join? (6 Target Groups) */}
             <div className="text-left space-y-6">
               <div>
-                <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
-                  {language === 'vi' ? 'ĐỐI TƯỢNG PHÙ HỢP' : 'IDEAL PARTNERS'}
-                </div>
                 <h2 className="text-2xl font-black text-slate-900">
                   {language === 'vi' ? 'Ai nên trở thành Đối tác Way2Go?' : 'Who Should Join Our Network?'}
                 </h2>
@@ -1113,9 +1091,6 @@ export const EarnWithWay2go: React.FC = () => {
             {/* Affiliate Registration Form */}
             <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 text-left shadow-sm">
               <div className="max-w-2xl">
-                <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
-                  {language === 'vi' ? 'ĐĂNG KÝ NGAY HÔM NAY' : 'APPLY AS A PARTNER'}
-                </div>
                 <h3 className="text-2xl font-black text-slate-900 mt-1 mb-2">
                   {language === 'vi' ? 'Gia nhập Mạng lưới Đối tác Way2Go' : 'Join Way2Go Affiliate Network'}
                 </h3>
@@ -1299,9 +1274,6 @@ export const EarnWithWay2go: React.FC = () => {
 
         <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 text-left space-y-6 shadow-xs">
           <div className="space-y-1">
-            <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
-              {language === 'vi' ? 'GIẢI ĐÁP THẮC MẮC' : 'FREQUENTLY ASKED QUESTIONS'}
-            </div>
             <h2 className="text-2xl font-black text-slate-900">
               {language === 'vi' ? 'Câu hỏi thường gặp về Earn with Way2Go' : 'Earn with Way2Go FAQs'}
             </h2>

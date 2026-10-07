@@ -68,17 +68,6 @@ export const AuthModal: React.FC = () => {
     setAuthModalOpen(false);
   };
 
-  const fillDemoRegister = () => {
-    setFullName('Trần Phương Linh');
-    setBirthYear('1996');
-    setGender('Nữ');
-    setCity('Hà Nội');
-    setPhone('0934567890');
-    setEmail('phuonglinh.travel@gmail.com');
-    setUsername('phuonglinhtravel');
-    setPassword('Way2go2026!');
-  };
-
   const fillDemoLogin = () => {
     setLoginInput('minh.nguyen@example.com');
     setLoginPassword('password123');
@@ -171,10 +160,10 @@ export const AuthModal: React.FC = () => {
 
               <div className="flex justify-between items-center text-xs">
                 <label className="flex items-center gap-1.5 text-slate-700 cursor-pointer">
-                  <input type="checkbox" defaultChecked className="rounded text-[#00D2B8] accent-[#00D2B8]" />
+                  <input type="checkbox" defaultChecked className="rounded text-[#1A2340] accent-[#1A2340]" />
                   <span>{language === 'vi' ? 'Ghi nhớ đăng nhập' : 'Remember me'}</span>
                 </label>
-                <a href="#forgot" onClick={(e) => { e.preventDefault(); alert('Vui lòng kiểm tra email của bạn để nhận liên kết đặt lại mật khẩu.'); }} className="text-[#00D2B8] font-semibold hover:underline">
+                <a href="#forgot" onClick={(e) => { e.preventDefault(); alert('Vui lòng kiểm tra email của bạn để nhận liên kết đặt lại mật khẩu.'); }} className="text-[#1A2340] font-semibold hover:underline">
                   {language === 'vi' ? 'Quên mật khẩu?' : 'Forgot password?'}
                 </a>
               </div>
@@ -185,21 +174,8 @@ export const AuthModal: React.FC = () => {
               >
                 {language === 'vi' ? 'Đăng nhập ngay' : 'Sign In Now'}
               </button>
-
-              <div className="pt-2 text-center">
-                <button
-                  type="button"
-                  onClick={fillDemoLogin}
-                  className="text-[11px] text-slate-500 hover:text-[#00D2B8] underline cursor-pointer"
-                >
-                  ⚡ Điền nhanh tài khoản thử nghiệm
-                </button>
-              </div>
             </form>
           ) : (
-            /* ========================================================================= */
-            /* REGISTRATION FORM                                                         */
-            /* ========================================================================= */
             <form onSubmit={handleRegister} className="space-y-4">
               {/* Field 1: Họ và tên */}
               <div>
@@ -342,10 +318,6 @@ export const AuthModal: React.FC = () => {
               </div>
 
               {/* Loyalty Reward Indicator */}
-              <div className="p-3 bg-white rounded-xl border border-[#E2E8F0] text-slate-700 text-xs flex items-center gap-2 shadow-2xs">
-                <Sparkles className="w-4 h-4 text-[#00D2B8] shrink-0" />
-                <span>Bạn sẽ nhận ngay <strong className="text-[#00D2B8]">500 W2G Coins</strong> vào ví sau khi tạo tài khoản!</span>
-              </div>
 
               <button
                 type="submit"
@@ -354,15 +326,7 @@ export const AuthModal: React.FC = () => {
                 Hoàn tất đăng ký & Nhận 500 Coins
               </button>
 
-              <div className="pt-1 text-center">
-                <button
-                  type="button"
-                  onClick={fillDemoRegister}
-                  className="text-[11px] text-slate-500 hover:text-[#00D2B8] underline cursor-pointer"
-                >
-                  ⚡ Tự động điền dữ liệu mẫu để thử nghiệm
-                </button>
-              </div>
+
             </form>
           )}
 

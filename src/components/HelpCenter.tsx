@@ -102,71 +102,111 @@ export const HelpCenter: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 bg-[#243356] p-1 rounded-xl border border-[#31436e] pointer-events-none">
+              <div className="flex items-center gap-1 bg-[#243356] p-1 rounded-xl border border-[#31436e]">
                 {[3, 5, 7, 10, 15, 30].map((d) => (
-                  <div
+                  <button
                     key={d}
-                    className={`px-2.5 py-1 text-xs font-bold rounded-lg ${d === 3 ? 'bg-[#1A2340] text-white font-extrabold shadow-xs' : 'text-slate-300'
-                      }`}
+                    type="button"
+                    onClick={() => setTripDays(d)}
+                    className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
+                      tripDays === d
+                        ? 'bg-[#1A2340] text-white font-extrabold shadow-xs'
+                        : 'text-slate-300 hover:text-white'
+                    }`}
                   >
                     {d}N
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 pt-6 items-stretch">
-            {/* Left Column: White Card for Static Usage Progress Bars */}
-            <div className="lg:col-span-7 bg-white text-[#1A2340] p-6 sm:p-7 rounded-2xl border border-slate-100 shadow-md space-y-6 text-left">
+            {/* Left Column: White Card for Interactive Usage Sliders */}
+            <div className="lg:col-span-7 bg-white text-[#1A2340] p-6 sm:p-7 rounded-2xl border border-slate-100 shadow-md space-y-5 text-left">
               <div>
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-[#1A2340] mb-2">
                   <span>🌐 Lướt web, đọc báo, tin tức:</span>
-                  <span className="text-[#1A2340] font-black">1.5 giờ / ngày</span>
+                  <span className="text-[#1A2340] font-black">{webHours} giờ / ngày</span>
                 </div>
-                <div className="w-full bg-slate-200/80 h-3 rounded-full overflow-hidden p-0.5">
-                  <div className="bg-[#1A2340] h-full w-[45%] rounded-full shadow-xs" />
-                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="8"
+                  step="0.5"
+                  value={webHours}
+                  onChange={(e) => setWebHours(parseFloat(e.target.value))}
+                  style={{ background: `linear-gradient(to right, #1A2340 ${(webHours / 8) * 100}%, #E2E8F0 ${(webHours / 8) * 100}%)` }}
+                  className="w-full h-2.5 rounded-lg appearance-none cursor-pointer accent-[#1A2340]"
+                />
               </div>
 
               <div>
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-[#1A2340] mb-2">
                   <span>🗺️ Bản đồ Google Maps, chỉ đường:</span>
-                  <span className="text-[#1A2340] font-black">1.5 giờ / ngày</span>
+                  <span className="text-[#1A2340] font-black">{mapsHours} giờ / ngày</span>
                 </div>
-                <div className="w-full bg-slate-200/80 h-3 rounded-full overflow-hidden p-0.5">
-                  <div className="bg-[#1A2340] h-full w-[65%] rounded-full shadow-xs" />
-                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="8"
+                  step="0.5"
+                  value={mapsHours}
+                  onChange={(e) => setMapsHours(parseFloat(e.target.value))}
+                  style={{ background: `linear-gradient(to right, #1A2340 ${(mapsHours / 8) * 100}%, #E2E8F0 ${(mapsHours / 8) * 100}%)` }}
+                  className="w-full h-2.5 rounded-lg appearance-none cursor-pointer accent-[#1A2340]"
+                />
               </div>
 
               <div>
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-[#1A2340] mb-2">
                   <span>📱 Mạng xã hội (TikTok, Reels, Instagram):</span>
-                  <span className="text-[#1A2340] font-black">1.5 giờ / ngày</span>
+                  <span className="text-[#1A2340] font-black">{socialHours} giờ / ngày</span>
                 </div>
-                <div className="w-full bg-slate-200/80 h-3 rounded-full overflow-hidden p-0.5">
-                  <div className="bg-[#1A2340] h-full w-[45%] rounded-full shadow-xs" />
-                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="8"
+                  step="0.5"
+                  value={socialHours}
+                  onChange={(e) => setSocialHours(parseFloat(e.target.value))}
+                  style={{ background: `linear-gradient(to right, #1A2340 ${(socialHours / 8) * 100}%, #E2E8F0 ${(socialHours / 8) * 100}%)` }}
+                  className="w-full h-2.5 rounded-lg appearance-none cursor-pointer accent-[#1A2340]"
+                />
               </div>
 
               <div>
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-[#1A2340] mb-2">
                   <span>🎬 Xem video YouTube, Netflix HD:</span>
-                  <span className="text-[#1A2340] font-black">0.5 giờ / ngày</span>
+                  <span className="text-[#1A2340] font-black">{videoHours} giờ / ngày</span>
                 </div>
-                <div className="w-full bg-slate-200/80 h-3 rounded-full overflow-hidden p-0.5">
-                  <div className="bg-[#1A2340] h-full w-[25%] rounded-full shadow-xs" />
-                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="8"
+                  step="0.5"
+                  value={videoHours}
+                  onChange={(e) => setVideoHours(parseFloat(e.target.value))}
+                  style={{ background: `linear-gradient(to right, #1A2340 ${(videoHours / 8) * 100}%, #E2E8F0 ${(videoHours / 8) * 100}%)` }}
+                  className="w-full h-2.5 rounded-lg appearance-none cursor-pointer accent-[#1A2340]"
+                />
               </div>
 
               <div>
                 <div className="flex justify-between text-xs sm:text-sm font-bold text-[#1A2340] mb-2">
                   <span>📞 Gọi video thoại (FaceTime, WhatsApp, Zalo):</span>
-                  <span className="text-[#1A2340] font-black">30 phút / ngày</span>
+                  <span className="text-[#1A2340] font-black">{callMinutes} phút / ngày</span>
                 </div>
-                <div className="w-full bg-slate-200/80 h-3 rounded-full overflow-hidden p-0.5">
-                  <div className="bg-[#1A2340] h-full w-[30%] rounded-full shadow-xs" />
-                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="240"
+                  step="15"
+                  value={callMinutes}
+                  onChange={(e) => setCallMinutes(parseInt(e.target.value))}
+                  style={{ background: `linear-gradient(to right, #1A2340 ${(callMinutes / 240) * 100}%, #E2E8F0 ${(callMinutes / 240) * 100}%)` }}
+                  className="w-full h-2.5 rounded-lg appearance-none cursor-pointer accent-[#1A2340]"
+                />
               </div>
             </div>
 
@@ -180,18 +220,18 @@ export const HelpCenter: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 pb-4 border-b border-slate-100">
                   <div>
                     <div className="text-xs text-slate-500 font-semibold">Ước tính mỗi ngày:</div>
-                    <div className="text-2xl font-black text-[#1A2340] tabular-nums">~1.2 GB</div>
+                    <div className="text-2xl font-black text-[#1A2340] tabular-nums">~{dailyGb} GB</div>
                   </div>
                   <div>
-                    <div className="text-xs text-slate-500 font-semibold">Tổng cả 3 ngày:</div>
-                    <div className="text-2xl font-black text-[#1A2340] tabular-nums">~3.5 GB</div>
+                    <div className="text-xs text-slate-500 font-semibold">Tổng cả {tripDays} ngày:</div>
+                    <div className="text-2xl font-black text-[#1A2340] tabular-nums">~{totalGb} GB</div>
                   </div>
                 </div>
 
                 <div className="space-y-1">
                   <div className="text-xs text-slate-500 font-semibold">Gợi ý gói tối ưu cho bạn:</div>
                   <div className="text-base font-extrabold text-[#1A2340]">
-                    Gói 1GB / ngày
+                    {recommendedPlan}
                   </div>
                   <p className="text-[11px] text-slate-600 leading-relaxed pt-1">
                     Đảm bảo tốc độ cao 5G, không bị nghẽn mạng và thoải mái phát hotspot cho các thiết bị khác.
@@ -204,7 +244,7 @@ export const HelpCenter: React.FC = () => {
                 className="w-full py-3 px-4 bg-[#1A2340] hover:bg-[#243356] text-white font-black text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 mt-2"
               >
                 <span>Xem gói theo gợi ý này</span>
-                <ArrowRight className="w-4 h-4 text-[#1A2340]" />
+                <ArrowRight className="w-4 h-4 text-white" />
               </button>
             </div>
           </div>

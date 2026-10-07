@@ -18,6 +18,7 @@ import { AuthModal } from './components/AuthModal';
 import { DeviceCompatibilityModal } from './components/DeviceCompatibilityModal';
 import { NewsDetailModal } from './components/NewsDetailModal';
 import { Footer } from './components/Footer';
+import InviteFriends from './components/InviteFriends';
 
 const MainLayout: React.FC = () => {
   const { activeTab } = useApp();
@@ -29,19 +30,6 @@ const MainLayout: React.FC = () => {
 
       {/* Main Content Body */}
       <main className="flex-1">
-        {/* ========================================================================= */}
-        {/* TRANG CHỦ (HOME PAGE) - THỨ TỰ CHUẨN XÁC THEO SƠ ĐỒ THIẾT KẾ:           */}
-        {/* 1. Header (Home - eSIM store - Way2go - News - Earn with W2G - Get Helps) */}
-        {/* 2. Banner xoay vòng chuyển động (3-4 Banner)                             */}
-        {/* 3. Get eSIMs for popular locations                                        */}
-        {/* 4. Video về eSIM, hướng dẫn cài đặt 2 dòng máy, nói về Roaming...        */}
-        {/* 5. Gần 2Tr users (Tại sao 2tr user chọn w2g), các USP                    */}
-        {/* 6. FAQs (Câu hỏi thường gặp nổi bật)                                      */}
-        {/* 7. Các bài SEO nổi bật lướt qua (kèm thông tin Earn with Way2Go)         */}
-        {/* 8. Feedback của KH, các KOLs, KOC chụp với eSIM                          */}
-        {/* 9. Để tải APP (Mobile app download & QR code)                            */}
-        {/* 10. Footer                                                               */}
-        {/* ========================================================================= */}
         {activeTab === 'home' && (
           <>
             {/* 2. Hero Carousel */}
@@ -58,12 +46,13 @@ const MainLayout: React.FC = () => {
 
             {/* 6. FAQs */}
             <HomeFaqSection />
-
+            {/* 8. Feedback KH, KOLs, KOC chụp với eSIM */}
+            <KocTestimonials />
+            <InviteFriends />
             {/* 7. Các bài SEO nổi bật lướt qua */}
             <NewsSection />
 
-            {/* 8. Feedback KH, KOLs, KOC chụp với eSIM */}
-            <KocTestimonials />
+
 
             {/* 9. Để tải APP */}
             <AppDownloadBanner />

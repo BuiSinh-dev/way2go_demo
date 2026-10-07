@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import { DESTINATIONS } from '../data/destinations';
-import { Destination, PlanVariant } from '../types';
+import { PlanVariant } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import worldImg from '../../assets/image/hero-image/world.svg';
 import {
@@ -13,14 +13,9 @@ import {
   RefreshCw,
   Headphones,
   Smartphone,
-  ChevronDown,
   Gift,
-  ShieldCheck,
   Calendar,
-  Layers,
-  ArrowRight,
   Search,
-  ChevronRight,
   ArrowLeft
 } from 'lucide-react';
 
@@ -42,12 +37,9 @@ interface SelectedPlanState {
 export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone = false }) => {
   const {
     language,
-    currency,
     formatPrice,
     selectedDestination,
-    setSelectedDestination,
     storeView,
-    setStoreView,
     openStoreCatalog,
     navigateToDestination,
     openCheckout,
@@ -61,6 +53,8 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   const [catalogCategory, setCatalogCategory] = useState<string>('all');
   const [catalogSearch, setCatalogSearch] = useState<string>('');
   const [catalogSelectCountry, setCatalogSelectCountry] = useState<string>('');
+  const [isCatalogCountryOpen, setIsCatalogCountryOpen] = useState<boolean>(false);
+
 
   // Fallback destination if none selected
   const currentDest = selectedDestination || DESTINATIONS[1] || DESTINATIONS[0]; // Thailand as default
@@ -325,28 +319,82 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
             {/* Search bar & Select Dropdown */}
             <div className="mt-6 max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-12 gap-2.5">
               <div className="sm:col-span-5 relative">
-                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#1A2340]">
-                  🌐
-                </div>
-                <select
-                  value={catalogSelectCountry}
-                  onChange={handleCountrySelectChange}
-                  className="w-full pl-9 pr-8 py-3 bg-white rounded-xl border border-[#E2E8F0] text-xs sm:text-sm font-semibold text-[#1A2340] shadow-xs focus:outline-none focus:ring-2 focus:ring-[#1A2340] cursor-pointer appearance-none"
-                >
-                  <option value="">
-                    {language === 'vi' ? 'Chọn nhanh quốc gia...' : 'Select country...'}
-                  </option>
-                  <optgroup label={language === 'vi' ? 'Quốc gia phổ biến' : 'Popular Destinations'}>
-                    {DESTINATIONS.map((d) => (
-                      <option key={d.id} value={d.id}>
-                        {d.flag} {language === 'vi' ? d.nameVi : d.nameEn}
-                      </option>
-                    ))}
-                  </optgroup>
-                </select>
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#1A2340]/60 text-xs">
-                  ▼
-                </div>
+                {(() => {
+                  const selectedCatalogDest = DESTINATIONS.find((d) => d.id === catalogSelectCountry);
+                  return (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setIsCatalogCountryOpen(!isCatalogCountryOpen)}
+                        className="w-full px-3.5 py-3 bg-white rounded-xl border border-[#E2E8F0] text-xs sm:text-sm font-semibold text-[#1A2340] shadow-xs focus:outline-none focus:ring-2 focus:ring-[#1A2340] cursor-pointer flex items-center justify-between"
+                      >
+                        <div className="flex items-center gap-2 min-w-0 pr-1 truncate">
+                          {selectedCatalogDest ? (
+                            <>
+                              <img
+                                src={`https://flagsapi.com/${selectedCatalogDest.flagCode || selectedCatalogDest.code || 'BE'}/flat/64.png`}
+                                alt={selectedCatalogDest.nameVi}
+                                className="w-5 h-3.5 object-contain rounded-xs shrink-0"
+                              />
+                              <span className="truncate">{language === 'vi' ? selectedCatalogDest.nameVi : selectedCatalogDest.nameEn}</span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="shrink-0 text-base">🌐</span>
+                              <span className="truncate">{language === 'vi' ? 'Chọn nhanh quốc gia...' : 'Select country...'}</span>
+                            </>
+                          )}
+                        </div>
+                        <span className="text-[#1A2340]/60 text-xs shrink-0 ml-1">▼</span>
+                      </button>
+
+                      {isCatalogCountryOpen && (
+                        <>
+                          <div className="fixed inset-0 z-20" onClick={() => setIsCatalogCountryOpen(false)} />
+                          <div className="absolute top-full left-0 right-0 mt-1 z-30 bg-white border border-[#E2E8F0] rounded-xl shadow-xl max-h-64 overflow-y-auto py-1 text-left text-xs sm:text-sm">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setCatalogSelectCountry('');
+                                setIsCatalogCountryOpen(false);
+                              }}
+                              className={`w-full px-3.5 py-2.5 text-left flex items-center gap-2 hover:bg-slate-100 transition-colors cursor-pointer ${!catalogSelectCountry ? 'font-bold text-[#1A2340] bg-slate-50' : 'text-slate-600'
+                                }`}
+                            >
+                              <span className="text-base">🌐</span>
+                              <span>{language === 'vi' ? 'Chọn nhanh quốc gia...' : 'Select country...'}</span>
+                            </button>
+
+                            <div className="px-3.5 py-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-50/80 border-y border-slate-100 mt-1">
+                              {language === 'vi' ? 'Quốc gia phổ biến' : 'Popular Destinations'}
+                            </div>
+
+                            {DESTINATIONS.map((d) => (
+                              <button
+                                key={d.id}
+                                type="button"
+                                onClick={() => {
+                                  setCatalogSelectCountry(d.id);
+                                  setIsCatalogCountryOpen(false);
+                                  navigateToDestination(d.id);
+                                }}
+                                className={`w-full px-3.5 py-2 text-left flex items-center gap-2.5 hover:bg-[#1A2340]/5 transition-colors cursor-pointer ${catalogSelectCountry === d.id ? 'font-bold text-[#1A2340] bg-[#1A2340]/10' : 'text-slate-700'
+                                  }`}
+                              >
+                                <img
+                                  src={`https://flagsapi.com/${d.flagCode || d.code || 'BE'}/flat/64.png`}
+                                  alt={d.nameVi}
+                                  className="w-5 h-3.5 object-contain rounded-xs shrink-0"
+                                />
+                                <span>{language === 'vi' ? d.nameVi : d.nameEn}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
 
               <div className="sm:col-span-7 relative">
@@ -660,12 +708,12 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 <div
                   onClick={() => setActiveCardId('daily-3gb')}
                   className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'daily-3gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
+                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
                     }`}
                 >
                   <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#1A2340] text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-2xs flex items-center gap-0.5">
+                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs flex items-center gap-0.5 uppercase tracking-wider">
                       <Zap className="w-2.5 h-2.5" /> FLASH SALE
                     </span>
                   </div>
@@ -692,13 +740,13 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                         setDailyDays3Gb(Number(e.target.value));
                         setActiveCardId('daily-3gb');
                       }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
+                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
                     >
                       {[1, 3, 5, 7, 10, 15, 30].map((d) => (
                         <option key={d} value={d}>{d} ngày</option>
                       ))}
                     </select>
-                    <span className="text-[10px] font-bold text-[#1A2340] shrink-0">Save 20%</span>
+                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
                   </div>
                 </div>
 
@@ -810,19 +858,19 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 <div
                   onClick={() => setActiveCardId('fixed-35gb')}
                   className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'fixed-35gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
+                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
                     }`}
                 >
                   <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#1A2340] text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-2xs">
+                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs uppercase tracking-wider">
                       GOOD DEAL
                     </span>
                   </div>
                   <div className="flex items-start justify-between">
                     <div>
                       <span className="font-extrabold text-sm text-[#1A2340]">35GB</span>
-                      <span className="text-[10px] bg-[#1A2340]/10 text-[#1A2340] px-1.5 py-0.5 rounded ml-1.5 font-bold">
+                      <span className="text-[10px] bg-[#ff7a5c]/10 text-[#ff7a5c] px-1.5 py-0.5 rounded ml-1.5 font-bold">
                         Gọi & SMS
                       </span>
                     </div>
@@ -842,13 +890,13 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                         setFixedDays35Gb(Number(e.target.value));
                         setActiveCardId('fixed-35gb');
                       }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
+                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
                     >
                       {[7, 10, 15, 30].map((d) => (
                         <option key={d} value={d}>{d} ngày</option>
                       ))}
                     </select>
-                    <span className="text-[10px] font-bold text-[#1A2340] shrink-0">Save 20%</span>
+                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
                   </div>
                 </div>
 
@@ -856,19 +904,19 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 <div
                   onClick={() => setActiveCardId('fixed-50gb')}
                   className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'fixed-50gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
+                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
                     }`}
                 >
                   <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#1A2340] text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-2xs">
+                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs uppercase tracking-wider">
                       BEST CHOICE
                     </span>
                   </div>
                   <div className="flex items-start justify-between">
                     <div>
                       <span className="font-extrabold text-sm text-[#1A2340]">50GB</span>
-                      <span className="text-[10px] bg-[#1A2340]/10 text-[#1A2340] px-1.5 py-0.5 rounded ml-1.5 font-bold">
+                      <span className="text-[10px] bg-[#ff7a5c]/10 text-[#ff7a5c] px-1.5 py-0.5 rounded ml-1.5 font-bold">
                         Gọi & SMS
                       </span>
                     </div>
@@ -888,13 +936,13 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                         setFixedDays50Gb(Number(e.target.value));
                         setActiveCardId('fixed-50gb');
                       }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
+                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
                     >
                       {[10, 15, 30].map((d) => (
                         <option key={d} value={d}>{d} ngày</option>
                       ))}
                     </select>
-                    <span className="text-[10px] font-bold text-[#1A2340] shrink-0">Save 20%</span>
+                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
                   </div>
                 </div>
 
@@ -953,12 +1001,12 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 <div
                   onClick={() => setActiveCardId('ulm-10mbps')}
                   className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'ulm-10mbps'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
+                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
                     }`}
                 >
                   <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#1A2340] text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-2xs flex items-center gap-0.5">
+                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs flex items-center gap-0.5 uppercase tracking-wider">
                       <Zap className="w-2.5 h-2.5" /> FLASH SALE
                     </span>
                   </div>
@@ -988,13 +1036,13 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                         setUlmDays10Mbps(Number(e.target.value));
                         setActiveCardId('ulm-10mbps');
                       }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
+                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
                     >
                       {[1, 3, 5, 7, 10, 15, 30].map((d) => (
                         <option key={d} value={d}>{d} ngày</option>
                       ))}
                     </select>
-                    <span className="text-[10px] font-bold text-[#1A2340] shrink-0">Save 20%</span>
+                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
                   </div>
                 </div>
 
@@ -1019,7 +1067,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                     Nhận miễn phí 300MB cho chuyến đi sắp tới
                   </div>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-[#1A2340]/10 text-[#1A2340] flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#ff7a5c]/10 text-[#ff7a5c] flex items-center justify-center shrink-0">
                   <Gift className="w-4 h-4" />
                 </div>
               </div>
@@ -1071,7 +1119,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
 
                   <div className="flex justify-between items-baseline pt-2 border-t border-[#E2E8F0]">
                     <span className="font-semibold text-slate-600">Tổng cộng</span>
-                    <span className="text-2xl font-black text-[#1A2340] tabular-nums">
+                    <span className="text-2xl font-black text-[#ff7a5c] tabular-nums">
                       {formatPrice(activePlanInfo.priceVnd, activePlanInfo.priceUsd)}
                     </span>
                   </div>
@@ -1080,7 +1128,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 {/* Primary Buy CTA Button */}
                 <button
                   onClick={handleCheckoutClick}
-                  className="w-full py-3.5 px-4 rounded-full bg-[#1A2340] hover:bg-[#243056] text-white font-black text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 px-4 rounded-full bg-[#ff7a5c] hover:bg-[#E05800] active:bg-[#C84E00] text-white font-black text-sm sm:text-base shadow-lg shadow-[#ff7a5c]/25 hover:shadow-orange-500/40 transition-all flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
                 >
                   <span>Mua ngay</span>
                 </button>
@@ -1174,9 +1222,9 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 <div className="pt-2 pb-4">
                   <button
                     onClick={() => setCompatibilityModalOpen(true)}
-                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-[#E2E8F0] text-xs font-bold text-[#1A2340] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    className="w-full py-2.5 px-3 rounded-xl bg-[#1A2340] hover:bg-[#1a2340]/80 border border-[#E2E8F0] text-xs font-bold text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                   >
-                    <Smartphone className="w-4 h-4 text-[#1A2340]" />
+                    <Smartphone className="w-4 h-4 text-white" />
                     <span>Kiểm tra tương thích tại đây →</span>
                   </button>
                 </div>

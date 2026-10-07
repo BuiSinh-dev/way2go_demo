@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
                   onClick={() => { setActiveTab('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className="hover:text-[#00D2B8] transition-colors cursor-pointer"
                 >
-                  Trang chủ (Home)
+                  Trang chủ
                 </button>
               </li>
               <li>
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
                   onClick={openStoreCatalog}
                   className="hover:text-[#00D2B8] transition-colors cursor-pointer"
                 >
-                  eSIM store (Cửa hàng)
+                  eSIM store
                 </button>
               </li>
               <li>
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
                   onClick={() => { setActiveTab('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className="hover:text-[#00D2B8] transition-colors cursor-pointer"
                 >
-                  Về Way2go (About us)
+                  Về Way2go
                 </button>
               </li>
               <li>
@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
                   onClick={() => { setActiveTab('news'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className="hover:text-[#00D2B8] transition-colors cursor-pointer"
                 >
-                  Tin tức & SEO (News)
+                  Tin tức & SEO
                 </button>
               </li>
               <li>
@@ -84,7 +84,7 @@ export const Footer: React.FC = () => {
                   onClick={() => navigateToEarn('coin')}
                   className="hover:text-[#00D2B8] transition-colors cursor-pointer"
                 >
-                  Earn with W2G (Kiếm tiền & Coin)
+                  Earn with W2G
                 </button>
               </li>
               <li>
@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
                   onClick={() => navigateToHelps()}
                   className="hover:text-[#00D2B8] transition-colors cursor-pointer"
                 >
-                  Trung tâm trợ giúp (Get Helps)
+                  Trung tâm trợ giúp
                 </button>
               </li>
             </ul>

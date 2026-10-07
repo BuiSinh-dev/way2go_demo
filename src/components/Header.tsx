@@ -190,7 +190,11 @@ export const Header: React.FC = () => {
                       <div key={idx} className="flex items-start justify-between text-xs py-2 border-b border-slate-100 last:border-0">
                         <div>
                           <div className="font-semibold text-[#1A2340] flex items-center gap-1.5">
-                            <span>{item.destination.flag}</span>
+                            <img
+                              src={`https://flagsapi.com/${item.destination.flagCode || item.destination.code || 'BE'}/flat/64.png`}
+                              alt={item.destination.nameVi}
+                              className="w-5 h-3.5 object-contain rounded-xs shrink-0"
+                            />
                             <span>{language === 'vi' ? item.destination.nameVi : item.destination.nameEn}</span>
                           </div>
                           <div className="text-slate-500 mt-0.5">{item.plan.name}</div>
