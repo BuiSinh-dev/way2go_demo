@@ -1,141 +1,226 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { Globe, Users, Award, Shield, CheckCircle2, Heart, ArrowRight } from 'lucide-react';
+import { TrendingUp, Users, Globe, CheckCircle2 } from 'lucide-react';
 
+import our1Img from '../../assets/image/way2go/our1.png';
+import our2Img from '../../assets/image/way2go/our2.png';
+import ourStoryImg from '../../assets/image/way2go/our_story.jpg';
 import readyTravelSvg from '../../assets/image/common/ready_travel.svg';
 
 export const AboutWay2go: React.FC = () => {
   const { language, setActiveTab } = useApp();
 
-  const milestones = [
-    {
-      year: '2019',
-      titleVi: 'Khởi đầu sứ mệnh kết nối',
-      titleEn: 'Founding & Vision',
-      descVi: 'Way2Go được thành lập với mục tiêu giải phóng người du lịch khỏi sự phức tạp của SIM vật lý và cước roaming đắt đỏ.',
-      descEn: 'Way2Go was founded to eliminate physical SIM cards and exorbitant overseas roaming rates.'
-    },
-    {
-      year: '2021',
-      titleVi: 'Cột mốc 100.000 khách hàng đầu tiên',
-      titleEn: '100,000 First Travelers',
-      descVi: 'Mở rộng kết nối tại 50 quốc gia châu Á và châu Âu, tiên phong áp dụng công nghệ eSIM kích hoạt tự động.',
-      descEn: 'Expanded across 50 destinations in Asia and Europe with automated eSIM provisioning.'
-    },
-    {
-      year: '2024',
-      titleVi: 'Phủ sóng hơn 200 quốc gia',
-      titleEn: '200+ Destinations Worldwide',
-      descVi: 'Hợp tác trực tiếp với các nhà mạng viễn thông quốc gia Tier-1, ra mắt tính năng ví điểm thưởng Way2Go Coin.',
-      descEn: 'Direct interconnects with Tier-1 national carriers and introduced Way2Go Coin loyalty system.'
-    },
-    {
-      year: '2026',
-      titleVi: 'Đạt gần 2.000.000 khách hàng toàn cầu',
-      titleEn: 'Nearly 2M Global Customers',
-      descVi: 'Phục vụ hàng triệu chuyến đi an toàn, ổn định với đội ngũ hỗ trợ kỹ thuật trực tiếp 24/7 và ứng dụng 1 chạm.',
-      descEn: 'Empowering millions of seamless trips backed by 24/7 human technical support and 1-tap mobile app.'
-    }
-  ];
-
   return (
-    <div className="py-14 bg-[#FAF5EE]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-
-        {/* Hero Section */}
-        <div className="text-center space-y-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1A2340] tracking-tight">
-            {language === 'vi' ? 'Kết nối thế giới trong tầm tay bạn' : 'Connecting the World in Your Pocket'}
+    <div className="pb-16 bg-white">
+      {/* Top Page Header Banner */}
+      <div className=" py-10 sm:py-14 text-center mb-10">
+        <div className="max-w-4xl mx-auto px-4 space-y-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#1A2340] tracking-wide uppercase">
+            {language === 'vi' ? 'SIM DU LỊCH TOÀN CẦU WAY2GO' : 'WAY2GO GLOBAL TRAVEL eSIM'}
           </h1>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-500 italic font-medium">
             {language === 'vi'
-              ? 'Way2Go là nền tảng viễn thông du lịch số, mang lại cho bạn sự tự do kết nối internet tốc độ cao không giới hạn tại hơn 200 quốc gia và vùng lãnh thổ.'
-              : 'Way2Go is a next-generation travel telecom platform providing seamless, high-speed 5G internet across 200+ destinations worldwide.'}
+              ? 'Nâng tầm trải nghiệm du lịch với kết nối không ngừng'
+              : 'Elevating travel experiences with seamless connectivity'}
           </p>
         </div>
+      </div>
 
-        {/* What is Way2Go? Our Mission */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white text-[#1A2340] p-8 rounded-3xl border border-[#E2E8F0] shadow-sm">
-          <div className="space-y-4 text-left">
-            <h2 className="text-2xl font-bold text-[#1A2340]">
-              {language === 'vi' ? 'Way2Go là gì?' : 'What is Way2Go?'}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-[#1A2340]">
+
+        {/* SECTION 1: CÂU CHUYỆN VỀ CHÚNG TÔI */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Left Text Column */}
+          <div className="md:col-span-6 text-left space-y-4">
+            <h2 className="text-xl  font-extrabold text-[#1A2340] tracking-tight">
+              {language === 'vi' ? 'Về Way2go' : 'About us'}
             </h2>
-            <p className="text-sm text-[#1A2340]/80 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               {language === 'vi'
-                ? 'Way2Go sinh ra để thay đổi cách chúng ta du lịch. Thay vì xếp hàng tại quầy bán SIM sân bay, tìm que chọc SIM hay lo sợ làm mất thẻ SIM Việt Nam, bạn chỉ cần 1 thao tác quét mã QR đơn giản.'
-                : 'Way2Go redefines how the world stays connected while traveling. Skip airport SIM queues, fragile SIM ejector pins, and avoid losing your home SIM.'}
+                ? 'Chính thức thành lập vào năm 2010, Consortio Việt Nam là công ty uy tín trong lĩnh vực phân phối SIM du lịch và các dịch vụ hỗ trợ nâng cao trải nghiệm du lịch, tự hào được biết đến bởi các sản phẩm SIM du lịch Way2go có thiết kế riêng đi kèm các dịch vụ tích hợp và thông tin du lịch dành cho du khách quốc tế đến Việt Nam và du khách Việt Nam đi nước ngoài.'
+                : 'Founded in 2010, Consortio Vietnam is a trusted company specializing in travel SIM cards and travel experience services, proud to present custom-designed Way2go travel eSIMs with integrated services for international visitors and outbound travelers.'}
             </p>
-            <p className="text-sm text-[#1A2340]/80 leading-relaxed">
-              {language === 'vi'
-                ? 'Chúng tôi tin rằng internet trong mỗi chuyến đi không chỉ là tiện ích, mà là sự an tâm tuyệt đối để định vị bản đồ, liên lạc với gia đình và tận hưởng trọn vẹn từng khoảnh khắc.'
-                : 'We believe travel connectivity is not just a utility, but peace of mind ensuring you navigate easily and stay in touch with loved ones anywhere.'}
-            </p>
-
-            <div className="pt-2 flex items-center gap-4 text-xs font-semibold text-[#1A2340]/90">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00D2B8]" />
-                <span>Không hợp đồng</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00D2B8]" />
-                <span>Không phí ẩn</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00D2B8]" />
-                <span>Hoàn tiền 100%</span>
-              </div>
-            </div>
           </div>
 
-          <div className="bg-[#1A2340] border border-[#E2E8F0] p-6 rounded-2xl text-[#1A2340] space-y-4 text-left shadow-2xs">
-            <h3 className="text-xl font-bold text-white">Sứ mệnh của chúng tôi</h3>
-            <p className="text-xs text-white/80 leading-relaxed">
-              "Xóa bỏ mọi rào cản về cước viễn thông quốc tế, trao quyền cho mỗi người tự tin khám phá thế giới với sự kết nối tốc độ cao và chi phí tiết kiệm nhất."
-            </p>
-            <div className="pt-4 border-t border-[#E2E8F0] grid grid-cols-2 gap-4">
-              <div>
-                <div className="text-2xl font-black text-[#00D2B8] font-mono">200+</div>
-                <div className="text-[11px] text-white/70">Quốc gia phủ sóng</div>
+          {/* Right Stats Cards with scenic background */}
+          <div className="md:col-span-6 grid grid-cols-2 gap-4">
+            <div className="relative rounded-3xl overflow-hidden shadow-md border border-slate-200/80 text-white p-6 sm:p-8 flex flex-col justify-between h-44 sm:h-52 group">
+              <img
+                src={ourStoryImg}
+                alt="Way2go Customers"
+                className="absolute inset-0 w-full h-full object-cover  group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 " />
+              <div className="relative z-10 space-y-1 text-left">
+                <span className="text-xs text-gray-600  font-medium">
+                  {language === 'vi' ? 'Phục vụ trên' : 'Serving over'}
+                </span>
+                <div className="text-lg font-black text-[#1A2340]">
+                  {language === 'vi' ? '2 triệu khách hàng' : '2 Million Customers'}
+                </div>
               </div>
-              <div>
-                <div className="text-2xl font-black text-[#00D2B8] font-mono">1.95M+</div>
-                <div className="text-[11px] text-white/70">Người dùng tin chọn</div>
+            </div>
+
+            <div className="relative rounded-3xl overflow-hidden shadow-md border border-slate-200/80 text-white p-6 sm:p-8 flex flex-col justify-between h-44 sm:h-52 group">
+              <img
+                src={ourStoryImg}
+                alt="Way2go Coverage"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute to-transparent" />
+              <div className="relative z-10 space-y-1 text-left">
+                <span className="text-xs text-gray-600 font-medium">
+                  {language === 'vi' ? 'Phủ sóng trên' : 'Coverage across'}
+                </span>
+                <div className="text-lg font-black text-[#1A2340]">
+                  {language === 'vi' ? '200 Quốc gia' : '200+ Countries'}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Milestones Timeline */}
-        <div className="space-y-6">
-          <div className="text-center">
-            <h3 className="text-xl sm:text-2xl font-bold text-[#1A2340]">
-              {language === 'vi' ? 'Hành trình phát triển của Way2Go' : 'Our Milestones & Growth'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">Từ một ý tưởng năm 2019 đến mạng lưới kết nối toàn cầu hôm nay</p>
+        {/* SECTION 2: FAST FACTS CARD (CARD MÀU MẮT MÈO / MINT GREEN AS SHOWN IN IMAGE 2) */}
+        <div className="bg-[#00D2B8] rounded-3xl p-8 sm:p-12 text-center border border-[#B8DDC6] shadow-sm">
+          <h3 className="text-2xl sm:text-3xl font-black text-white mb-8 tracking-tight">
+            Fast facts
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center">
+            {/* Stat 1: Year founded */}
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-14 h-14 rounded-full bg-white text-[#1A2340] shadow-sm flex items-center justify-center">
+                <TrendingUp className="w-6 h-6" />
+              </div>
+              <div className="text-3xl sm:text-4xl font-black text-white font-mono">
+                2019
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-white/70">
+                Year founded
+              </div>
+            </div>
+
+            {/* Stat 2: Users */}
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-14 h-14 rounded-full bg-white text-[#1A2340] shadow-sm flex items-center justify-center">
+                <Users className="w-6 h-6" />
+              </div>
+              <div className="text-3xl sm:text-4xl font-black text-white font-mono">
+                30M+
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-white/70">
+                Users
+              </div>
+            </div>
+
+            {/* Stat 3: Countries coverage */}
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-14 h-14 rounded-full bg-white text-[#1A2340] shadow-sm flex items-center justify-center">
+                <Globe className="w-6 h-6" />
+              </div>
+              <div className="text-3xl sm:text-4xl font-black text-white font-mono">
+                200+
+              </div>
+              <div className="text-xs sm:text-sm font-semibold text-white/70">
+                Countries and regions coverage
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 3: TẦM NHÌN & SỨ MỆNH */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Left Image: our1.png */}
+          <div className="md:col-span-6 flex justify-center">
+            <img
+              src={our1Img}
+              alt="Way2go Vision Card"
+              className="w-full max-w-md sm:max-w-lg h-auto rounded-3xl shadow-lg border border-slate-200/80 object-contain"
+            />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {milestones.map((m, idx) => (
-              <div key={idx} className="bg-white text-[#1A2340] p-5 rounded-2xl border border-[#E2E8F0] text-left space-y-2 relative shadow-xs">
-                <div className="text-2xl font-black text-[#00D2B8] font-mono">{m.year}</div>
-                <div className="font-bold text-sm text-[#1A2340]">{language === 'vi' ? m.titleVi : m.titleEn}</div>
-                <p className="text-xs text-[#1A2340]/80 leading-relaxed">{language === 'vi' ? m.descVi : m.descEn}</p>
-              </div>
-            ))}
+          {/* Right Content: Tầm nhìn & Sứ mệnh */}
+          <div className="md:col-span-6 text-left space-y-6">
+            <div className="space-y-2">
+              <h3 className="text-xl font-bold text-[#1A2340]">
+                {language === 'vi' ? 'Tầm nhìn' : 'Vision'}
+              </h3>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                {language === 'vi'
+                  ? 'Trở thành doanh nghiệp vững mạnh và uy tín trong lĩnh vực cung cấp các sản phẩm, dịch vụ hỗ trợ nâng cao trải nghiệm du lịch.'
+                  : 'To become a strong and reputable leader providing premium products and services that elevate global travel experiences.'}
+              </p>
+            </div>
+
+            <div className="space-y-2 pt-2">
+              <h3 className="text-xl font-bold text-[#1A2340]">
+                {language === 'vi' ? 'Sứ mệnh' : 'Mission'}
+              </h3>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                {language === 'vi'
+                  ? 'Way2go mong muốn trở thành người bạn đồng hành đáng tin cậy của du khách đến từ khắp nơi trên thế giới, cùng du khách nâng tầm trải nghiệm du lịch và thoả thích kết nối mọi nền văn hoá trên thế giới.'
+                  : 'Way2go strives to be the trusted companion of travelers worldwide, empowering seamless connectivity across all global cultures.'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 4: GIÁ TRỊ CỐT LÕI */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Left Content: Giá trị cốt lõi */}
+          <div className="md:col-span-7 text-left space-y-4">
+            <h3 className="text-xl font-bold text-[#1A2340] mb-2">
+              {language === 'vi' ? 'Giá trị cốt lõi' : 'Core Values'}
+            </h3>
+
+            <div className="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <p>
+                <strong className="text-[#1A2340] font-bold">{language === 'vi' ? 'Hợp lực' : 'Synergy'}</strong> – {language === 'vi'
+                  ? 'Hợp tác minh bạch, đồng hành cùng Quý Đối tác tạo ra những lợi ích bền vững, gắn kết Quý Khách hàng bằng sự chân thành và tôn trọng.'
+                  : 'Transparent partnership, creating sustainable mutual growth with utmost sincerity and respect.'}
+              </p>
+
+              <p>
+                <strong className="text-[#1A2340] font-bold">{language === 'vi' ? 'Sáng tạo' : 'Innovation'}</strong> – {language === 'vi'
+                  ? 'Đề cao sự khác biệt tích cực, không ngừng khám phá, hoàn thiện và đổi mới, tạo ra các giá trị mới phù hợp với xu hướng phát triển của thời đại và bắt kịp nhu cầu thay đổi từng ngày của Quý Khách hàng.'
+                  : 'Embracing positive difference, constantly innovating to deliver cutting-edge travel connectivity solutions.'}
+              </p>
+
+              <p>
+                <strong className="text-[#1A2340] font-bold">{language === 'vi' ? 'Dũng cảm' : 'Courage'}</strong> – {language === 'vi'
+                  ? 'Tiên phong lựa chọn và phát triển sản phẩm – dịch vụ chuyên biệt, suy nghĩ và hành động can đảm, vượt qua thách thức và khuôn mẫu.'
+                  : 'Pioneering specialized products, daring to break boundaries and overcome challenges.'}
+              </p>
+
+              <p>
+                <strong className="text-[#1A2340] font-bold">{language === 'vi' ? 'Nhân ái' : 'Compassion'}</strong> – {language === 'vi'
+                  ? 'Tận tâm, thấu hiểu, chia sẻ, đồng hành và hỗ trợ Quý Khách hàng và Quý Đối tác trong mọi hành trình.'
+                  : 'Dedicated support, empathy, and accompaniment for every customer and partner along their journey.'}
+              </p>
+            </div>
+          </div>
+
+          {/* Right Image: our2.png */}
+          <div className="md:col-span-5 flex justify-center">
+            <img
+              src={our2Img}
+              alt="Way2go Core Values Cards"
+              className="w-full max-w-md sm:max-w-lg h-auto rounded-3xl shadow-lg border border-slate-200/80 object-contain"
+            />
           </div>
         </div>
 
         {/* CTA Banner */}
-        <div className="bg-white border border-[#E2E8F0] text-[#1A2340] rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-sm flex flex-col items-center justify-center">
+        <div className="bg-white border border-slate-200/80 text-[#1A2340] rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-sm flex flex-col items-center justify-center">
           <img
             src={readyTravelSvg}
             alt="Ready for Travel"
-            className="h-32 sm:h-44 w-auto object-contain mb-2 mx-auto"
+            className="h-32 sm:h-40 w-auto object-contain mb-2 mx-auto"
           />
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1A2340]">
+          <h3 className="text-2xl sm:text-3xl font-black text-[#1A2340]">
             {language === 'vi' ? 'Sẵn sàng cho chuyến đi tiếp theo của bạn?' : 'Ready for Your Next Trip?'}
           </h3>
-          <p className="text-sm text-[#1A2340]/80 max-w-xl mx-auto">
+          <p className="text-sm text-slate-600 max-w-xl mx-auto">
             {language === 'vi'
               ? 'Chọn điểm đến ngay hôm nay và nhận mã kích hoạt siêu tốc trong 60 giây.'
               : 'Choose your destination today and get your instant eSIM in under 60 seconds.'}
@@ -143,7 +228,7 @@ export const AboutWay2go: React.FC = () => {
           <div className="pt-2">
             <button
               onClick={() => setActiveTab('store')}
-              className="px-6 py-3 rounded-xl bg-[#1A2340] hover:opacity-80 text-white font-black text-sm shadow-md transition-all cursor-pointer"
+              className="px-6 py-3.5 rounded-full bg-[#FF7A5C] hover:bg-[#e6694c] text-white font-extrabold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
             >
               {language === 'vi' ? 'Xem các gói eSIM du lịch →' : 'Explore Travel eSIM Plans →'}
             </button>
@@ -154,3 +239,5 @@ export const AboutWay2go: React.FC = () => {
     </div>
   );
 };
+
+export default AboutWay2go;

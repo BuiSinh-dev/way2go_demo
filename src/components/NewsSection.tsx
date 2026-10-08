@@ -2,8 +2,10 @@ import React, { useRef, useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { NEWS_DATA } from '../data/news';
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Search } from 'lucide-react';
-
-export const NewsSection: React.FC = () => {
+export interface Props {
+  standalone?: boolean
+}
+export const NewsSection: React.FC<Props> = (props) => {
   const { language, setSelectedArticle, setActiveTab, activeTab } = useApp();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,37 +34,40 @@ export const NewsSection: React.FC = () => {
   });
 
   return (
-    <section className="py-10 sm:py-14 bg-[#FAF5EE] border-t border-slate-100 min-h-screen">
+    <section className="py-10 sm:py-14 bg-white border-t border-slate-100 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header matching Image 1: Centered "News" title with accent badge + Search News input pill */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-4">
-          <div className="relative inline-block">
-            <h1 className="relative z-10 text-4xl sm:text-5xl font-black text-[#1A2340] tracking-tight px-6 py-1">
-              News
-            </h1>
-          </div>
+        {props.standalone &&
+          < div className="text-center max-w-2xl mx-auto mb-10 space-y-4">
+            <div className="relative inline-block">
+              <h1 className="relative z-10 text-4xl sm:text-5xl font-black text-[#1A2340] tracking-tight px-6 py-1">
+                News
+              </h1>
+            </div>
 
-          <div className="mt-4 max-w-2xl mx-auto relative">
-            <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search News"
-              className="w-full pl-10 pr-9 py-2.5 bg-white border border-[#E2E8F0] rounded-full text-xs sm:text-sm text-[#1A2340] placeholder-slate-400 shadow-xs focus:outline-none focus:ring-2 focus:ring-[#1A2340] transition-all"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
-              >
-                ✕
-              </button>
-            )}
+            <div className="mt-4 max-w-2xl mx-auto relative">
+              <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search News"
+                className="w-full pl-10 pr-9 py-2.5 bg-white border border-[#E2E8F0] rounded-full text-xs sm:text-sm text-[#1A2340] placeholder-slate-400 shadow-xs focus:outline-none focus:ring-2 focus:ring-[#1A2340] transition-all"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        }
+
 
         {/* Section Content: Grid layout on standalone screen VS Horizontal slider on Home */}
         {isStandalone ? (
@@ -204,6 +209,6 @@ export const NewsSection: React.FC = () => {
         )}
 
       </div>
-    </section>
+    </section >
   );
 };

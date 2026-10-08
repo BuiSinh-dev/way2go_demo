@@ -46,7 +46,7 @@ export const HelpCenter: React.FC = () => {
   });
 
   return (
-    <div className="py-12 bg-[#FAF5EE]">
+    <div className="py-12 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* Header */}
@@ -108,11 +108,10 @@ export const HelpCenter: React.FC = () => {
                     key={d}
                     type="button"
                     onClick={() => setTripDays(d)}
-                    className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
-                      tripDays === d
-                        ? 'bg-[#1A2340] text-white font-extrabold shadow-xs'
-                        : 'text-slate-300 hover:text-white'
-                    }`}
+                    className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-colors cursor-pointer ${tripDays === d
+                      ? 'bg-[#1A2340] text-white font-extrabold shadow-xs'
+                      : 'text-slate-300 hover:text-white'
+                      }`}
                   >
                     {d}N
                   </button>

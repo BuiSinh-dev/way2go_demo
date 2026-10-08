@@ -48,7 +48,7 @@ const MainLayout: React.FC = () => {
             <HomeFaqSection />
             {/* 8. Feedback KH, KOLs, KOC chụp với eSIM */}
             <KocTestimonials />
-            <InviteFriends />
+            {/* <InviteFriends /> */}
             {/* 7. Các bài SEO nổi bật lướt qua */}
             <NewsSection />
 
@@ -78,7 +78,7 @@ const MainLayout: React.FC = () => {
         {/* ========================================================================= */}
         {activeTab === 'news' && (
           <div className="pt-4">
-            <NewsSection />
+            <NewsSection standalone />
           </div>
         )}
 

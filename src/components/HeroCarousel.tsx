@@ -159,18 +159,24 @@ export const HeroCarousel: React.FC = () => {
 
                   {/* Ratings row */}
                   <div className="pt-4 flex flex-wrap items-center gap-3 text-xs text-slate-300 font-semibold border-t border-[#2b3a62]/80 mt-4">
-                    <div className="flex items-center gap-1.5 bg-[#243056] px-3 py-1.5 rounded-full border border-[#314373]">
+                    <a
+                      href="https://apps.apple.com/vn/app/way2go-travel-esim/id6744437994"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 bg-[#243056] hover:bg-[#314373] px-3 py-1.5 rounded-full border border-[#314373] transition-colors cursor-pointer"
+                    >
                       <span className="text-amber-400">★ 4.9</span>
                       <span className="text-white">iOS App Store</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 bg-[#243056] px-3 py-1.5 rounded-full border border-[#314373]">
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.consortio.way2go&hl=vi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 bg-[#243056] hover:bg-[#314373] px-3 py-1.5 rounded-full border border-[#314373] transition-colors cursor-pointer"
+                    >
                       <span className="text-amber-400">★ 4.9</span>
                       <span className="text-white">Android Google Play</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 bg-[#243056] px-3 py-1.5 rounded-full border border-[#314373]">
-                      <span className="text-emerald-400">★ 4.8</span>
-                      <span className="text-white">Trustpilot Excellent</span>
-                    </div>
+                    </a>
                   </div>
                 </div>
 

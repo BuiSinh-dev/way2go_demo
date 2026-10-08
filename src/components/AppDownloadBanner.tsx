@@ -12,8 +12,8 @@ export const AppDownloadBanner: React.FC = () => {
     <section id="app-download" className="py-12 sm:py-16 bg-white border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Soft Cyan Banner matching Reference Image 1 */}
-        <div className="bg-[#FAF5EE] rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 md:p-14 relative overflow-hidden shadow-xs border border-[#FAF5EE]">
+        {/* Soft Slate Banner matching clean white layout */}
+        <div className="bg-slate-50 rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 md:p-14 relative overflow-hidden shadow-xs border border-slate-200/80">
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
 
@@ -46,11 +46,9 @@ export const AppDownloadBanner: React.FC = () => {
                 {/* iOS App Download & Rating */}
                 <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-2.5 w-full sm:w-auto">
                   <a
-                    href="#download-ios"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert(language === 'vi' ? 'Ứng dụng Way2Go đang sẵn sàng trên App Store iOS.' : 'Way2Go app available on iOS App Store.');
-                    }}
+                    href="https://apps.apple.com/vn/app/way2go-travel-esim/id6744437994"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-[#0F172A] font-extrabold text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 border border-slate-100/80 cursor-pointer"
                   >
                     <img src={appStoreIcon} alt="App Store" className="w-6 h-6 object-contain shrink-0" />
@@ -76,11 +74,9 @@ export const AppDownloadBanner: React.FC = () => {
                 {/* Android App Download & Rating */}
                 <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-2.5 w-full sm:w-auto">
                   <a
-                    href="#download-android"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert(language === 'vi' ? 'Ứng dụng Way2Go đang sẵn sàng trên Google Play Store.' : 'Way2Go app available on Google Play.');
-                    }}
+                    href="https://play.google.com/store/apps/details?id=com.consortio.way2go&hl=vi"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-[#0F172A] font-extrabold text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 border border-slate-100/80 cursor-pointer"
                   >
                     <img src={googlePlayIcon} alt="Google Play" className="w-6 h-6 object-contain shrink-0" />

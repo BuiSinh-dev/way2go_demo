@@ -18,14 +18,14 @@ export const HomePopularLocations: React.FC = () => {
 
   const categories = [
     { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular' },
-    { id: 'local', labelVi: 'Địa phương', labelEn: 'Local' },
-    { id: 'regional', labelVi: 'Khu vực', labelEn: 'Regional' },
-    { id: 'global', labelVi: 'Toàn cầu', labelEn: 'Global' },
+    { id: 'local', labelVi: 'Quốc gia', labelEn: 'Local' },
+    { id: 'regional', labelVi: 'Khu vực (Regional)', labelEn: 'Regional' },
+    { id: 'global', labelVi: 'Toàn cầu (Global)', labelEn: 'Global' },
   ];
 
   return (
-    <section id="popular-locations" className="py-12 bg-[#FAF5EE]">
-      <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8">
+    <section id="popular-locations" className="py-12 bg-white text-left">
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
         {/* Visite Travel Header Illustration Banner */}
         <div className="flex justify-center">
           <img
@@ -69,7 +69,7 @@ export const HomePopularLocations: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 text-left">
             <div>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                {language === 'vi' ? 'Khám phá eSIM cho các điểm đến phổ biến' : 'Get eSIMs for popular locations'}
+                {language === 'vi' ? 'Khám phá eSIM cho các điểm đến' : 'Get eSIMs for destinations'}
               </h2>
               <p className="text-xs sm:text-sm text-slate-200 mt-1 font-medium">
                 {language === 'vi'
@@ -109,16 +109,15 @@ export const HomePopularLocations: React.FC = () => {
                     whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => navigateToDestination(dest.id)}
-                    className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl px-4 py-3 border border-[#E2E8F0] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
+                    className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl px-4 py-3.5 border border-[#E2E8F0] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
                   >
-                    {/* Left: Flag Image + Country Name */}
+                    {/* Left: Flag Image + Country/Region Name */}
                     <div className="flex items-center gap-3 min-w-0 pr-2">
                       <img
                         src={flagUrl}
                         alt={dest.nameVi}
                         className="w-8 h-6 object-contain shrink-0"
                         onError={(e) => {
-                          // Fallback if image fails to load
                           (e.target as HTMLElement).style.display = 'none';
                         }}
                       />

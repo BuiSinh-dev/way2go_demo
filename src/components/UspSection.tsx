@@ -48,21 +48,14 @@ export const UspSection: React.FC = () => {
       descVi: 'Chính sách bảo hành rõ ràng, hoàn tiền nếu eSIM không tương thích hoặc gặp lỗi kỹ thuật từ hệ sinh thái.',
       descEn: 'Hassle-free refund policy if your eSIM encounters technical issues that cannot be resolved in 24 hours.'
     },
-    {
-      icon: Headset,
-      titleVi: 'Hỗ trợ kỹ thuật 24/7 nhiệt tình',
-      titleEn: '24/7 Dedicated Support Hotline',
-      descVi: 'Đội ngũ chuyên viên tư vấn hỗ trợ qua Zalo, WhatsApp, Hotline bằng tiếng Việt và tiếng Anh mọi lúc mọi nơi.',
-      descEn: 'Real human support via Live Chat, Zalo, and WhatsApp ready around the clock across all timezones.'
-    }
   ];
 
   return (
-    <section className="py-16 bg-[#FAF5EE] text-[#1A2340] border-t border-slate-100 relative">
+    <section className="py-16 bg-white text-[#1A2340] border-t border-slate-100 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Highlight Banner with #1A2340 Primary Color */}
-        <div className="mb-14 bg-[#1A2340] text-white rounded-3xl p-8 sm:p-12 shadow-lg text-center relative overflow-hidden">
+        <div className="mb-14 bg-[#00D2B8] text-white rounded-3xl p-8 sm:p-12 shadow-lg text-center relative overflow-hidden">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-8 max-w-3xl mx-auto text-balance">
             {language === 'vi'
               ? 'Why do over 2 million people choose Way2go'

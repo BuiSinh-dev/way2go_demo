@@ -69,7 +69,6 @@ export interface NewsArticle {
   titleEn: string;
   categoryVi: string;
   categoryEn: string;
-  readTime: string;
   date: string;
   summaryVi: string;
   summaryEn: string;

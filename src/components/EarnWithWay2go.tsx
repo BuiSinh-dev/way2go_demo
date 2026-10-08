@@ -1,6 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import { COUNTRY_DIAL_CODES } from '../data/destinations';
+import PartnerModal from './PartnerModal';
+import appStoreIcon from '../../assets/image/common/app_store.png';
+import googlePlayIcon from '../../assets/image/common/google-play.png';
+import downloadImageSvg from '../../assets/image/common/download_image.svg';
 import {
   Coins,
   Share2,
@@ -123,6 +127,7 @@ export const EarnWithWay2go: React.FC = () => {
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [showQrModal, setShowQrModal] = useState(false);
+  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
 
   // Reward redemption state
   const [redeemedReward, setRedeemedReward] = useState<RewardItem | null>(null);
@@ -257,12 +262,8 @@ export const EarnWithWay2go: React.FC = () => {
   ];
 
   return (
-    <div className="py-10 bg-[#FAF5EE]">
+    <div className="py-10 ">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-
-        {/* ========================================================================= */}
-        {/* HEADER SECTION                                                           */}
-        {/* ========================================================================= */}
         <div className="text-center space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1A2340] tracking-tight">
             Earn with <span className="text-[#00D2B8]">Way2Go</span>
@@ -275,7 +276,7 @@ export const EarnWithWay2go: React.FC = () => {
           </p>
 
           {/* Sub Navigation Switcher */}
-          <div className="inline-flex p-1.5 bg-white border border-[#E2E8F0] rounded-2xl shadow-inner gap-1.5 mt-2">
+          {/* <div className="inline-flex p-1.5 bg-white border border-[#E2E8F0] rounded-2xl shadow-inner gap-1.5 mt-2">
             <button
               onClick={() => setEarnSubTab('coin')}
               className={`flex items-center gap-2.5 px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${earnSubTab === 'coin'
@@ -297,7 +298,7 @@ export const EarnWithWay2go: React.FC = () => {
               <TrendingUp className="w-4 h-4" />
               <span>{language === 'vi' ? 'Chương trình Affiliate (Hoa hồng 3 Tier)' : 'Affiliate Program (3-Tier)'}</span>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* ========================================================================= */}
@@ -505,47 +506,6 @@ export const EarnWithWay2go: React.FC = () => {
                 </div>
 
               </div>
-
-              {/* Social Quick Share */}
-              <div className="flex flex-wrap items-center gap-2 pt-2">
-                <span className="text-xs font-semibold text-slate-600 mr-2">
-                  {language === 'vi' ? 'Chia sẻ nhanh qua:' : 'Quick Share:'}
-                </span>
-
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3 py-1.5 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] rounded-lg text-xs font-bold transition-colors inline-flex items-center gap-1.5"
-                >
-                  Facebook
-                </a>
-
-                <a
-                  href={`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent('Nhận ngay giảm 10% eSIM du lịch quốc tế cùng Way2Go!')}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3 py-1.5 bg-[#0088cc]/10 hover:bg-[#0088cc]/20 text-[#0088cc] rounded-lg text-xs font-bold transition-colors inline-flex items-center gap-1.5"
-                >
-                  Telegram
-                </a>
-
-                <a
-                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`Nhận ngay giảm 10% eSIM du lịch tại: ${referralLink}`)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3 py-1.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] rounded-lg text-xs font-bold transition-colors inline-flex items-center gap-1.5"
-                >
-                  WhatsApp
-                </a>
-
-                <button
-                  onClick={handleCopyLink}
-                  className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold transition-colors cursor-pointer"
-                >
-                  Zalo / Khác
-                </button>
-              </div>
             </div>
 
             {/* My Referral Stats & Activity History */}
@@ -717,6 +677,67 @@ export const EarnWithWay2go: React.FC = () => {
                   );
                 })}
               </div>
+
+              {/* Card Download App ngay dưới Card Đổi Quà Tặng & Gói Data Miễn Phí */}
+              <div className="bg-gradient-to-br from-[#1A2340] via-[#1E294B] to-[#0F172A] rounded-3xl p-6 sm:p-8 border border-slate-700/60 shadow-xl text-white relative overflow-hidden mt-8">
+                {/* Background decorative glow */}
+                <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00D2B8]/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -left-10 -top-10 w-64 h-64 bg-[#ff7a5c]/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+                  {/* Left Column: App Illustration */}
+                  <div className="lg:col-span-4 flex justify-center">
+                    <img
+                      src={downloadImageSvg}
+                      alt="Way2Go App Download"
+                      className="w-full max-w-[240px] h-auto object-contain filter drop-shadow-md"
+                    />
+                  </div>
+
+                  {/* Right Column: Information & Download Links */}
+                  <div className="lg:col-span-8 text-left space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#00D2B8]/20 border border-[#00D2B8]/40 rounded-full text-xs font-bold text-[#00D2B8] uppercase tracking-wider">
+                      <Smartphone className="w-3.5 h-3.5" />
+                      <span>{language === 'vi' ? 'ỨNG DỤNG DI ĐỘNG WAY2GO' : 'WAY2GO MOBILE APP'}</span>
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug">
+                      {language === 'vi'
+                        ? 'Tải App Way2Go — Quản lý eSIM & Đổi quà miễn phí mọi lúc mọi nơi'
+                        : 'Download Way2Go App — Easily manage eSIM & redeem rewards anywhere'}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+                      {language === 'vi'
+                        ? 'Tải ngay ứng dụng Way2Go trên iOS và Android để kiểm tra dung lượng data thực tế, kích hoạt eSIM 1-click và nhận ngay 100 Way2Go Coins miễn phí khi đăng nhập lần đầu!'
+                        : 'Get the Way2Go app on iOS & Android to monitor data usage, activate eSIMs in 1-click, and get 100 bonus Way2Go Coins on first login!'}
+                    </p>
+
+                    {/* Download Buttons Row */}
+                    <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                      <a
+                        href="https://apps.apple.com/vn/app/way2go-travel-esim/id6744437994"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-3 bg-white hover:bg-slate-100 text-[#1A2340] font-extrabold text-xs sm:text-sm rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2.5 cursor-pointer border border-white"
+                      >
+                        <img src={appStoreIcon} alt="App Store" className="w-5 h-5 object-contain shrink-0" />
+                        <span>{language === 'vi' ? 'Tải ứng dụng iOS' : 'App Store (iOS)'}</span>
+                      </a>
+
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.consortio.way2go&hl=vi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-3 bg-[#1E294B] hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2.5 cursor-pointer border border-slate-600"
+                      >
+                        <img src={googlePlayIcon} alt="Google Play" className="w-5 h-5 object-contain shrink-0" />
+                        <span>{language === 'vi' ? 'Tải ứng dụng Android' : 'Google Play (Android)'}</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -839,28 +860,25 @@ export const EarnWithWay2go: React.FC = () => {
                 </div>
 
                 {/* Tier 2 */}
-                <div className="bg-emerald-50/50 rounded-3xl p-7 border-2 border-emerald-500 space-y-5 relative shadow-md">
-                  <span className="absolute -top-3.5 right-6 bg-emerald-600 text-white text-[11px] font-black px-3 py-1 rounded-full shadow-sm">
-                    PHỔ BIẾN NHẤT
-                  </span>
-                  <div className="text-xs font-black text-emerald-800 uppercase tracking-wider">
+                <div className="bg-white rounded-3xl p-7 border border-slate-200 space-y-5 relative shadow-xs">
+                  <div className="text-xs font-black text-slate-500 uppercase tracking-wider">
                     TIER 2 · SILVER PRO
                   </div>
                   <div className="space-y-1">
-                    <div className="text-4xl font-black text-emerald-700">
-                      15% <span className="text-sm font-normal text-slate-600">/ đơn hàng</span>
+                    <div className="text-4xl font-black text-slate-900">
+                      15% <span className="text-sm font-normal text-slate-500">/ đơn hàng</span>
                     </div>
-                    <div className="text-xs font-semibold text-emerald-900">Từ 50 - 200 đơn hàng / tháng</div>
+                    <div className="text-xs font-semibold text-slate-600">Từ 50 - 200 đơn hàng / tháng</div>
                   </div>
 
-                  <div className="pt-4 border-t border-emerald-200 space-y-2.5 text-xs text-slate-800">
+                  <div className="pt-4 border-t border-slate-100 space-y-2.5 text-xs text-slate-700">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span className="font-semibold">Tặng 01 eSIM trải nghiệm miễn phí mỗi tháng</span>
+                      <span>Tặng 01 eSIM trải nghiệm miễn phí mỗi tháng</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span className="font-semibold">Mã coupon giảm giá độc quyền theo tên kênh</span>
+                      <span>Mã coupon giảm giá độc quyền theo tên kênh</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -1088,184 +1106,26 @@ export const EarnWithWay2go: React.FC = () => {
               </div>
             </div>
 
-            {/* Affiliate Registration Form */}
-            <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 text-left shadow-sm">
-              <div className="max-w-2xl">
-                <h3 className="text-2xl font-black text-slate-900 mt-1 mb-2">
+            {/* Affiliate Registration Banner Card */}
+            <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 text-left shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="space-y-2 max-w-xl">
+                <h3 className="text-2xl font-black text-[#1A2340]">
                   {language === 'vi' ? 'Gia nhập Mạng lưới Đối tác Way2Go' : 'Join Way2Go Affiliate Network'}
                 </h3>
-                <p className="text-xs text-slate-600 mb-8 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {language === 'vi'
                     ? 'Hoàn thành mẫu đăng ký dưới đây. Đội ngũ Partnership của chúng tôi sẽ liên hệ phê duyệt và kích hoạt mã đối tác trong vòng 24 giờ làm việc.'
-                    : 'Fill out the form below. Our partnership team will review and approve your partner portal within 24 business hours.'}
+                    : 'Fill out the application form. Our partnership team will review and approve your partner portal within 24 business hours.'}
                 </p>
-
-                {affiliateSubmitted ? (
-                  <div className="p-8 bg-emerald-50 rounded-2xl border-2 border-emerald-400 text-emerald-900 space-y-3">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center font-bold text-2xl shadow-sm">
-                      ✓
-                    </div>
-                    <div className="font-black text-xl">🎉 Đăng ký thành công!</div>
-                    <p className="text-xs leading-relaxed text-emerald-800">
-                      Cảm ơn <strong>{affForm.name}</strong> đã quan tâm đồng hành cùng Way2Go. Link quản trị Partner Dashboard và hợp đồng điện tử đã được gửi tới email <strong>{affForm.email}</strong>.
-                    </p>
-                    <div className="pt-2 text-xs font-semibold text-emerald-900">
-                      Chuyên viên hỗ trợ đối tác sẽ liên hệ qua số điện thoại <strong>{affForm.phoneDialCode} {affForm.phone}</strong> trong vòng 24h.
-                    </div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleAffiliateSubmit} className="space-y-5">
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                          Họ và tên người đại diện *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={affForm.name}
-                          onChange={(e) => setAffForm({ ...affForm, name: e.target.value })}
-                          placeholder="Nguyễn Văn A"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                          Email nhận báo cáo doanh số *
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={affForm.email}
-                          onChange={(e) => setAffForm({ ...affForm, email: e.target.value })}
-                          placeholder="partner@yourdomain.com"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                          Số điện thoại (kèm mã quốc gia) *
-                        </label>
-                        <div className="flex gap-2">
-                          <select
-                            value={affForm.phoneDialCode}
-                            onChange={(e) => setAffForm({ ...affForm, phoneDialCode: e.target.value })}
-                            className="w-24 px-2 py-2.5 rounded-xl border border-slate-300 text-xs bg-slate-50 focus:outline-none"
-                          >
-                            {COUNTRY_DIAL_CODES.map((c) => (
-                              <option key={c.code} value={c.code}>
-                                {c.flag} {c.code}
-                              </option>
-                            ))}
-                          </select>
-                          <input
-                            type="tel"
-                            required
-                            value={affForm.phone}
-                            onChange={(e) => setAffForm({ ...affForm, phone: e.target.value })}
-                            placeholder="0988 123 456"
-                            className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                          Loại hình kênh / Phương thức truyền thông
-                        </label>
-                        <select
-                          value={affForm.channelType}
-                          onChange={(e) => setAffForm({ ...affForm, channelType: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-white"
-                        >
-                          <option>TikTok / YouTube Travel Vlogger</option>
-                          <option>Instagram / Facebook Creator</option>
-                          <option>Website / Blog Du Lịch Cá Nhân</option>
-                          <option>Hướng dẫn viên / Tour Leader</option>
-                          <option>Quản trị viên Group Du lịch / Phượt</option>
-                          <option>Công ty Du lịch / Agency Lữ hành</option>
-                          <option>Du học sinh / Digital Nomad</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                          Đường dẫn kênh / Website chính *
-                        </label>
-                        <input
-                          type="url"
-                          required
-                          value={affForm.channelUrl}
-                          onChange={(e) => setAffForm({ ...affForm, channelUrl: e.target.value })}
-                          placeholder="https://tiktok.com/@yourchannel hoặc https://yourblog.vn"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                          Quy mô người theo dõi / Lượng khách
-                        </label>
-                        <select
-                          value={affForm.followerCount}
-                          onChange={(e) => setAffForm({ ...affForm, followerCount: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-white"
-                        >
-                          <option>&lt; 10,000 followers</option>
-                          <option>10,000 - 50,000 followers</option>
-                          <option>50,000 - 200,000 followers</option>
-                          <option>&gt; 200,000 followers</option>
-                          <option>Tour đoàn 100 - 500 khách/tháng</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                        Phương thức nhận hoa hồng ưa thích
-                      </label>
-                      <select
-                        value={affForm.payoutMethod}
-                        onChange={(e) => setAffForm({ ...affForm, payoutMethod: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-white"
-                      >
-                        <option>Ngân hàng nội địa Việt Nam (Vietcombank, MB, Techcombank, BIDV, ACB...)</option>
-                        <option>Ví điện tử MoMo</option>
-                        <option>Tài khoản quốc tế PayPal</option>
-                        <option>Payoneer</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                        Kế hoạch hợp tác hoặc câu hỏi bổ sung (Tùy chọn)
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={affForm.notes}
-                        onChange={(e) => setAffForm({ ...affForm, notes: e.target.value })}
-                        placeholder="Bạn dự định gắn link trong bài viết nào? Đặt banner ở vị trí nào?..."
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="px-8 py-3.5 rounded-xl bg-[#1A2340] hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer flex items-center gap-2"
-                    >
-                      <span>Gửi đơn đăng ký trở thành Đối tác</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </form>
-                )}
               </div>
+
+              <button
+                onClick={() => setIsPartnerModalOpen(true)}
+                className="px-8 py-3.5 rounded-full bg-[#FF7A2F] hover:bg-[#e0651c] text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer shrink-0 flex items-center gap-2"
+              >
+                <span>{language === 'vi' ? 'Gia nhập ngay' : 'Join Now'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
 
           </div>
@@ -1444,6 +1304,14 @@ export const EarnWithWay2go: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* ========================================================================= */}
+      {/* MODAL 3: PARTNER REGISTRATION FORM MODAL                                  */}
+      {/* ========================================================================= */}
+      <PartnerModal
+        isOpen={isPartnerModalOpen}
+        onClose={() => setIsPartnerModalOpen(false)}
+      />
 
     </div>
   );

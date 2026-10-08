@@ -10,7 +10,7 @@ export const NewsDetailModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 bg-[#1A2340]/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-white text-[#1A2340] rounded-3xl max-w-2xl w-full shadow-2xl border border-[#E2E8F0] overflow-hidden my-8 text-left">
-        
+
         {/* Header Banner with Cover Image */}
         <div className="relative border-b border-[#E2E8F0] bg-white">
           {selectedArticle.imageUrl && (
@@ -39,10 +39,6 @@ export const NewsDetailModal: React.FC = () => {
               <span className="flex items-center gap-1 text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-full text-[11px]">
                 <Calendar className="w-3 h-3 text-[#1A2340]" />
                 {selectedArticle.date}
-              </span>
-              <span className="flex items-center gap-1 text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-full text-[11px]">
-                <Clock className="w-3 h-3 text-[#1A2340]" />
-                {selectedArticle.readTime}
               </span>
             </div>
 

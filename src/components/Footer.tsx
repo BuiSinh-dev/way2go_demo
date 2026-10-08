@@ -28,17 +28,6 @@ export const Footer: React.FC = () => {
                 ? 'Nền tảng cung cấp eSIM du lịch quốc tế kết nối hơn 200 điểm đến toàn cầu. Kích hoạt 60 giây, tốc độ 5G tối đa và tích điểm Way2Go Coin tiện lợi.'
                 : 'International travel eSIM platform covering 200+ destinations worldwide. 60s activation, top 5G speeds, and Way2Go rewards ecosystem.'}
             </p>
-
-            <div className="flex items-center gap-4 text-xs text-slate-300 pt-2">
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#00D2B8]" />
-                <span>Hoàn tiền 100%</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Smartphone className="w-4 h-4 text-[#00D2B8]" />
-                <span>Không cần đổi SIM</span>
-              </div>
-            </div>
           </div>
 
           {/* Quick Nav Col */}

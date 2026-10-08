@@ -12,7 +12,7 @@ export const HomeFaqSection: React.FC = () => {
   const homeFaqs = FAQS_DATA.slice(0, 5);
 
   return (
-    <section className="py-16 bg-[#FAF5EE] border-t border-slate-100 relative overflow-hidden">
+    <section className="py-16 bg-white border-t border-slate-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header: Title Left, Button Right */}
@@ -109,11 +109,11 @@ export const HomeFaqSection: React.FC = () => {
               </div>
 
               {/* Bottom Illustration Positioned at Bottom Right */}
-              <div className="mt-6 flex justify-end items-end relative z-0 pt-4">
+              <div className="mt-4 flex justify-center sm:justify-end items-end relative z-0 pt-2">
                 <img
                   src={writingQuestionImg}
                   alt="Support Illustration"
-                  className="w-full max-w-[260px] sm:max-w-[290px] h-auto object-contain"
+                  className="w-full max-w-[340px] sm:max-w-[420px] h-auto object-contain"
                 />
               </div>
 

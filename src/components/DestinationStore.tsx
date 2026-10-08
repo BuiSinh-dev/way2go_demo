@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
-import { DESTINATIONS } from '../data/destinations';
+import { DESTINATIONS, getCountryFlagCode, getCountryCarriers } from '../data/destinations';
 import { PlanVariant } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import worldImg from '../../assets/image/hero-image/world.svg';
@@ -16,7 +16,11 @@ import {
   Gift,
   Calendar,
   Search,
-  ArrowLeft
+  ArrowLeft,
+  ShoppingCart,
+  FileText,
+  Shield,
+  ChevronDown
 } from 'lucide-react';
 
 interface DestinationStoreProps {
@@ -54,6 +58,12 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   const [catalogSearch, setCatalogSearch] = useState<string>('');
   const [catalogSelectCountry, setCatalogSelectCountry] = useState<string>('');
   const [isCatalogCountryOpen, setIsCatalogCountryOpen] = useState<boolean>(false);
+  const [catalogExpandedRegionId, setCatalogExpandedRegionId] = useState<string | null>(null);
+  const [isDetailCountriesExpanded, setIsDetailCountriesExpanded] = useState<boolean>(false);
+
+  // State for Countries & Networks Modal
+  const [isCountriesModalOpen, setIsCountriesModalOpen] = useState<boolean>(false);
+  const [modalCountrySearch, setModalCountrySearch] = useState<string>('');
 
 
   // Fallback destination if none selected
@@ -299,7 +309,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   // ===========================================================================
   if (storeView === 'catalog') {
     return (
-      <div className="bg-[#FAF5EE] min-h-screen py-10 text-left">
+      <div className="bg-white min-h-screen py-10 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
           {/* Header */}
@@ -478,7 +488,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                       onClick={() => navigateToDestination(dest.id)}
                       className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl px-4 py-3.5 border border-[#E2E8F0] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
                     >
-                      {/* Left: Flag Image + Country Name */}
+                      {/* Left: Flag Image + Country/Region Name */}
                       <div className="flex items-center gap-3 min-w-0 pr-2">
                         <img
                           src={flagUrl}
@@ -591,23 +601,34 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
 
         </div>
 
-        {/* If regional / global: Render element listing all countries */}
+        {/* If regional / global: Compact clickable bar that triggers Modal */}
         {currentDest.coveredCountriesList && currentDest.coveredCountriesList.length > 0 && (
-          <div className="p-3 bg-white text-[#1A2340] rounded-xl border border-[#E2E8F0] flex flex-wrap items-center gap-1.5 text-xs shadow-xs">
-            <span className="font-bold text-[#1A2340] flex items-center gap-1 mr-1">
-              <Globe className="w-3.5 h-3.5 text-[#1A2340]" />
-              <span>Phủ sóng ({currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} nước):</span>
-            </span>
-            {currentDest.coveredCountriesList.slice(0, 15).map((c, i) => (
-              <span key={i} className="bg-slate-50 text-[#1A2340] border border-[#E2E8F0] px-2 py-0.5 rounded text-[11px]">
-                {c}
-              </span>
-            ))}
-            {currentDest.coveredCountriesList.length > 15 && (
-              <span className="text-[#1A2340]/60 font-mono text-[11px]">
-                +{currentDest.coveredCountriesList.length - 15} nước khác
-              </span>
-            )}
+          <div
+            onClick={() => setIsCountriesModalOpen(true)}
+            className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-4 shadow-xs flex items-center justify-between cursor-pointer transition-all group"
+          >
+            <div className="flex items-center gap-3 min-w-0 pr-2">
+              <div className="w-8 h-8 rounded-full bg-[#1A2340]/10 text-[#1A2340] flex items-center justify-center shrink-0">
+                <Globe className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <span className="font-extrabold text-xs sm:text-sm text-[#1A2340] block truncate">
+                  {language === 'vi'
+                    ? `Khu vực bao gồm ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} quốc gia & nhà mạng hỗ trợ`
+                    : `Region includes ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} supported countries & networks`}
+                </span>
+                <span className="text-xs text-slate-500 font-medium block truncate">
+                  {language === 'vi'
+                    ? 'Nhấn vào đây để xem chi tiết danh sách các quốc gia và các nhà mạng viễn thông đi kèm'
+                    : 'Click to view full list of supported countries and network operators'}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1.5 text-xs font-black text-[#ff7a5c] group-hover:translate-x-0.5 transition-transform shrink-0">
+              <span>{language === 'vi' ? 'Xem chi tiết' : 'View all'}</span>
+              <span className="text-sm">→</span>
+            </div>
           </div>
         )}
 
@@ -753,201 +774,6 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
               </div>
             </div>
 
-            {/* --------------------------------------------------------------------- */}
-            {/* 2. DỮ LIỆU CỐ ĐỊNH (DÙNG TỔNG DATA BẤT CỨ LÚC NÀO)                     */}
-            {/* --------------------------------------------------------------------- */}
-            <div className="bg-white text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-3.5">
-              <div>
-                <h3 className="text-base font-bold text-[#1A2340]">Dữ liệu cố định</h3>
-                <p className="text-xs text-slate-500">Dùng tổng data bất cứ lúc nào.</p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-
-                {/* 5GB */}
-                <div
-                  onClick={() => setActiveCardId('fixed-5gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'fixed-5gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="font-extrabold text-sm text-[#1A2340]">5GB</span>
-                    <span className="font-black text-sm text-[#1A2340] tabular-nums">
-                      {formatPrice(Math.round(baseUsd * 1.9 * usdToVnd / 1000) * 1000, Math.round(baseUsd * 1.9 * 100) / 100)}
-                    </span>
-                  </div>
-                  <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={fixedDays5Gb}
-                      onChange={(e) => {
-                        setFixedDays5Gb(Number(e.target.value));
-                        setActiveCardId('fixed-5gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
-                    >
-                      {[3, 5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* 10GB */}
-                <div
-                  onClick={() => setActiveCardId('fixed-10gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'fixed-10gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="font-extrabold text-sm text-[#1A2340]">10GB</span>
-                    <span className="font-black text-sm text-[#1A2340] tabular-nums">
-                      {formatPrice(Math.round(baseUsd * 2.8 * usdToVnd / 1000) * 1000, Math.round(baseUsd * 2.8 * 100) / 100)}
-                    </span>
-                  </div>
-                  <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={fixedDays10Gb}
-                      onChange={(e) => {
-                        setFixedDays10Gb(Number(e.target.value));
-                        setActiveCardId('fixed-10gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
-                    >
-                      {[5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* 20GB */}
-                <div
-                  onClick={() => setActiveCardId('fixed-20gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'fixed-20gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="font-extrabold text-sm text-[#1A2340]">20GB</span>
-                    <span className="font-black text-sm text-[#1A2340] tabular-nums">
-                      {formatPrice(Math.round(baseUsd * 4.6 * usdToVnd / 1000) * 1000, Math.round(baseUsd * 4.6 * 100) / 100)}
-                    </span>
-                  </div>
-                  <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={fixedDays20Gb}
-                      onChange={(e) => {
-                        setFixedDays20Gb(Number(e.target.value));
-                        setActiveCardId('fixed-20gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
-                    >
-                      {[3, 5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* 35GB Gọi & SMS with GOOD DEAL */}
-                <div
-                  onClick={() => setActiveCardId('fixed-35gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'fixed-35gb'
-                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs uppercase tracking-wider">
-                      GOOD DEAL
-                    </span>
-                  </div>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className="font-extrabold text-sm text-[#1A2340]">35GB</span>
-                      <span className="text-[10px] bg-[#ff7a5c]/10 text-[#ff7a5c] px-1.5 py-0.5 rounded ml-1.5 font-bold">
-                        Gọi & SMS
-                      </span>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-black text-sm text-[#1A2340] tabular-nums">
-                        {formatPrice(Math.round(baseUsd * 2.0 * usdToVnd / 1000) * 1000, Math.round(baseUsd * 2.0 * 100) / 100)}
-                      </div>
-                      <div className="text-[10px] text-slate-400 line-through">
-                        ${(baseUsd * 2.5).toFixed(2)}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={fixedDays35Gb}
-                      onChange={(e) => {
-                        setFixedDays35Gb(Number(e.target.value));
-                        setActiveCardId('fixed-35gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
-                    >
-                      {[7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
-                  </div>
-                </div>
-
-                {/* 50GB Gọi & SMS with BEST CHOICE */}
-                <div
-                  onClick={() => setActiveCardId('fixed-50gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'fixed-50gb'
-                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs uppercase tracking-wider">
-                      BEST CHOICE
-                    </span>
-                  </div>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <span className="font-extrabold text-sm text-[#1A2340]">50GB</span>
-                      <span className="text-[10px] bg-[#ff7a5c]/10 text-[#ff7a5c] px-1.5 py-0.5 rounded ml-1.5 font-bold">
-                        Gọi & SMS
-                      </span>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-black text-sm text-[#1A2340] tabular-nums">
-                        {formatPrice(Math.round(baseUsd * 2.5 * usdToVnd / 1000) * 1000, Math.round(baseUsd * 2.5 * 100) / 100)}
-                      </div>
-                      <div className="text-[10px] text-slate-400 line-through">
-                        ${(baseUsd * 3.1).toFixed(2)}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={fixedDays50Gb}
-                      onChange={(e) => {
-                        setFixedDays50Gb(Number(e.target.value));
-                        setActiveCardId('fixed-50gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
-                    >
-                      {[10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
 
             {/* --------------------------------------------------------------------- */}
             {/* 3. DỮ LIỆU KHÔNG GIỚI HẠN (DATA KHÔNG GIỚI HẠN SUỐT CHUYẾN ĐI)        */}
@@ -1087,9 +913,10 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 </div>
               </div>
 
-              {/* Destination & Summary list */}
-              <div className="px-5 space-y-3">
-                <div className="flex items-center gap-2 font-extrabold text-base text-[#1A2340] pb-2 border-b border-[#E2E8F0]">
+              {/* Destination & Summary list matching Image 1 layout */}
+              <div className="px-5 space-y-4 pb-4">
+                {/* Header with flag */}
+                <div className="flex items-center gap-2 font-extrabold text-base sm:text-lg text-[#1A2340] pb-3 border-b border-slate-100">
                   <img
                     src={`https://flagsapi.com/${currentDest.flagCode || currentDest.code || 'JP'}/flat/64.png`}
                     alt={currentDest.nameVi}
@@ -1101,140 +928,240 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                   <span>eSIM {currentDest.nameVi}</span>
                 </div>
 
-                <div className="space-y-2 text-xs">
-                  <div className="flex justify-between text-slate-600">
-                    <span>Dung lượng</span>
-                    <span className="font-bold text-[#1A2340]">{activePlanInfo.dataName}</span>
-                  </div>
-
-                  <div className="flex justify-between text-slate-600">
-                    <span>Thời hạn</span>
-                    <span className="font-bold text-[#1A2340]">{activePlanInfo.days} ngày</span>
-                  </div>
-
-                  <div className="flex justify-between text-slate-600">
-                    <span>Tổng dữ liệu</span>
-                    <span className="font-bold text-[#1A2340]">{activePlanInfo.totalDataSummary}</span>
-                  </div>
-
-                  <div className="flex justify-between items-baseline pt-2 border-t border-[#E2E8F0]">
-                    <span className="font-semibold text-slate-600">Tổng cộng</span>
-                    <span className="text-2xl font-black text-[#ff7a5c] tabular-nums">
-                      {formatPrice(activePlanInfo.priceVnd, activePlanInfo.priceUsd)}
-                    </span>
-                  </div>
+                {/* Price Display */}
+                <div className="flex justify-between items-baseline pt-1">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-500">Tổng cộng</span>
+                  <span className="sm:text-2xl font-black text-[#1A2340] tabular-nums">
+                    {formatPrice(activePlanInfo.priceVnd, activePlanInfo.priceUsd)}
+                  </span>
                 </div>
 
-                {/* Primary Buy CTA Button */}
-                <button
-                  onClick={handleCheckoutClick}
-                  className="w-full py-3.5 px-4 rounded-full bg-[#ff7a5c] hover:bg-[#E05800] active:bg-[#C84E00] text-white font-black text-sm sm:text-base shadow-lg shadow-[#ff7a5c]/25 hover:shadow-orange-500/40 transition-all flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider"
-                >
-                  <span>Mua ngay</span>
-                </button>
-
-                {/* Trust markers */}
-                <div className="pt-2 flex flex-col gap-1 text-[11px] text-slate-600">
-                  <div className="flex items-center gap-1.5 text-[#1A2340] font-semibold">
-                    <Check className="w-3.5 h-3.5" />
-                    <span>Thanh toán an toàn được đảm bảo</span>
-                  </div>
-                  <div className="flex items-center justify-between text-slate-500 pt-0.5">
-                    <span className="flex items-center gap-1">
-                      <RefreshCw className="w-3 h-3 text-[#1A2340]" />
-                      Thay eSIM trong 1 giờ
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Headphones className="w-3 h-3 text-[#1A2340]" />
-                      Hỗ trợ 24/7
-                    </span>
-                  </div>
-                </div>
-
-                {/* Tabs: Tính năng | Chi tiết kỹ thuật */}
-                <div className="pt-2 border-t border-[#E2E8F0]">
-                  <div className="grid grid-cols-2 text-center text-xs font-bold border-b border-[#E2E8F0] pb-1">
-                    <button
-                      onClick={() => setActiveTabSpecs('features')}
-                      className={`pb-1 cursor-pointer transition-colors ${activeTabSpecs === 'features'
-                        ? 'text-[#1A2340] border-b-2 border-[#1A2340]'
-                        : 'text-slate-500 hover:text-[#1A2340]'
-                        }`}
-                    >
-                      Tính năng
-                    </button>
-                    <button
-                      onClick={() => setActiveTabSpecs('tech')}
-                      className={`pb-1 cursor-pointer transition-colors ${activeTabSpecs === 'tech'
-                        ? 'text-[#1A2340] border-b-2 border-[#1A2340]'
-                        : 'text-slate-500 hover:text-[#1A2340]'
-                        }`}
-                    >
-                      Chi tiết kỹ thuật
-                    </button>
-                  </div>
-
-                  {activeTabSpecs === 'features' ? (
-                    <div className="py-3 space-y-2 text-xs text-slate-600">
-                      <div className="flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-[#1A2340] shrink-0" />
-                        <span>Giao eSIM tức thì qua email</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Star className="w-4 h-4 text-amber-400 shrink-0" />
-                        <span>Nhà mạng đáng tin cậy ({currentDest.topCarriers.join(', ')})</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-[#1A2340] shrink-0" />
-                        <span>4G / 5G Kết nối nhanh và ổn định</span>
-                      </div>
-                      <div className="flex items-start gap-2 pt-1 text-[11px] text-slate-500 leading-relaxed">
-                        <Calendar className="w-4 h-4 text-[#1A2340] shrink-0 mt-0.5" />
-                        <span>
-                          Kích hoạt trong vòng 30 ngày sau khi nhận mã QR của bạn. Nếu mua hôm nay, hạn kích hoạt là{' '}
-                          <strong className="text-[#1A2340] font-semibold">{expiryDate}</strong>.
-                        </span>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="py-3 space-y-2 text-xs text-slate-600">
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">APN:</span>
-                        <span className="font-bold text-[#1A2340]">Tự động cấu hình</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Hotspot/Tethering:</span>
-                        <span className="font-bold text-[#1A2340]">Có hỗ trợ</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Hạ tầng:</span>
-                        <span className="font-bold text-[#1A2340]">5G / 4G LTE</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Chính sách:</span>
-                        <span className="font-bold text-[#1A2340]">Hoàn tiền 100% nếu lỗi</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Compatibility check button */}
-                <div className="pt-2 pb-4">
+                {/* Action Row: Cart icon button + Mua ngay button */}
+                <div className="flex items-center gap-3">
                   <button
-                    onClick={() => setCompatibilityModalOpen(true)}
-                    className="w-full py-2.5 px-3 rounded-xl bg-[#1A2340] hover:bg-[#1a2340]/80 border border-[#E2E8F0] text-xs font-bold text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    onClick={handleCheckoutClick}
+                    className="w-12 h-12 rounded-full border-2 border-[#1A2340] hover:bg-slate-100 text-[#1A2340] flex items-center justify-center shrink-0 transition-colors cursor-pointer"
+                    title="Thêm vào giỏ hàng"
                   >
-                    <Smartphone className="w-4 h-4 text-white" />
-                    <span>Kiểm tra tương thích tại đây →</span>
+                    <ShoppingCart className="w-5 h-5" />
+                  </button>
+
+                  <button
+                    onClick={handleCheckoutClick}
+                    className="flex-1 py-3.5 px-6 rounded-full bg-[#ff7a5c] hover:bg-[#E05800] active:bg-[#C84E00] text-white font-extrabold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center cursor-pointer tracking-wide"
+                  >
+                    <span>Mua ngay</span>
                   </button>
                 </div>
 
+                {/* Chi tiết gói outline button */}
+                <button
+                  onClick={() => setCompatibilityModalOpen(true)}
+                  className="w-full py-3 px-4 rounded-full border border-slate-300 hover:border-slate-400 bg-white text-[#1A2340] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs"
+                >
+                  <FileText className="w-4 h-4 text-[#1A2340]" />
+                  <span>Chi tiết gói</span>
+                </button>
+
+                {/* Compatibility check button */}
+                <button
+                  onClick={() => setCompatibilityModalOpen(true)}
+                  className="w-full py-2.5 px-3 rounded-2xl bg-[#FF7A5C] hover:bg-[#e6694c] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
+                >
+                  <Smartphone className="w-4 h-4 text-white" />
+                  <span>Kiểm tra tương thích tại đây →</span>
+                </button>
+
+                {/* 4 Feature Badges (2x2 Grid with Light Background) */}
+                <div className="grid grid-cols-2 gap-2.5 pt-1">
+                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                      Thay eSIM trong 1 giờ
+                    </span>
+                  </div>
+
+                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                      <Headphones className="w-4 h-4" />
+                    </div>
+                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                      Hỗ trợ 24/7
+                    </span>
+                  </div>
+
+                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                      Giao eSIM tức thì qua email
+                    </span>
+                  </div>
+
+                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                      <Shield className="w-4 h-4" />
+                    </div>
+                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                      Thanh toán an toàn được đảm bảo
+                    </span>
+                  </div>
+                </div>
+
+                {/* Footer activation note */}
+                <div className="pt-2 flex items-start gap-2 text-xs text-slate-500">
+                  <Calendar className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                  <span>
+                    Kích hoạt trong vòng <strong className="text-[#1A2340] font-bold">30 ngày</strong> sau khi nhận mã QR của bạn.
+                  </span>
+                </div>
               </div>
 
             </div>
           </div>
 
         </div>
+        {/* MODAL: DANH SÁCH QUỐC GIA & NHÀ MẠNG HỖ TRỢ                             */}
+        {/* ========================================================================= */}
+        <AnimatePresence>
+          {isCountriesModalOpen && currentDest.coveredCountriesList && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="bg-white rounded-3xl border border-[#E2E8F0] shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden text-left"
+              >
+                {/* Modal Header */}
+                <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={`https://flagsapi.com/${currentDest.flagCode || currentDest.code || 'BE'}/flat/64.png`}
+                      alt={currentDest.nameVi}
+                      className="w-9 h-7 object-contain shrink-0"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                      }}
+                    />
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-extrabold text-[#1A2340]">
+                        {language === 'vi' ? `Quốc gia & Nhà mạng thuộc ${currentDest.nameVi}` : `Supported Countries & Networks in ${currentDest.nameEn}`}
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium mt-0.5">
+                        {language === 'vi'
+                          ? `Bao gồm ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} quốc gia — Tự động kết nối nhà mạng mạnh nhất`
+                          : `Includes ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} countries with auto 5G/4G network selection`}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsCountriesModalOpen(false)}
+                    className="w-8 h-8 rounded-full bg-slate-200/60 hover:bg-slate-200 text-slate-600 flex items-center justify-center cursor-pointer transition-colors shrink-0"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Search Bar in Modal */}
+                <div className="px-5 sm:px-6 pt-4 pb-2">
+                  <div className="relative">
+                    <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="text"
+                      value={modalCountrySearch}
+                      onChange={(e) => setModalCountrySearch(e.target.value)}
+                      placeholder={language === 'vi' ? 'Tìm quốc gia hoặc nhà mạng (ví dụ: Nhật Bản, SoftBank, Mỹ...)' : 'Search country or network (e.g. Japan, SoftBank...)'}
+                      className="w-full pl-10 pr-8 py-2.5 bg-slate-50 border border-[#E2E8F0] rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#1A2340] text-[#1A2340]"
+                    />
+                    {modalCountrySearch && (
+                      <button
+                        onClick={() => setModalCountrySearch('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                {/* Modal Body: List of Countries & Networks */}
+                <div className="p-5 sm:p-6 overflow-y-auto max-h-[55vh] space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {currentDest.coveredCountriesList
+                      .filter((countryName) => {
+                        if (!modalCountrySearch.trim()) return true;
+                        const query = modalCountrySearch.toLowerCase();
+                        const carriers = getCountryCarriers(countryName);
+                        return (
+                          countryName.toLowerCase().includes(query) ||
+                          carriers.some((c) => c.toLowerCase().includes(query))
+                        );
+                      })
+                      .map((countryName, idx) => {
+                        const flagCode = getCountryFlagCode(countryName);
+                        const flagUrl = `https://flagsapi.com/${flagCode}/flat/64.png`;
+                        const carriers = getCountryCarriers(countryName);
+
+                        return (
+                          <div
+                            key={idx}
+                            className="bg-slate-50/80 hover:bg-slate-100/80 border border-[#E2E8F0] rounded-2xl p-3.5 transition-colors space-y-2"
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <img
+                                src={flagUrl}
+                                alt={countryName}
+                                className="w-6 h-4.5 object-contain shrink-0 rounded-xs shadow-2xs"
+                                onError={(e) => {
+                                  (e.target as HTMLElement).style.display = 'none';
+                                }}
+                              />
+                              <span className="font-extrabold text-sm text-[#1A2340]">
+                                {countryName}
+                              </span>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                              {carriers.map((carrier, cIdx) => (
+                                <span
+                                  key={cIdx}
+                                  className="px-2 py-0.5 bg-white border border-[#E2E8F0] rounded-lg text-[11px] font-bold text-[#1A2340] shadow-2xs flex items-center gap-1"
+                                >
+                                  <span className="text-[10px] text-[#00D2B8]">📡</span>
+                                  <span>{carrier}</span>
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
+
+                {/* Modal Footer */}
+                <div className="p-4 sm:px-6 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                    <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                    <span>Sóng 5G / 4G LTE tự động kết nối nhà mạng mạnh nhất tại từng quốc gia</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsCountriesModalOpen(false)}
+                    className="bg-[#1A2340] hover:bg-[#1A2340]/90 text-white font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-colors shrink-0 self-end sm:self-auto"
+                  >
+                    {language === 'vi' ? 'Đóng cửa sổ' : 'Close'}
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>

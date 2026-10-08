@@ -11,6 +11,7 @@ export const KocTestimonials: React.FC = () => {
       roleVi: 'Travel Vlogger & Nhà sáng tạo nội dung',
       roleEn: 'Travel Creator & Food Vlogger',
       avatarUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&auto=format&fit=crop',
+      photoUrl: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop',
       flags: ['JP'],
       destinationVi: 'Nhật Bản',
       destinationEn: 'Japan',
@@ -26,6 +27,7 @@ export const KocTestimonials: React.FC = () => {
       roleVi: 'Lifestyle & Travel Content Creator',
       roleEn: 'Lifestyle & Fashion Traveler',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop',
+      photoUrl: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop',
       flags: ['FR'],
       destinationVi: 'Pháp',
       destinationEn: 'France',
@@ -41,6 +43,7 @@ export const KocTestimonials: React.FC = () => {
       roleVi: 'Kỹ sư công nghệ & Digital Nomad',
       roleEn: 'Software Engineer & Nomad',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop',
+      photoUrl: 'https://images.unsplash.com/photo-1506665531195-3566af294710?q=80&w=800&auto=format&fit=crop',
       flags: ['TH'],
       destinationVi: 'Thái Lan',
       destinationEn: 'Thailand',
@@ -56,6 +59,7 @@ export const KocTestimonials: React.FC = () => {
       roleVi: 'Du học sinh tại Melbourne, Úc',
       roleEn: 'International Student in Australia',
       avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&auto=format&fit=crop',
+      photoUrl: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?q=80&w=800&auto=format&fit=crop',
       flags: ['AU'],
       destinationVi: 'Úc',
       destinationEn: 'Australia',
@@ -69,7 +73,7 @@ export const KocTestimonials: React.FC = () => {
   ];
 
   return (
-    <section id="koc-reviews" className="py-16 bg-[#FAF5EE] border-t border-slate-100">
+    <section id="koc-reviews" className="py-16 bg-white border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -92,9 +96,18 @@ export const KocTestimonials: React.FC = () => {
           {reviews.map((rev, idx) => (
             <div
               key={idx}
-              className="bg-white text-[#1A2340] rounded-2xl p-5 border border-[#E2E8F0] shadow-xs hover:shadow-md hover:border-[#00D2B8] transition-all flex flex-col justify-between text-left"
+              className="bg-white text-[#1A2340] rounded-2xl p-5 border border-[#E2E8F0] shadow-xs hover:shadow-md hover:border-[#00D2B8] transition-all flex flex-col justify-between text-left overflow-hidden"
             >
               <div>
+                {/* Feedback Travel Image at Top of Card */}
+                <div className="-mx-5 -mt-5 mb-4 h-40 sm:h-44 overflow-hidden bg-slate-100">
+                  <img
+                    src={rev.photoUrl}
+                    alt={language === 'vi' ? rev.destinationVi : rev.destinationEn}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
                 {/* Rating & Location Tag with Flag Images */}
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <div className="flex text-amber-500 shrink-0">
@@ -158,3 +171,4 @@ export const KocTestimonials: React.FC = () => {
     </section>
   );
 };
+
