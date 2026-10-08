@@ -309,8 +309,9 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   // ===========================================================================
   if (storeView === 'catalog') {
     return (
-      <div className="bg-white min-h-screen py-10 text-left">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="bg-slate-50/40 min-h-screen py-6 sm:py-10 text-left">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-xl md:shadow-2xl space-y-8 my-4 sm:my-6">
 
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -351,7 +352,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                           ) : (
                             <>
                               <span className="shrink-0 text-base">🌐</span>
-                              <span className="truncate">{language === 'vi' ? 'Chọn nhanh quốc gia...' : 'Select country...'}</span>
+                              <span className="truncate">{language === 'vi' ? 'Chọn quốc gia...' : 'Select country...'}</span>
                             </>
                           )}
                         </div>
@@ -362,23 +363,6 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                         <>
                           <div className="fixed inset-0 z-20" onClick={() => setIsCatalogCountryOpen(false)} />
                           <div className="absolute top-full left-0 right-0 mt-1 z-30 bg-white border border-[#E2E8F0] rounded-xl shadow-xl max-h-64 overflow-y-auto py-1 text-left text-xs sm:text-sm">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setCatalogSelectCountry('');
-                                setIsCatalogCountryOpen(false);
-                              }}
-                              className={`w-full px-3.5 py-2.5 text-left flex items-center gap-2 hover:bg-slate-100 transition-colors cursor-pointer ${!catalogSelectCountry ? 'font-bold text-[#1A2340] bg-slate-50' : 'text-slate-600'
-                                }`}
-                            >
-                              <span className="text-base">🌐</span>
-                              <span>{language === 'vi' ? 'Chọn nhanh quốc gia...' : 'Select country...'}</span>
-                            </button>
-
-                            <div className="px-3.5 py-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-wider bg-slate-50/80 border-y border-slate-100 mt-1">
-                              {language === 'vi' ? 'Quốc gia phổ biến' : 'Popular Destinations'}
-                            </div>
-
                             {DESTINATIONS.map((d) => (
                               <button
                                 key={d.id}
@@ -518,10 +502,10 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
             </AnimatePresence>
 
           </div>
-
         </div>
       </div>
-    );
+    </div>
+  );
   }
 
   // ===========================================================================

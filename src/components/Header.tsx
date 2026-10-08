@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { Globe, ShoppingBag, User, ChevronDown, Check, Coins, Menu, X, Search, TrendingUp } from 'lucide-react';
 import logoNavy from '../../assets/image/logo/way2go-logo-navy.png';
+import { DestinationSearchInput } from './DestinationSearchInput';
 
 export const Header: React.FC = () => {
   const {
@@ -173,23 +174,9 @@ export const Header: React.FC = () => {
             })}
           </nav>
         ) : (
-          /* Scrolled Embedded Search Input State - Image 2 */
-          <div className="flex-1 max-w-2xl mx-2 sm:mx-4 hidden sm:flex items-center bg-white border border-[#E2E8F0] rounded-full p-1 shadow-sm hover:shadow-md transition-all">
-            <Search className="w-4 h-4 text-[#1A2340]/60 ml-3 mr-2 shrink-0" />
-            <input
-              type="text"
-              placeholder={language === 'vi' ? 'Bạn cần eSIM ở đâu?' : 'Where do you need an eSIMs?'}
-              onClick={() => setActiveTab('store')}
-              readOnly
-              className="w-full bg-transparent border-none text-xs sm:text-sm text-[#1A2340] placeholder-[#1A2340]/60 font-medium focus:outline-none cursor-pointer py-1"
-            />
-            <button
-              onClick={() => setActiveTab('store')}
-              className="flex items-center gap-1 bg-slate-50 hover:bg-slate-100 text-[#1A2340] text-[11px] font-bold px-3 py-1.5 rounded-full border border-[#E2E8F0] shadow-xs cursor-pointer shrink-0 mr-1"
-            >
-              <span>{language === 'vi' ? 'Địa điểm' : 'Locations'}</span>
-              <ChevronDown className="w-3 h-3 text-[#1A2340]/60" />
-            </button>
+          /* Scrolled Embedded Search Input State */
+          <div className="flex-1 max-w-2xl mx-2 sm:mx-4 hidden sm:flex items-center">
+            <DestinationSearchInput />
           </div>
         )}
 

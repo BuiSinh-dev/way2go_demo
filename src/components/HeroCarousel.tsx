@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { ChevronLeft, ChevronRight, Sparkles, ArrowRight } from 'lucide-react';
+import { DestinationSearchInput } from './DestinationSearchInput';
 
 import worldImg from '../../assets/image/hero-image/world.svg';
 import couponImg from '../../assets/image/hero-image/coupon_discount.svg';
@@ -81,27 +82,7 @@ export const HeroCarousel: React.FC = () => {
     <section id="hero-carousel" className="relative overflow-hidden bg-[#1A2340] text-white">
       {/* Prominent Search Bar */}
       <div className="max-w-4xl mx-auto px-4 pt-6 pb-2">
-        <div className="relative flex items-center bg-white border border-[#E2E8F0] rounded-full p-1.5 shadow-md transition-shadow">
-          <div className="pl-4 pr-2 text-slate-400">
-            <svg className="w-5 h-5 text-[#1A2340]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-          <input
-            type="text"
-            placeholder={language === 'vi' ? 'Bạn cần eSIM ở đâu?' : 'Where do you need an eSIMs?'}
-            onClick={() => setActiveTab('store')}
-            readOnly
-            className="w-full bg-transparent border-none text-sm text-[#1A2340] placeholder-[#1A2340]/60 font-medium focus:outline-none cursor-pointer py-2"
-          />
-          <button
-            onClick={() => setActiveTab('store')}
-            className="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-[#1A2340] text-xs font-bold px-4 py-2 rounded-full border border-[#E2E8F0] shadow-sm transition-all cursor-pointer shrink-0 mr-1"
-          >
-            <span>{language === 'vi' ? 'Địa điểm' : 'Locations'}</span>
-            <span className="text-[10px] text-[#1A2340]/60">▼</span>
-          </button>
-        </div>
+        <DestinationSearchInput />
       </div>
 
       <div className="bg-[#1A2340] text-white pt-6 pb-14 md:pt-8 md:pb-16 px-4 sm:px-6 lg:px-8 relative">

@@ -262,8 +262,9 @@ export const EarnWithWay2go: React.FC = () => {
   ];
 
   return (
-    <div className="py-10 ">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="py-6 sm:py-10 bg-slate-50/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-xl md:shadow-2xl space-y-10 my-4 sm:my-6">
         <div className="text-center space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1A2340] tracking-tight">
             Earn with <span className="text-[#00D2B8]">Way2Go</span>
@@ -1161,6 +1162,7 @@ export const EarnWithWay2go: React.FC = () => {
         </div>
 
       </div>
+    </div>
 
       {/* ========================================================================= */}
       {/* MODAL 1: QR CODE SHARING MODAL                                            */}

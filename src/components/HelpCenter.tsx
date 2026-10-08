@@ -46,8 +46,9 @@ export const HelpCenter: React.FC = () => {
   });
 
   return (
-    <div className="py-12 bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="py-6 sm:py-10 bg-slate-50/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-xl md:shadow-2xl space-y-12 my-4 sm:my-6">
 
         {/* Header */}
         <div className="text-center space-y-3">
@@ -315,5 +316,6 @@ export const HelpCenter: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 };
