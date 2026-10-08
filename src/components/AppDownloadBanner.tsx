@@ -22,7 +22,7 @@ export const AppDownloadBanner: React.FC = () => {
               <img
                 src={downloadImageSvg}
                 alt="Download App Illustration"
-                className="w-full h-auto max-w-[420px] mx-auto object-contain filter drop-shadow-sm"
+                className="w-full h-auto max-w-[335px] mx-auto object-contain filter drop-shadow-sm"
               />
             </div>
 
@@ -40,64 +40,30 @@ export const AppDownloadBanner: React.FC = () => {
                   : 'Download the Way2Go app to easily buy, manage and top up eSIM anytime, anywhere.'}
               </p>
 
-              {/* Download buttons & Rating stars */}
-              <div className="flex flex-wrap sm:flex-nowrap items-center gap-6 sm:gap-8 pt-2">
+              {/* Download buttons with inline rating badges */}
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5 pt-2">
 
-                {/* iOS App Download & Rating */}
-                <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-2.5 w-full sm:w-auto">
-                  <a
-                    href="https://apps.apple.com/vn/app/way2go-travel-esim/id6744437994"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-[#0F172A] font-extrabold text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 border border-slate-100/80 cursor-pointer"
-                  >
-                    <img src={appStoreIcon} alt="App Store" className="w-6 h-6 object-contain shrink-0" />
-                    <span>{language === 'vi' ? 'Tải ứng dụng iOS' : 'Download iOS App'}</span>
-                  </a>
+                {/* iOS App Download */}
+                <a
+                  href="https://apps.apple.com/vn/app/way2go-travel-esim/id6744437994"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-[#0F172A] flex items-center justify-center font-extrabold text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transition-all gap-3 border border-slate-200/80 cursor-pointer group"
+                >
+                  <img src={appStoreIcon} alt="App Store" className="w-6 h-6 object-contain shrink-0" />
+                  <span>{language === 'vi' ? 'Tải ứng dụng iOS' : 'Download iOS App'}</span>
+                </a>
 
-                  {/* Rating under button */}
-                  <div className="w-full text-center pt-0.5 space-y-0.5">
-                    <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">
-                      {language === 'vi' ? 'Đánh giá' : 'Rating'}
-                    </div>
-                    <div className="text-2xl font-black text-[#0F172A]">4.7</div>
-                    <div className="flex justify-center gap-0.5 text-[#FF9F29]">
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Android App Download & Rating */}
-                <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-2.5 w-full sm:w-auto">
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.consortio.way2go&hl=vi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-[#0F172A] font-extrabold text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 border border-slate-100/80 cursor-pointer"
-                  >
-                    <img src={googlePlayIcon} alt="Google Play" className="w-6 h-6 object-contain shrink-0" />
-                    <span>{language === 'vi' ? 'Tải ứng dụng Android' : 'Download Android App'}</span>
-                  </a>
-
-                  {/* Rating under button */}
-                  <div className="w-full text-center pt-0.5 space-y-0.5">
-                    <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">
-                      {language === 'vi' ? 'Đánh giá' : 'Rating'}
-                    </div>
-                    <div className="text-2xl font-black text-[#0F172A]">4.6</div>
-                    <div className="flex justify-center gap-0.5 text-[#FF9F29]">
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29]" />
-                      <Star className="w-4 h-4 fill-[#FF9F29] opacity-60" />
-                    </div>
-                  </div>
-                </div>
+                {/* Android App Download */}
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.consortio.way2go&hl=vi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-[#0F172A] flex items-center justify-center font-extrabold text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transition-all gap-3 border border-slate-200/80 cursor-pointer group"
+                >
+                  <img src={googlePlayIcon} alt="Google Play" className="w-6 h-6 object-contain shrink-0" />
+                  <span>{language === 'vi' ? 'Tải ứng dụng Android' : 'Download Android App'}</span>
+                </a>
 
               </div>
 
