@@ -13,7 +13,7 @@ export const AppDownloadBanner: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Soft Slate Banner matching clean white layout */}
-        <div className="bg-slate-50 rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 md:p-14 relative overflow-hidden shadow-xs border border-slate-200/80">
+        <div className="bg-slate-50 rounded-[32px] sm:rounded-[40px]  relative overflow-hidden shadow-xs border border-slate-200/80">
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
 
@@ -28,7 +28,7 @@ export const AppDownloadBanner: React.FC = () => {
 
             {/* Right Column: Heading, Description & Download Buttons */}
             <div className="lg:col-span-7 space-y-6 text-left">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-black text-[#0F172A] tracking-tight leading-[1.2]">
+              <h2 className="text-4xl font-black text-[#0F172A] tracking-tight leading-[1.2]">
                 {language === 'vi'
                   ? 'Chúng tôi luôn đồng hành cùng bạn, dù bạn ở bất cứ đâu'
                   : 'We are always with you, wherever you are'}

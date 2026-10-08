@@ -2,6 +2,10 @@ import React, { useRef, useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { NEWS_DATA } from '../data/news';
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import InviteFriends from './InviteFriends';
+import appStoreIcon from '../../assets/image/common/app_store.png';
+import googlePlayIcon from '../../assets/image/common/google-play.png';
+import downloadImageSvg from '../../assets/image/common/start_travel.svg';
 export interface Props {
   standalone?: boolean
 }
@@ -127,8 +131,19 @@ export const NewsSection: React.FC<Props> = (props) => {
         ) : (
           /* Home Screen: Horizontal Carousel Slider */
           <div className="space-y-4">
-            <div className="flex justify-end mb-2">
-              <div className="flex items-center gap-2 shrink-0">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-2">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A2340] tracking-tight">
+                  {language === 'vi' ? 'Tin tức' : 'Latest News'}
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+                  {language === 'vi'
+                    ? 'Kinh nghiệm du lịch, mẹo dùng eSIM và cập nhật mới nhất'
+                    : 'Travel experiences, eSIM tips and latest updates'}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                 <button
                   onClick={scrollLeft}
                   className="p-2.5 rounded-xl bg-white border border-[#E2E8F0] hover:bg-slate-50 text-[#1A2340] shadow-xs transition-colors cursor-pointer"
@@ -207,7 +222,68 @@ export const NewsSection: React.FC<Props> = (props) => {
             </div>
           </div>
         )}
+        {props.standalone && (
+          <div className="mt-12 space-y-8">
+            {/* Card Download App (Same as Earn with W2G) */}
+            <div className="bg-gradient-to-br from-[#1A2340] via-[#1E294B] to-[#0F172A] rounded-3xl p-6 sm:p-8 border border-slate-700/60 shadow-xl text-white relative overflow-hidden">
+              {/* Background decorative glow */}
+              <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00D2B8]/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -left-10 -top-10 w-64 h-64 bg-[#ff7a5c]/10 rounded-full blur-3xl pointer-events-none" />
 
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+                {/* Left Column: App Illustration */}
+                <div className="lg:col-span-4 flex justify-center">
+                  <img
+                    src={downloadImageSvg}
+                    alt="Way2Go App Download"
+                    className="w-full max-w-[280px] h-auto object-contain filter drop-shadow-md"
+                  />
+                </div>
+
+                {/* Right Column: Information & Download Links */}
+                <div className="lg:col-span-8 text-left space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug">
+                    {language === 'vi'
+                      ? 'Tải App Way2Go — Quản lý eSIM & Đổi quà miễn phí mọi lúc mọi nơi'
+                      : 'Download Way2Go App — Easily manage eSIM & redeem rewards anywhere'}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+                    {language === 'vi'
+                      ? 'Tải ngay ứng dụng Way2Go trên iOS và Android để kiểm tra dung lượng data thực tế, kích hoạt eSIM 1-click và nhận ngay 100 Way2Go Coins miễn phí khi đăng nhập lần đầu!'
+                      : 'Get the Way2Go app on iOS & Android to monitor data usage, activate eSIMs in 1-click, and get 100 bonus Way2Go Coins on first login!'}
+                  </p>
+
+                  {/* Download Buttons Row */}
+                  <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                    <a
+                      href="https://apps.apple.com/vn/app/way2go-travel-esim/id6744437994"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-3 bg-white hover:bg-slate-100 text-[#1A2340] font-extrabold text-xs sm:text-sm rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2.5 cursor-pointer border border-white"
+                    >
+                      <img src={appStoreIcon} alt="App Store" className="w-5 h-5 object-contain shrink-0" />
+                      <span>{language === 'vi' ? 'Tải ứng dụng iOS' : 'App Store (iOS)'}</span>
+                    </a>
+
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.consortio.way2go&hl=vi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-3 bg-[#1E294B] hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2.5 cursor-pointer border border-slate-600"
+                    >
+                      <img src={googlePlayIcon} alt="Google Play" className="w-5 h-5 object-contain shrink-0" />
+                      <span>{language === 'vi' ? 'Tải ứng dụng Android' : 'Google Play (Android)'}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Invite Friends Network Section */}
+            <InviteFriends />
+          </div>
+        )}
       </div>
     </section >
   );

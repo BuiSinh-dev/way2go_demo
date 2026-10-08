@@ -529,7 +529,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   // "Khi click vào sản phẩm sim sẽ ra màn hình như kia"
   // ===========================================================================
   return (
-    <div className="bg-white min-h-screen py-6 text-left">
+    <div className="bg-[#F8FAFC] min-h-screen py-8 text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         {/* Back to catalog breadcrumb */}
@@ -543,7 +543,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 openStoreCatalog();
               }
             }}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1A2340] hover:text-[#1A2340] bg-white px-3.5 py-1.5 rounded-lg border border-[#E2E8F0] hover:border-[#1A2340] transition-colors cursor-pointer shadow-2xs"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1A2340] hover:text-[#1A2340] bg-white px-3.5 py-2 rounded-xl border border-[#E2E8F0] hover:border-[#1A2340] transition-colors cursor-pointer shadow-xs"
           >
             <ArrowLeft className="w-3.5 h-3.5 text-[#1A2340]" />
             <span>
@@ -559,525 +559,521 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
         </div>
 
         {/* ========================================================================= */}
-        {/* TOP BAR / HEADER ROW                                                      */}
+        {/* MAIN PRODUCT DETAIL CARD WITH BOX-SHADOW                                  */}
         {/* ========================================================================= */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+        <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-xl md:shadow-2xl space-y-8">
 
-          {/* Left Title & Trust Rating */}
-          <div className="space-y-1.5 max-w-xl">
-            <div className="flex items-center gap-3">
+          {/* ========================================================================= */}
+          {/* TOP BAR / HEADER ROW                                                      */}
+          {/* ========================================================================= */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+
+            {/* Left Title & Trust Rating */}
+            <div className="space-y-1.5 max-w-xl">
+              <div className="flex items-center gap-3">
+                <img
+                  src={`https://flagsapi.com/${currentDest.flagCode || currentDest.code || 'JP'}/flat/64.png`}
+                  alt={currentDest.nameVi}
+                  className="w-10 h-7 sm:w-12 sm:h-8 object-contain shrink-0"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1A2340] tracking-tight">
+                  {currentDest.nameVi} eSIM
+                </h1>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-xs pt-1">
+                <div className="flex items-center gap-1 text-[#1A2340] font-extrabold">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <span>4.8/5</span>
+                </div>
+                <span className="text-slate-400">·</span>
+                <span className="text-slate-600 font-medium">
+                  Tin dùng bởi hơn 500K+ khách hàng toàn cầu từ 2018
+                </span>
+              </div>
+            </div>
+
+            {/* Right Side: Country / Travel Landmark Element Illustration */}
+            <div className="flex items-center justify-start sm:justify-end shrink-0 pt-2 sm:pt-0">
               <img
-                src={`https://flagsapi.com/${currentDest.flagCode || currentDest.code || 'JP'}/flat/64.png`}
-                alt={currentDest.nameVi}
-                className="w-10 h-7 sm:w-12 sm:h-8 object-contain shrink-0"
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = 'none';
-                }}
+                src={worldImg}
+                alt="Travel Element"
+                className="h-20 sm:h-24 w-auto object-contain max-w-[260px] drop-shadow-xs"
               />
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1A2340] tracking-tight">
-                {currentDest.nameVi} eSIM
-              </h1>
-            </div>
-            <div className="flex flex-wrap items-center gap-2 text-xs pt-1">
-              <div className="flex items-center gap-1 text-[#1A2340] font-extrabold">
-                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                <span>4.8/5</span>
-              </div>
-              <span className="text-slate-400">·</span>
-              <span className="text-slate-600 font-medium">
-                Tin dùng bởi hơn 500K+ khách hàng toàn cầu từ 2018
-              </span>
-            </div>
-          </div>
-
-          {/* Right Side: Country / Travel Landmark Element Illustration */}
-          <div className="flex items-center justify-start sm:justify-end shrink-0 pt-2 sm:pt-0">
-            <img
-              src={worldImg}
-              alt="Travel Element"
-              className="h-20 sm:h-24 w-auto object-contain max-w-[260px] drop-shadow-xs"
-            />
-          </div>
-
-        </div>
-
-        {/* If regional / global: Compact clickable bar that triggers Modal */}
-        {currentDest.coveredCountriesList && currentDest.coveredCountriesList.length > 0 && (
-          <div
-            onClick={() => setIsCountriesModalOpen(true)}
-            className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-4 shadow-xs flex items-center justify-between cursor-pointer transition-all group"
-          >
-            <div className="flex items-center gap-3 min-w-0 pr-2">
-              <div className="w-8 h-8 rounded-full bg-[#1A2340]/10 text-[#1A2340] flex items-center justify-center shrink-0">
-                <Globe className="w-4 h-4" />
-              </div>
-              <div className="min-w-0">
-                <span className="font-extrabold text-xs sm:text-sm text-[#1A2340] block truncate">
-                  {language === 'vi'
-                    ? `Khu vực bao gồm ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} quốc gia & nhà mạng hỗ trợ`
-                    : `Region includes ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} supported countries & networks`}
-                </span>
-                <span className="text-xs text-slate-500 font-medium block truncate">
-                  {language === 'vi'
-                    ? 'Nhấn vào đây để xem chi tiết danh sách các quốc gia và các nhà mạng viễn thông đi kèm'
-                    : 'Click to view full list of supported countries and network operators'}
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1.5 text-xs font-black text-[#ff7a5c] group-hover:translate-x-0.5 transition-transform shrink-0">
-              <span>{language === 'vi' ? 'Xem chi tiết' : 'View all'}</span>
-              <span className="text-sm">→</span>
-            </div>
-          </div>
-        )}
-
-        {/* ========================================================================= */}
-        {/* MAIN 2-COLUMN LAYOUT: LEFT PACKAGES + RIGHT STICKY SUMMARY               */}
-        {/* ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-          {/* ======================================================================= */}
-          {/* LEFT COLUMN: 3 DATA SECTIONS (DAILY, FIXED, UNLIMITED)                  */}
-          {/* ======================================================================= */}
-          <div className="lg:col-span-8 space-y-6">
-
-            <h2 className="text-lg font-bold text-[#1A2340]">
-              Nhận gói data eSIM cho {currentDest.nameVi}
-            </h2>
-
-            {/* --------------------------------------------------------------------- */}
-            {/* 1. DỮ LIỆU THEO NGÀY (DATA MỚI MỖI NGÀY)                              */}
-            {/* --------------------------------------------------------------------- */}
-            <div className="bg-white text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-3.5">
-              <div>
-                <h3 className="text-base font-bold text-[#1A2340]">Dữ liệu theo ngày</h3>
-                <p className="text-xs text-slate-500">Data mới mỗi ngày.</p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-
-                {/* Card 1: 1GB/ngày */}
-                <div
-                  onClick={() => setActiveCardId('daily-1gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'daily-1gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="font-extrabold text-sm text-[#1A2340]">1GB/ngày</span>
-                    <span className="font-black text-sm text-[#1A2340] tabular-nums">
-                      {formatPrice(
-                        Math.round((baseUsd * 0.9 + (dailyDays1Gb - 1) * 0.95) * usdToVnd / 1000) * 1000,
-                        Math.round((baseUsd * 0.9 + (dailyDays1Gb - 1) * 0.95) * 100) / 100
-                      )}
-                    </span>
-                  </div>
-
-                  <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={dailyDays1Gb}
-                      onChange={(e) => {
-                        setDailyDays1Gb(Number(e.target.value));
-                        setActiveCardId('daily-1gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
-                    >
-                      {[1, 3, 5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Card 2: 2GB/ngày */}
-                <div
-                  onClick={() => setActiveCardId('daily-2gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'daily-2gb'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="font-extrabold text-sm text-[#1A2340]">2GB/ngày</span>
-                    <span className="font-black text-sm text-[#1A2340] tabular-nums">
-                      {formatPrice(
-                        Math.round((baseUsd * 1.5 + (dailyDays2Gb - 1) * 1.4) * usdToVnd / 1000) * 1000,
-                        Math.round((baseUsd * 1.5 + (dailyDays2Gb - 1) * 1.4) * 100) / 100
-                      )}
-                    </span>
-                  </div>
-
-                  <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={dailyDays2Gb}
-                      onChange={(e) => {
-                        setDailyDays2Gb(Number(e.target.value));
-                        setActiveCardId('daily-2gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
-                    >
-                      {[1, 3, 5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Card 3: 3GB/ngày with FLASH SALE tag */}
-                <div
-                  onClick={() => setActiveCardId('daily-3gb')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'daily-3gb'
-                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs flex items-center gap-0.5 uppercase tracking-wider">
-                      <Zap className="w-2.5 h-2.5" /> FLASH SALE
-                    </span>
-                  </div>
-
-                  <div className="flex items-start justify-between">
-                    <span className="font-extrabold text-sm text-[#1A2340]">3GB/ngày</span>
-                    <div className="text-right">
-                      <div className="font-black text-sm text-[#1A2340] tabular-nums">
-                        {formatPrice(
-                          Math.round((baseUsd * 1.8 + (dailyDays3Gb - 1) * 1.6) * usdToVnd / 1000) * 1000,
-                          Math.round((baseUsd * 1.8 + (dailyDays3Gb - 1) * 1.6) * 100) / 100
-                        )}
-                      </div>
-                      <div className="text-[10px] text-slate-400 line-through">
-                        ${(baseUsd * 2.3 + (dailyDays3Gb - 1) * 1.9).toFixed(2)}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={dailyDays3Gb}
-                      onChange={(e) => {
-                        setDailyDays3Gb(Number(e.target.value));
-                        setActiveCardId('daily-3gb');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
-                    >
-                      {[1, 3, 5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-
-            {/* --------------------------------------------------------------------- */}
-            {/* 3. DỮ LIỆU KHÔNG GIỚI HẠN (DATA KHÔNG GIỚI HẠN SUỐT CHUYẾN ĐI)        */}
-            {/* --------------------------------------------------------------------- */}
-            <div className="bg-white text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-3.5">
-              <div>
-                <h3 className="text-base font-bold text-[#1A2340]">Dữ liệu không giới hạn</h3>
-                <p className="text-xs text-slate-500">Data không giới hạn suốt chuyến đi.</p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                {/* Không giới hạn 5Mbps */}
-                <div
-                  onClick={() => setActiveCardId('ulm-5mbps')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'ulm-5mbps'
-                    ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="font-extrabold text-sm text-[#1A2340]">Không giới hạn 5Mbps</div>
-                      <div className="text-[11px] text-slate-500">Thoải mái xem video, lướt web</div>
-                    </div>
-                    <span className="font-black text-sm text-[#1A2340] tabular-nums">
-                      {formatPrice(
-                        Math.round((baseUsd * 4.2 + (ulmDays5Mbps - 5) * 1.5) * usdToVnd / 1000) * 1000,
-                        Math.round((baseUsd * 4.2 + (ulmDays5Mbps - 5) * 1.5) * 100) / 100
-                      )}
-                    </span>
-                  </div>
-
-                  <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={ulmDays5Mbps}
-                      onChange={(e) => {
-                        setUlmDays5Mbps(Number(e.target.value));
-                        setActiveCardId('ulm-5mbps');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
-                    >
-                      {[5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Không giới hạn 10Mbps (FLASH SALE) */}
-                <div
-                  onClick={() => setActiveCardId('ulm-10mbps')}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'ulm-10mbps'
-                    ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
-                    : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
-                    }`}
-                >
-                  <div className="absolute -top-2.5 left-3">
-                    <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs flex items-center gap-0.5 uppercase tracking-wider">
-                      <Zap className="w-2.5 h-2.5" /> FLASH SALE
-                    </span>
-                  </div>
-
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="font-extrabold text-sm text-[#1A2340]">Không giới hạn 10Mbps</div>
-                      <div className="text-[11px] text-slate-500">Tốc độ cực nhanh 5G</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-black text-sm text-[#1A2340] tabular-nums">
-                        {formatPrice(
-                          Math.round((baseUsd * 1.1 + (ulmDays10Mbps - 1) * 2.4) * usdToVnd / 1000) * 1000,
-                          Math.round((baseUsd * 1.1 + (ulmDays10Mbps - 1) * 2.4) * 100) / 100
-                        )}
-                      </div>
-                      <div className="text-[10px] text-slate-400 line-through">
-                        ${(baseUsd * 1.4 + (ulmDays10Mbps - 1) * 2.8).toFixed(2)}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
-                    <select
-                      value={ulmDays10Mbps}
-                      onChange={(e) => {
-                        setUlmDays10Mbps(Number(e.target.value));
-                        setActiveCardId('ulm-10mbps');
-                      }}
-                      className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
-                    >
-                      {[1, 3, 5, 7, 10, 15, 30].map((d) => (
-                        <option key={d} value={d}>{d} ngày</option>
-                      ))}
-                    </select>
-                    <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
-                  </div>
-                </div>
-
-              </div>
             </div>
 
           </div>
 
-          {/* ======================================================================= */}
-          {/* RIGHT COLUMN: STICKY PURCHASE MODULE                                    */}
-          {/* ======================================================================= */}
-          <div className="lg:col-span-4 sticky top-20">
-            <div className="bg-white text-[#1A2340] rounded-2xl border border-[#E2E8F0] shadow-md overflow-hidden space-y-4">
+          {/* If regional / global: Compact clickable bar that triggers Modal */}
+          {currentDest.coveredCountriesList && currentDest.coveredCountriesList.length > 0 && (
+            <div
+              onClick={() => setIsCountriesModalOpen(true)}
+              className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-4 shadow-xs flex items-center justify-between cursor-pointer transition-all group"
+            >
+              <div className="flex items-center gap-3 min-w-0 pr-2">
+                <div className="w-8 h-8 rounded-full bg-[#1A2340]/10 text-[#1A2340] flex items-center justify-center shrink-0">
+                  <Globe className="w-4 h-4" />
+                </div>
+                <div className="min-w-0">
+                  <span className="font-extrabold text-xs sm:text-sm text-[#1A2340] block truncate">
+                    {language === 'vi'
+                      ? `Khu vực bao gồm ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} quốc gia & nhà mạng hỗ trợ`
+                      : `Region includes ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} supported countries & networks`}
+                  </span>
+                  <span className="text-xs text-slate-500 font-medium block truncate">
+                    {language === 'vi'
+                      ? 'Nhấn vào đây để xem chi tiết danh sách các quốc gia và các nhà mạng viễn thông đi kèm'
+                      : 'Click to view full list of supported countries and network operators'}
+                  </span>
+                </div>
+              </div>
 
-              {/* Top Free Trial Badge */}
-              <div className="bg-slate-50 border-b border-[#E2E8F0] p-3.5 flex items-center justify-between">
+              <div className="flex items-center gap-1.5 text-xs font-black text-[#ff7a5c] group-hover:translate-x-0.5 transition-transform shrink-0">
+                <span>{language === 'vi' ? 'Xem chi tiết' : 'View all'}</span>
+                <span className="text-sm">→</span>
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* MAIN 2-COLUMN LAYOUT: LEFT PACKAGES + RIGHT STICKY SUMMARY               */}
+          {/* ========================================================================= */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            {/* ======================================================================= */}
+            {/* LEFT COLUMN: 3 DATA SECTIONS (DAILY, FIXED, UNLIMITED)                  */}
+            {/* ======================================================================= */}
+            <div className="lg:col-span-8 space-y-6">
+
+              <h2 className="text-lg font-bold text-[#1A2340]">
+                Nhận gói data eSIM cho {currentDest.nameVi}
+              </h2>
+
+              {/* --------------------------------------------------------------------- */}
+              {/* 1. DỮ LIỆU THEO NGÀY (DATA MỚI MỖI NGÀY)                              */}
+              {/* --------------------------------------------------------------------- */}
+              <div className="bg-white text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-3.5">
                 <div>
-                  <div className="text-[11px] font-bold text-[#1A2340]">
-                    Dành cho người dùng mới: eSIM dùng thử miễn phí
-                  </div>
-                  <div className="text-xs font-extrabold text-[#1A2340] mt-0.5">
-                    Nhận miễn phí 300MB cho chuyến đi sắp tới
-                  </div>
+                  <h3 className="text-base font-bold text-[#1A2340]">Dữ liệu theo ngày</h3>
+                  <p className="text-xs text-slate-500">Data mới mỗi ngày.</p>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-[#ff7a5c]/10 text-[#ff7a5c] flex items-center justify-center shrink-0">
-                  <Gift className="w-4 h-4" />
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+                  {/* Card 1: 1GB/ngày */}
+                  <div
+                    onClick={() => setActiveCardId('daily-1gb')}
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'daily-1gb'
+                      ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
+                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                      }`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="font-extrabold text-sm text-[#1A2340]">1GB/ngày</span>
+                      <span className="font-black text-sm text-[#1A2340] tabular-nums">
+                        {formatPrice(
+                          Math.round((baseUsd * 0.9 + (dailyDays1Gb - 1) * 0.95) * usdToVnd / 1000) * 1000,
+                          Math.round((baseUsd * 0.9 + (dailyDays1Gb - 1) * 0.95) * 100) / 100
+                        )}
+                      </span>
+                    </div>
+
+                    <div className="mt-3" onClick={(e) => e.stopPropagation()}>
+                      <select
+                        value={dailyDays1Gb}
+                        onChange={(e) => {
+                          setDailyDays1Gb(Number(e.target.value));
+                          setActiveCardId('daily-1gb');
+                        }}
+                        className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
+                      >
+                        {[1, 3, 5, 7, 10, 15, 30].map((d) => (
+                          <option key={d} value={d}>{d} ngày</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Card 2: 2GB/ngày */}
+                  <div
+                    onClick={() => setActiveCardId('daily-2gb')}
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'daily-2gb'
+                      ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
+                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                      }`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="font-extrabold text-sm text-[#1A2340]">2GB/ngày</span>
+                      <span className="font-black text-sm text-[#1A2340] tabular-nums">
+                        {formatPrice(
+                          Math.round((baseUsd * 1.5 + (dailyDays2Gb - 1) * 1.4) * usdToVnd / 1000) * 1000,
+                          Math.round((baseUsd * 1.5 + (dailyDays2Gb - 1) * 1.4) * 100) / 100
+                        )}
+                      </span>
+                    </div>
+
+                    <div className="mt-3" onClick={(e) => e.stopPropagation()}>
+                      <select
+                        value={dailyDays2Gb}
+                        onChange={(e) => {
+                          setDailyDays2Gb(Number(e.target.value));
+                          setActiveCardId('daily-2gb');
+                        }}
+                        className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
+                      >
+                        {[1, 3, 5, 7, 10, 15, 30].map((d) => (
+                          <option key={d} value={d}>{d} ngày</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Card 3: 3GB/ngày with FLASH SALE tag */}
+                  <div
+                    onClick={() => setActiveCardId('daily-3gb')}
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'daily-3gb'
+                      ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
+                      : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
+                      }`}
+                  >
+                    <div className="absolute -top-2.5 left-3">
+                      <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs flex items-center gap-0.5 uppercase tracking-wider">
+                        <Zap className="w-2.5 h-2.5" /> FLASH SALE
+                      </span>
+                    </div>
+
+                    <div className="flex items-start justify-between">
+                      <span className="font-extrabold text-sm text-[#1A2340]">3GB/ngày</span>
+                      <div className="text-right">
+                        <div className="font-black text-sm text-[#1A2340] tabular-nums">
+                          {formatPrice(
+                            Math.round((baseUsd * 1.8 + (dailyDays3Gb - 1) * 1.6) * usdToVnd / 1000) * 1000,
+                            Math.round((baseUsd * 1.8 + (dailyDays3Gb - 1) * 1.6) * 100) / 100
+                          )}
+                        </div>
+                        <div className="text-[10px] text-slate-400 line-through">
+                          ${(baseUsd * 2.3 + (dailyDays3Gb - 1) * 1.9).toFixed(2)}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                      <select
+                        value={dailyDays3Gb}
+                        onChange={(e) => {
+                          setDailyDays3Gb(Number(e.target.value));
+                          setActiveCardId('daily-3gb');
+                        }}
+                        className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
+                      >
+                        {[1, 3, 5, 7, 10, 15, 30].map((d) => (
+                          <option key={d} value={d}>{d} ngày</option>
+                        ))}
+                      </select>
+                      <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
-              {/* Scenic destination banner image */}
-              <div className="px-4">
-                <div className="relative rounded-xl overflow-hidden h-28 bg-gradient-to-r from-[#1A2340] via-[#243056] to-[#314373] flex flex-col justify-end p-3 text-white">
-                  <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono">
-                    {currentDest.topCarriers.join(' · ')}
-                  </div>
-                  <div className="text-xs font-bold leading-tight drop-shadow-sm">
-                    Tặng 20GB gói 7 ngày - 35k
-                  </div>
-                  <div className="text-[11px] text-white/90 drop-shadow-xs">
-                    Gói 50GB free nâng cấp Unlimited Data
-                  </div>
-                </div>
-              </div>
 
-              {/* Destination & Summary list matching Image 1 layout */}
-              <div className="px-5 space-y-4 pb-4">
-                {/* Header with flag */}
-                <div className="flex items-center gap-2 font-extrabold text-base sm:text-lg text-[#1A2340] pb-3 border-b border-slate-100">
-                  <img
-                    src={`https://flagsapi.com/${currentDest.flagCode || currentDest.code || 'JP'}/flat/64.png`}
-                    alt={currentDest.nameVi}
-                    className="w-7 h-5 object-contain shrink-0"
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
-                    }}
-                  />
-                  <span>eSIM {currentDest.nameVi}</span>
+              {/* --------------------------------------------------------------------- */}
+              {/* 3. DỮ LIỆU KHÔNG GIỚI HẠN (DATA KHÔNG GIỚI HẠN SUỐT CHUYẾN ĐI)        */}
+              {/* --------------------------------------------------------------------- */}
+              <div className="bg-white text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-3.5">
+                <div>
+                  <h3 className="text-base font-bold text-[#1A2340]">Dữ liệu không giới hạn</h3>
+                  <p className="text-xs text-slate-500">Data không giới hạn suốt chuyến đi.</p>
                 </div>
 
-                {/* Price Display */}
-                <div className="flex justify-between items-baseline pt-1">
-                  <span className="text-xs sm:text-sm font-semibold text-slate-500">Tổng cộng</span>
-                  <span className="sm:text-2xl font-black text-[#1A2340] tabular-nums">
-                    {formatPrice(activePlanInfo.priceVnd, activePlanInfo.priceUsd)}
-                  </span>
-                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
-                {/* Action Row: Cart icon button + Mua ngay button */}
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={handleCheckoutClick}
-                    className="w-12 h-12 rounded-full border-2 border-[#1A2340] hover:bg-slate-100 text-[#1A2340] flex items-center justify-center shrink-0 transition-colors cursor-pointer"
-                    title="Thêm vào giỏ hàng"
+                  {/* Không giới hạn 5Mbps */}
+                  <div
+                    onClick={() => setActiveCardId('ulm-5mbps')}
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'ulm-5mbps'
+                      ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
+                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                      }`}
                   >
-                    <ShoppingCart className="w-5 h-5" />
-                  </button>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <div className="font-extrabold text-sm text-[#1A2340]">Không giới hạn 5Mbps</div>
+                        <div className="text-[11px] text-slate-500">Thoải mái xem video, lướt web</div>
+                      </div>
+                      <span className="font-black text-sm text-[#1A2340] tabular-nums">
+                        {formatPrice(
+                          Math.round((baseUsd * 4.2 + (ulmDays5Mbps - 5) * 1.5) * usdToVnd / 1000) * 1000,
+                          Math.round((baseUsd * 4.2 + (ulmDays5Mbps - 5) * 1.5) * 100) / 100
+                        )}
+                      </span>
+                    </div>
 
-                  <button
-                    onClick={handleCheckoutClick}
-                    className="flex-1 py-3.5 px-6 rounded-full bg-[#ff7a5c] hover:bg-[#E05800] active:bg-[#C84E00] text-white font-extrabold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center cursor-pointer tracking-wide"
+                    <div className="mt-3" onClick={(e) => e.stopPropagation()}>
+                      <select
+                        value={ulmDays5Mbps}
+                        onChange={(e) => {
+                          setUlmDays5Mbps(Number(e.target.value));
+                          setActiveCardId('ulm-5mbps');
+                        }}
+                        className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#1A2340]"
+                      >
+                        {[5, 7, 10, 15, 30].map((d) => (
+                          <option key={d} value={d}>{d} ngày</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Không giới hạn 10Mbps (FLASH SALE) */}
+                  <div
+                    onClick={() => setActiveCardId('ulm-10mbps')}
+                    className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'ulm-10mbps'
+                      ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
+                      : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
+                      }`}
                   >
-                    <span>Mua ngay</span>
-                  </button>
-                </div>
-
-                {/* Chi tiết gói outline button */}
-                <button
-                  onClick={() => setCompatibilityModalOpen(true)}
-                  className="w-full py-3 px-4 rounded-full border border-slate-300 hover:border-slate-400 bg-white text-[#1A2340] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs"
-                >
-                  <FileText className="w-4 h-4 text-[#1A2340]" />
-                  <span>Chi tiết gói</span>
-                </button>
-
-                {/* Compatibility check button */}
-                <button
-                  onClick={() => setCompatibilityModalOpen(true)}
-                  className="w-full py-2.5 px-3 rounded-2xl bg-[#FF7A5C] hover:bg-[#e6694c] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
-                >
-                  <Smartphone className="w-4 h-4 text-white" />
-                  <span>Kiểm tra tương thích tại đây →</span>
-                </button>
-
-                {/* 4 Feature Badges (2x2 Grid with Light Background) */}
-                <div className="grid grid-cols-2 gap-2.5 pt-1">
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
-                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
-                      <Zap className="w-4 h-4" />
+                    <div className="absolute -top-2.5 left-3">
+                      <span className="bg-[#ff7a5c] text-white text-[9px] font-black px-2 py-0.5 rounded shadow-2xs flex items-center gap-0.5 uppercase tracking-wider">
+                        <Zap className="w-2.5 h-2.5" /> FLASH SALE
+                      </span>
                     </div>
-                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
-                      Thay eSIM trong 1 giờ
-                    </span>
+
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <div className="font-extrabold text-sm text-[#1A2340]">Không giới hạn 10Mbps</div>
+                        <div className="text-[11px] text-slate-500">Tốc độ cực nhanh 5G</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-black text-sm text-[#1A2340] tabular-nums">
+                          {formatPrice(
+                            Math.round((baseUsd * 1.1 + (ulmDays10Mbps - 1) * 2.4) * usdToVnd / 1000) * 1000,
+                            Math.round((baseUsd * 1.1 + (ulmDays10Mbps - 1) * 2.4) * 100) / 100
+                          )}
+                        </div>
+                        <div className="text-[10px] text-slate-400 line-through">
+                          ${(baseUsd * 1.4 + (ulmDays10Mbps - 1) * 2.8).toFixed(2)}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-3 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                      <select
+                        value={ulmDays10Mbps}
+                        onChange={(e) => {
+                          setUlmDays10Mbps(Number(e.target.value));
+                          setActiveCardId('ulm-10mbps');
+                        }}
+                        className="w-full py-1.5 px-2.5 rounded-lg border border-[#E2E8F0] bg-white text-xs font-semibold text-[#1A2340] shadow-2xs cursor-pointer focus:outline-none focus:border-[#ff7a5c]"
+                      >
+                        {[1, 3, 5, 7, 10, 15, 30].map((d) => (
+                          <option key={d} value={d}>{d} ngày</option>
+                        ))}
+                      </select>
+                      <span className="text-[10px] font-bold text-[#ff7a5c] shrink-0">Save 20%</span>
+                    </div>
                   </div>
 
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
-                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
-                      <Headphones className="w-4 h-4" />
-                    </div>
-                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
-                      Hỗ trợ 24/7
-                    </span>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
-                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
-                      Giao eSIM tức thì qua email
-                    </span>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
-                    <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
-                      <Shield className="w-4 h-4" />
-                    </div>
-                    <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
-                      Thanh toán an toàn được đảm bảo
-                    </span>
-                  </div>
-                </div>
-
-                {/* Footer activation note */}
-                <div className="pt-2 flex items-start gap-2 text-xs text-slate-500">
-                  <Calendar className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                  <span>
-                    Kích hoạt trong vòng <strong className="text-[#1A2340] font-bold">30 ngày</strong> sau khi nhận mã QR của bạn.
-                  </span>
                 </div>
               </div>
 
             </div>
-          </div>
 
+            {/* ======================================================================= */}
+            {/* RIGHT COLUMN: STICKY PURCHASE MODULE                                    */}
+            {/* ======================================================================= */}
+            <div className="lg:col-span-4 sticky top-20">
+              <div className="bg-white text-[#1A2340] rounded-2xl border border-[#E2E8F0] shadow-md overflow-hidden space-y-4">
+
+                {/* Top Free Trial Badge */}
+                <div className="bg-slate-50 border-b border-[#E2E8F0] p-3.5 flex items-center justify-between">
+                  <div>
+                    <div className="text-[11px] font-bold text-[#1A2340]">
+                      Dành cho người dùng mới: eSIM dùng thử miễn phí
+                    </div>
+                    <div className="text-xs font-extrabold text-[#1A2340] mt-0.5">
+                      Nhận miễn phí 300MB cho chuyến đi sắp tới
+                    </div>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-[#ff7a5c]/10 text-[#ff7a5c] flex items-center justify-center shrink-0">
+                    <Gift className="w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Scenic destination banner image */}
+                <div className="px-4">
+                  <div className="relative rounded-xl overflow-hidden h-28 bg-gradient-to-r from-[#1A2340] via-[#243056] to-[#314373] flex flex-col justify-end p-3 text-white">
+                    <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-xs px-2 py-0.5 rounded text-[10px] font-mono">
+                      {currentDest.topCarriers.join(' · ')}
+                    </div>
+                    <div className="text-xs font-bold leading-tight drop-shadow-sm">
+                      Tặng 20GB gói 7 ngày - 35k
+                    </div>
+                    <div className="text-[11px] text-white/90 drop-shadow-xs">
+                      Gói 50GB free nâng cấp Unlimited Data
+                    </div>
+                  </div>
+                </div>
+
+                {/* Destination & Summary list matching Image 1 layout */}
+                <div className="px-5 space-y-4 pb-4">
+                  {/* Header with flag */}
+                  <div className="flex items-center gap-2 font-extrabold text-base sm:text-lg text-[#1A2340] pb-3 border-b border-slate-100">
+                    <img
+                      src={`https://flagsapi.com/${currentDest.flagCode || currentDest.code || 'JP'}/flat/64.png`}
+                      alt={currentDest.nameVi}
+                      className="w-7 h-5 object-contain shrink-0"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                      }}
+                    />
+                    <span>eSIM {currentDest.nameVi}</span>
+                  </div>
+
+                  {/* Price Display */}
+                  <div className="flex justify-between items-baseline pt-1">
+                    <span className="text-xs sm:text-sm font-semibold text-slate-500">Tổng cộng</span>
+                    <span className="sm:text-2xl font-black text-[#1A2340] tabular-nums">
+                      {formatPrice(activePlanInfo.priceVnd, activePlanInfo.priceUsd)}
+                    </span>
+                  </div>
+
+                  {/* Action Row: Cart icon button + Mua ngay button */}
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={handleCheckoutClick}
+                      className="w-12 h-12 rounded-full border-2 border-[#1A2340] hover:bg-slate-100 text-[#1A2340] flex items-center justify-center shrink-0 transition-colors cursor-pointer"
+                      title="Thêm vào giỏ hàng"
+                    >
+                      <ShoppingCart className="w-5 h-5" />
+                    </button>
+
+                    <button
+                      onClick={handleCheckoutClick}
+                      className="flex-1 py-3.5 px-6 rounded-full bg-[#ff7a5c] hover:bg-[#E05800] active:bg-[#C84E00] text-white font-extrabold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center cursor-pointer tracking-wide"
+                    >
+                      <span>Mua ngay</span>
+                    </button>
+                  </div>
+
+                  {/* Chi tiết gói outline button */}
+                  <button
+                    onClick={() => setCompatibilityModalOpen(true)}
+                    className="w-full py-3 px-4 rounded-full border border-slate-300 hover:border-slate-400 bg-white text-[#1A2340] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs"
+                  >
+                    <FileText className="w-4 h-4 text-[#1A2340]" />
+                    <span>Chi tiết gói</span>
+                  </button>
+
+                  {/* Compatibility check button */}
+                  <button
+                    onClick={() => setCompatibilityModalOpen(true)}
+                    className="w-full py-2.5 px-3 rounded-2xl bg-[#FF7A5C] hover:bg-[#e6694c] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
+                  >
+                    <Smartphone className="w-4 h-4 text-white" />
+                    <span>Kiểm tra tương thích tại đây →</span>
+                  </button>
+
+                  {/* 4 Feature Badges (2x2 Grid with Light Background) */}
+                  <div className="grid grid-cols-2 gap-2.5 pt-1">
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                      <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                        <Zap className="w-4 h-4" />
+                      </div>
+                      <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                        Thay eSIM trong 1 giờ
+                      </span>
+                    </div>
+
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                      <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                        <Headphones className="w-4 h-4" />
+                      </div>
+                      <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                        Hỗ trợ 24/7
+                      </span>
+                    </div>
+
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                      <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                        Giao eSIM tức thì qua email
+                      </span>
+                    </div>
+
+                    <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex items-center gap-2.5 bg-[#eaf2fe]">
+                      <div className="w-8 h-8 rounded-full bg-white text-[#0a36c6] flex items-center justify-center shrink-0 shadow-2xs">
+                        <Shield className="w-4 h-4" />
+                      </div>
+                      <span className="text-[11px] font-semibold text-[#1A2340] leading-tight">
+                        Thanh toán an toàn được đảm bảo
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Footer activation note */}
+                  <div className="pt-2 flex items-start gap-2 text-xs text-slate-500">
+                    <Calendar className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                    <span>
+                      Kích hoạt trong vòng <strong className="text-[#1A2340] font-bold">30 ngày</strong> sau khi nhận mã QR của bạn.
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
-        {/* MODAL: DANH SÁCH QUỐC GIA & NHÀ MẠNG HỖ TRỢ                             */}
+
+        {/* ========================================================================= */}
+        {/* MODAL: DANH SÁCH QUỐC GIA & NHÀ MẠNG HỖ TRỢ (AIRALO STYLE)              */}
         {/* ========================================================================= */}
         <AnimatePresence>
           {isCountriesModalOpen && currentDest.coveredCountriesList && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs"
+              onClick={() => setIsCountriesModalOpen(false)}
+            >
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 10 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="bg-white rounded-3xl border border-[#E2E8F0] shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden text-left"
+                onClick={(e) => e.stopPropagation()}
+                className="bg-[#F7F5F0] rounded-[28px] border border-slate-200/80 shadow-2xl max-w-md w-full max-h-[85vh] flex flex-col overflow-hidden text-left"
               >
                 {/* Modal Header */}
-                <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={`https://flagsapi.com/${currentDest.flagCode || currentDest.code || 'BE'}/flat/64.png`}
-                      alt={currentDest.nameVi}
-                      className="w-9 h-7 object-contain shrink-0"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-[#1A2340]">
-                        {language === 'vi' ? `Quốc gia & Nhà mạng thuộc ${currentDest.nameVi}` : `Supported Countries & Networks in ${currentDest.nameEn}`}
-                      </h3>
-                      <p className="text-xs text-slate-500 font-medium mt-0.5">
-                        {language === 'vi'
-                          ? `Bao gồm ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} quốc gia — Tự động kết nối nhà mạng mạnh nhất`
-                          : `Includes ${currentDest.coveredCountriesCount || currentDest.coveredCountriesList.length} countries with auto 5G/4G network selection`}
-                      </p>
-                    </div>
-                  </div>
+                <div className="p-5 pb-3 flex items-center justify-between">
+                  <h3 className="text-xl font-extrabold text-[#1A2340]">
+                    {language === 'vi' ? 'Quốc gia và mạng' : 'Countries and networks'}
+                  </h3>
 
                   <button
                     type="button"
                     onClick={() => setIsCountriesModalOpen(false)}
-                    className="w-8 h-8 rounded-full bg-slate-200/60 hover:bg-slate-200 text-slate-600 flex items-center justify-center cursor-pointer transition-colors shrink-0"
+                    className="w-8 h-8 rounded-full bg-slate-200/80 hover:bg-slate-300/80 text-slate-700 flex items-center justify-center cursor-pointer transition-colors shrink-0 text-sm font-bold"
+                    aria-label="Close modal"
                   >
                     ✕
                   </button>
                 </div>
 
                 {/* Search Bar in Modal */}
-                <div className="px-5 sm:px-6 pt-4 pb-2">
+                <div className="px-5 pb-3">
                   <div className="relative">
                     <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input
                       type="text"
                       value={modalCountrySearch}
                       onChange={(e) => setModalCountrySearch(e.target.value)}
-                      placeholder={language === 'vi' ? 'Tìm quốc gia hoặc nhà mạng (ví dụ: Nhật Bản, SoftBank, Mỹ...)' : 'Search country or network (e.g. Japan, SoftBank...)'}
-                      className="w-full pl-10 pr-8 py-2.5 bg-slate-50 border border-[#E2E8F0] rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#1A2340] text-[#1A2340]"
+                      placeholder={language === 'vi' ? 'Tìm kiếm theo quốc gia' : 'Search by country'}
+                      className="w-full pl-10 pr-8 py-2.5 bg-white border border-slate-300/70 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#1A2340] text-[#1A2340] placeholder-slate-400"
                     />
                     {modalCountrySearch && (
                       <button
@@ -1090,73 +1086,73 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                   </div>
                 </div>
 
-                {/* Modal Body: List of Countries & Networks */}
-                <div className="p-5 sm:p-6 overflow-y-auto max-h-[55vh] space-y-3">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {currentDest.coveredCountriesList
-                      .filter((countryName) => {
-                        if (!modalCountrySearch.trim()) return true;
-                        const query = modalCountrySearch.toLowerCase();
-                        const carriers = getCountryCarriers(countryName);
-                        return (
-                          countryName.toLowerCase().includes(query) ||
-                          carriers.some((c) => c.toLowerCase().includes(query))
-                        );
-                      })
-                      .map((countryName, idx) => {
-                        const flagCode = getCountryFlagCode(countryName);
-                        const flagUrl = `https://flagsapi.com/${flagCode}/flat/64.png`;
-                        const carriers = getCountryCarriers(countryName);
+                {/* Modal Body: Airalo style single column list */}
+                <div className="px-5 pb-4 overflow-y-auto max-h-[60vh] divide-y divide-slate-200/80">
+                  {currentDest.coveredCountriesList
+                    .filter((countryName) => {
+                      if (!modalCountrySearch.trim()) return true;
+                      const query = modalCountrySearch.toLowerCase();
+                      const carriers = getCountryCarriers(countryName);
+                      return (
+                        countryName.toLowerCase().includes(query) ||
+                        carriers.some((c) => c.toLowerCase().includes(query))
+                      );
+                    })
+                    .map((countryName, idx) => {
+                      const flagCode = getCountryFlagCode(countryName);
+                      const flagUrl = `https://flagsapi.com/${flagCode}/flat/64.png`;
+                      const carriers = getCountryCarriers(countryName);
 
-                        return (
-                          <div
-                            key={idx}
-                            className="bg-slate-50/80 hover:bg-slate-100/80 border border-[#E2E8F0] rounded-2xl p-3.5 transition-colors space-y-2"
-                          >
-                            <div className="flex items-center gap-2.5">
-                              <img
-                                src={flagUrl}
-                                alt={countryName}
-                                className="w-6 h-4.5 object-contain shrink-0 rounded-xs shadow-2xs"
-                                onError={(e) => {
-                                  (e.target as HTMLElement).style.display = 'none';
-                                }}
-                              />
-                              <span className="font-extrabold text-sm text-[#1A2340]">
-                                {countryName}
-                              </span>
-                            </div>
-
-                            <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                              {carriers.map((carrier, cIdx) => (
-                                <span
-                                  key={cIdx}
-                                  className="px-2 py-0.5 bg-white border border-[#E2E8F0] rounded-lg text-[11px] font-bold text-[#1A2340] shadow-2xs flex items-center gap-1"
-                                >
-                                  <span className="text-[10px] text-[#00D2B8]">📡</span>
-                                  <span>{carrier}</span>
-                                </span>
-                              ))}
-                            </div>
+                      return (
+                        <div
+                          key={idx}
+                          className="py-3.5 flex items-center justify-between gap-4 first:pt-1 last:pb-1"
+                        >
+                          {/* Left: Flag + Country Name */}
+                          <div className="flex items-center gap-3 min-w-0">
+                            <img
+                              src={flagUrl}
+                              alt={countryName}
+                              className="w-7 h-5 object-cover shrink-0 rounded-xs shadow-xs border border-slate-200/50"
+                              onError={(e) => {
+                                (e.target as HTMLElement).style.display = 'none';
+                              }}
+                            />
+                            <span className="font-extrabold text-sm sm:text-base text-[#1A2340] truncate">
+                              {countryName}
+                            </span>
                           </div>
-                        );
-                      })}
-                  </div>
-                </div>
 
-                {/* Modal Footer */}
-                <div className="p-4 sm:px-6 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                    <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                    <span>Sóng 5G / 4G LTE tự động kết nối nhà mạng mạnh nhất tại từng quốc gia</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setIsCountriesModalOpen(false)}
-                    className="bg-[#1A2340] hover:bg-[#1A2340]/90 text-white font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-colors shrink-0 self-end sm:self-auto"
-                  >
-                    {language === 'vi' ? 'Đóng cửa sổ' : 'Close'}
-                  </button>
+                          {/* Right: Carriers with Tech Tag */}
+                          <div className="flex flex-col items-end gap-1 shrink-0 text-right">
+                            {carriers.map((carrierStr, cIdx) => {
+                              let tech = 'LTE';
+                              if (/5G/i.test(carrierStr)) {
+                                tech = '5G';
+                              } else if (/4G|LTE/i.test(carrierStr)) {
+                                tech = 'LTE';
+                              } else if (/3G/i.test(carrierStr)) {
+                                tech = '3G';
+                              }
+                              const carrierName = carrierStr
+                                .replace(/\s*(5G|4G\/LTE|4G|LTE|3G)\s*/gi, '')
+                                .trim();
+
+                              return (
+                                <div key={cIdx} className="flex items-center gap-1.5 justify-end">
+                                  <span className="text-xs font-semibold text-slate-700">
+                                    {carrierName || carrierStr}
+                                  </span>
+                                  <span className="text-[10px] font-extrabold text-slate-600 border border-slate-300 bg-white px-1.5 py-0.5 rounded uppercase tracking-wider leading-none">
+                                    {tech}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </motion.div>
             </div>

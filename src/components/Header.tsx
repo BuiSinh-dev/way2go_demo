@@ -384,8 +384,8 @@ export const Header: React.FC = () => {
             </div>
           )}
 
-          {/* Menu button & dropdown */}
-          <div className="relative flex items-center gap-1.5">
+          {/* Menu button & dropdown (Shown when scrolled or when main desktop nav is hidden) */}
+          <div className={`relative items-center gap-1.5 ${isScrolled ? 'flex' : 'flex lg:hidden'}`}>
             {isScrolled && <div className="h-4 w-px bg-slate-200 mx-1 hidden sm:block" />}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

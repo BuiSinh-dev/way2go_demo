@@ -4,7 +4,7 @@ import { COUNTRY_DIAL_CODES } from '../data/destinations';
 import PartnerModal from './PartnerModal';
 import appStoreIcon from '../../assets/image/common/app_store.png';
 import googlePlayIcon from '../../assets/image/common/google-play.png';
-import downloadImageSvg from '../../assets/image/common/download_image.svg';
+import downloadImageSvg from '../../assets/image/common/start_travel.svg';
 import {
   Coins,
   Share2,
@@ -679,7 +679,7 @@ export const EarnWithWay2go: React.FC = () => {
               </div>
 
               {/* Card Download App ngay dưới Card Đổi Quà Tặng & Gói Data Miễn Phí */}
-              <div className="bg-gradient-to-br from-[#1A2340] via-[#1E294B] to-[#0F172A] rounded-3xl p-6 sm:p-8 border border-slate-700/60 shadow-xl text-white relative overflow-hidden mt-8">
+              <div className="bg-gradient-to-br from-[#1A2340] via-[#1E294B] to-[#0F172A] rounded-3xl pr-2.5 border border-slate-700/60 shadow-xl text-white relative overflow-hidden mt-8">
                 {/* Background decorative glow */}
                 <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00D2B8]/10 rounded-full blur-3xl pointer-events-none" />
                 <div className="absolute -left-10 -top-10 w-64 h-64 bg-[#ff7a5c]/10 rounded-full blur-3xl pointer-events-none" />
@@ -690,17 +690,12 @@ export const EarnWithWay2go: React.FC = () => {
                     <img
                       src={downloadImageSvg}
                       alt="Way2Go App Download"
-                      className="w-full max-w-[240px] h-auto object-contain filter drop-shadow-md"
+                      className="w-full max-w-[300px] h-auto object-contain filter drop-shadow-md"
                     />
                   </div>
 
                   {/* Right Column: Information & Download Links */}
                   <div className="lg:col-span-8 text-left space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#00D2B8]/20 border border-[#00D2B8]/40 rounded-full text-xs font-bold text-[#00D2B8] uppercase tracking-wider">
-                      <Smartphone className="w-3.5 h-3.5" />
-                      <span>{language === 'vi' ? 'ỨNG DỤNG DI ĐỘNG WAY2GO' : 'WAY2GO MOBILE APP'}</span>
-                    </div>
-
                     <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug">
                       {language === 'vi'
                         ? 'Tải App Way2Go — Quản lý eSIM & Đổi quà miễn phí mọi lúc mọi nơi'
