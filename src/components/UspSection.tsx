@@ -105,7 +105,7 @@ export const UspSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-[#EBF9FF] border border-[#E2E8F0] rounded-3xl p-6 hover:border-[#1A2340] transition-all text-left group shadow-xs text-[#1A2340]"
+                className="bg-[#EBF9FF] rounded-3xl p-6 border border-[#E2E8F0] shadow-md hover:shadow-xl hover:border-[#1A2340] transition-all text-left group text-[#1A2340]"
               >
                 <div className="w-12 h-12 rounded-2xl bg-slate-50 text-[#1A2340] border border-[#E2E8F0] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-2xs">
                   <Icon className="w-6 h-6" />
