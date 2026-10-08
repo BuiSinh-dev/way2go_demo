@@ -8,8 +8,8 @@ function InviteFriends() {
     const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
 
     return (
-        <section className="bg-white w-full border-slate-100 ">
-            <div className="mt-12 sm:mt-16 bg-white rounded-3xl p-6 sm:p-10 border border-[#E8DFD5] shadow-xs overflow-hidden">
+        <section className="bg-white w-full">
+            <div className="mt-8 sm:mt-12 bg-white rounded-3xl p-6 sm:p-10 shadow-2xl">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                     {/* Left: SVG Illustration */}
                     <div className="md:col-span-5 flex justify-center items-center">
@@ -20,12 +20,12 @@ function InviteFriends() {
                         />
                     </div>
 
-                    {/* Right: Content matching design screenshot */}
+                    {/* Right: Content */}
                     <div className="md:col-span-7 text-left space-y-4">
                         <h3 className="text-2xl sm:text-4xl font-extrabold text-[#1A2340] tracking-tight leading-tight">
                             {language === 'vi' ? 'Gia nhập Mạng lưới Đối tác Way2Go.' : 'Join Way2Go Partner Network.'}
                         </h3>
-                        <p className="text-xs sm:text-sm text-[#1A2340]/80 leading-relaxed max-w-lg">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-lg">
                             {language === 'vi'
                                 ? 'Kiếm thêm thu nhập thụ động mỗi ngày cùng Way2go, dễ dàng và nhanh chóng.'
                                 : 'Earn passive income every day with Way2Go, easy and fast.'}

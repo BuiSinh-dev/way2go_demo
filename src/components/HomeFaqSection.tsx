@@ -23,7 +23,7 @@ export const HomeFaqSection: React.FC = () => {
 
           <button
             onClick={() => navigateToHelps()}
-            className="bg-white hover:bg-slate-50 text-[#1A2340] font-bold text-xs sm:text-sm px-6 py-3 rounded-full border border-slate-200/80 shadow-xs hover:shadow-md transition-all cursor-pointer whitespace-nowrap"
+            className="bg-[#FF7A5C] hover:bg-slate-50 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full border border-slate-200/80 shadow-xs hover:shadow-md transition-all cursor-pointer whitespace-nowrap"
           >
             {language === 'vi' ? 'Vào trung tâm hỗ trợ' : 'Visit Help Center'}
           </button>
@@ -31,7 +31,7 @@ export const HomeFaqSection: React.FC = () => {
 
         {/* Main 2-Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          
+
           {/* Left Column: FAQ Accordions (7 cols) */}
           <div className="lg:col-span-7 space-y-3 text-left flex flex-col justify-between">
             {homeFaqs.map((faq) => {
@@ -66,7 +66,7 @@ export const HomeFaqSection: React.FC = () => {
           {/* Right Column: Support Card with Illustration (5 cols) */}
           <div className="lg:col-span-5 flex">
             <div className="w-full bg-white rounded-[32px] p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between relative overflow-hidden">
-              
+
               {/* Top Content Area inside Support Card */}
               <div className="text-left space-y-4 relative z-10">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">

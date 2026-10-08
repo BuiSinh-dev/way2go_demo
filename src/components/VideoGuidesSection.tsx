@@ -82,43 +82,7 @@ export const VideoGuidesSection: React.FC = () => {
         }
       ]
     },
-    roaming: {
-      youtubeId: 'B7dorRdzQG4',
-      youtubeUrl: 'https://youtu.be/B7dorRdzQG4',
-      titleVi: 'Hướng dẫn cài đặt eSIM trên Samsung & Google Pixel',
-      titleEn: 'How to Install eSIM on Samsung & Google Pixel',
-      duration: '2:10',
-      steps: [
-        {
-          step: '1',
-          titleVi: 'Vào Cài đặt > Kết nối > Quản lý SIM',
-          titleEn: 'Open Settings > Connections > SIM Manager',
-          descVi: 'Chọn mục "Thêm gói cước di động" hoặc "Thêm eSIM".',
-          descEn: 'Tap "Add mobile plan" or "Add eSIM".'
-        },
-        {
-          step: '2',
-          titleVi: 'Quét mã QR hoặc nhập mã kích hoạt',
-          titleEn: 'Scan QR code or enter activation details',
-          descVi: 'Đưa camera hướng vào mã QR nhận được qua email hoặc ứng dụng.',
-          descEn: 'Point your camera at the QR code sent by Way2Go.'
-        },
-        {
-          step: '3',
-          titleVi: 'Bật eSIM và chọn làm mạng dữ liệu chính',
-          titleEn: 'Turn on eSIM and set as Mobile Data SIM',
-          descVi: 'Giữ SIM gọi thoại/SMS ở thẻ SIM vật lý chính để nhận mã OTP.',
-          descEn: 'Keep calls/SMS on physical home SIM for free incoming OTPs.'
-        },
-        {
-          step: '4',
-          titleVi: 'Bật Chuyển vùng dữ liệu khi sang nước ngoài',
-          titleEn: 'Enable Data Roaming when abroad',
-          descVi: 'Điện thoại sẽ tự động bắt sóng nhà mạng đối tác địa phương nhanh chóng.',
-          descEn: 'Device instantly locks onto partner carrier network.'
-        }
-      ]
-    },
+
   };
 
   const activeContent = guides[activeGuideTab];
@@ -146,7 +110,6 @@ export const VideoGuidesSection: React.FC = () => {
           {[
             { id: 'ios', labelVi: 'Cài đặt trên iPhone (iOS)', labelEn: 'iPhone Setup (iOS)', icon: Apple },
             { id: 'android', labelVi: 'Cài đặt trên Android', labelEn: 'Android Setup', icon: Smartphone },
-            { id: 'roaming', labelVi: 'Roaming', labelEn: 'Roaming', icon: Smartphone },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeGuideTab === tab.id;
@@ -225,7 +188,7 @@ export const VideoGuidesSection: React.FC = () => {
               {activeContent.steps.map((st) => (
                 <div
                   key={st.step}
-                  className="p-3.5 bg-slate-50 rounded-xl border border-[#E2E8F0] shadow-2xs flex items-start gap-3.5"
+                  className="p-3.5 bg-[#EBF9FF] rounded-xl border border-[#E2E8F0] shadow-2xs flex items-start gap-3.5"
                 >
                   <div className="w-7 h-7 rounded-lg bg-[#1A2340] text-white font-black text-xs flex items-center justify-center shrink-0">
                     {st.step}

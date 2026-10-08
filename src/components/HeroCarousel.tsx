@@ -79,13 +79,13 @@ export const HeroCarousel: React.FC = () => {
   }, [slides.length]);
 
   return (
-    <section id="hero-carousel" className="relative overflow-hidden bg-[#1A2340] text-white">
+    <section id="hero-carousel" className="relative overflow-hidden text-white">
       {/* Prominent Search Bar */}
       <div className="max-w-4xl mx-auto px-4 pt-6 pb-2">
         <DestinationSearchInput />
       </div>
 
-      <div className="bg-[#1A2340] text-white pt-6 pb-14 md:pt-8 md:pb-16 px-4 sm:px-6 lg:px-8 relative">
+      <div className=" text-white pt-6 pb-14 md:pt-8 md:pb-16 px-4 sm:px-6 lg:px-8 relative">
         {/* Horizontal Smooth Slider Track */}
         <div className="max-w-7xl mx-auto overflow-hidden relative z-10">
           <div
@@ -100,20 +100,20 @@ export const HeroCarousel: React.FC = () => {
                 {/* Left Column: Text & CTAs */}
                 <div className="lg:col-span-7 space-y-5 text-left">
                   {/* Metadata Header Badge */}
-                  <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#00D2B8]">
+                  {/* <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#00D2B8]">
                     <Sparkles className="w-3.5 h-3.5 text-[#00D2B8]" />
                     <span className="bg-[#243056] border border-[#314373] px-2.5 py-1 rounded-full text-white font-bold">
                       {language === 'vi' ? s.badgeVi : s.badgeEn}
                     </span>
-                  </div>
+                  </div> */}
 
                   {/* Main Headline */}
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.12] text-balance">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-[#1A2340] leading-[1.12] text-balance">
                     {language === 'vi' ? s.titleVi : s.titleEn}
                   </h1>
 
                   {/* Subtext */}
-                  <p className="text-base sm:text-lg text-slate-200 max-w-2xl font-normal leading-relaxed">
+                  <p className="text-base sm:text-lg text-[#1A2340] max-w-2xl font-normal leading-relaxed">
                     {language === 'vi' ? s.subtextVi : s.subtextEn}
                   </p>
 
@@ -181,7 +181,7 @@ export const HeroCarousel: React.FC = () => {
               <button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
-                className={`h-2 transition-all rounded-full cursor-pointer ${currentSlide === idx ? 'w-8 bg-white' : 'w-2 bg-slate-600 hover:bg-slate-400'
+                className={`h-2 transition-all rounded-full cursor-pointer ${currentSlide === idx ? 'w-8 bg-[#1A2340]' : 'w-2 bg-slate-600 hover:bg-slate-400'
                   }`}
                 aria-label={`Slide ${idx + 1}`}
               />

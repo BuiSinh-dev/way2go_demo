@@ -19,23 +19,27 @@ export const HomePopularLocations: React.FC = () => {
   const categories = [
     { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular' },
     { id: 'local', labelVi: 'Quốc gia', labelEn: 'Local' },
-    { id: 'regional', labelVi: 'Khu vực (Regional)', labelEn: 'Regional' },
-    { id: 'global', labelVi: 'Toàn cầu (Global)', labelEn: 'Global' },
+    { id: 'regional', labelVi: 'Khu vực', labelEn: 'Regional' },
+    { id: 'global', labelVi: 'Toàn cầu', labelEn: 'Global' },
   ];
 
   return (
     <section id="popular-locations" className="py-12 bg-white text-left">
       <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
         {/* Visite Travel Header Illustration Banner */}
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <img
             src={visiteTravelImg}
             alt="Visite Travel Banner"
             className="w-full max-w-[500px] h-auto object-contain "
           />
-        </div>
+        </div> */}
         {/* Rounded Container as Reference Image */}
-        <div className="bg-[#1A2340] rounded-[32px] p-6 sm:p-8 md:p-10 shadow-lg text-white">
+        <div className="bg-[#EBF9FF] rounded-[32px] p-6 sm:p-8 md:p-10 shadow-xl text-white relative overflow-hidden">
+          <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00D2B8]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-10 -top-10 w-64 h-64 bg-[#ff7a5c]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10">
 
           {/* Top Category Tabs Bar */}
           <div className="border-b border-slate-700/60 pb-0 mb-6">
@@ -47,8 +51,8 @@ export const HomePopularLocations: React.FC = () => {
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.id)}
                     className={`relative pb-3 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-2 text-sm sm:text-base font-bold ${isActive
-                      ? 'text-white'
-                      : 'text-slate-300 hover:text-white'
+                      ? 'text-[#1A2340]'
+                      : 'text-[#1A2340] hover:text-white'
                       }`}
                   >
                     <span>{language === 'vi' ? cat.labelVi : cat.labelEn}</span>
@@ -68,10 +72,10 @@ export const HomePopularLocations: React.FC = () => {
           {/* Section Header Row */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 text-left">
             <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#1A2340] tracking-tight">
                 {language === 'vi' ? 'Khám phá eSIM cho các điểm đến' : 'Get eSIMs for destinations'}
               </h2>
-              <p className="text-xs sm:text-sm text-slate-200 mt-1 font-medium">
+              <p className="text-xs sm:text-sm text-[#1A2340] mt-1 font-medium">
                 {language === 'vi'
                   ? 'Khám phá các eSIM được yêu thích nhất của chúng tôi — các gói cước bắt đầu từ mức giá hiển thị.'
                   : 'Grab eSIMs for popular destinations.'}
@@ -83,7 +87,7 @@ export const HomePopularLocations: React.FC = () => {
                 setActiveTab('store');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="bg-white hover:bg-slate-100 text-[#1A2340] font-black text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer whitespace-nowrap shrink-0 self-start sm:self-center"
+              className="bg-[#FF7A5C] hover:bg-slate-100 text-white font-black text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer whitespace-nowrap shrink-0 self-start sm:self-center"
             >
               {language === 'vi' ? 'Khám phá tất cả điểm đến' : 'View all destinations'}
             </button>
@@ -140,6 +144,7 @@ export const HomePopularLocations: React.FC = () => {
             </motion.div>
           </AnimatePresence>
 
+          </div>
         </div>
 
       </div>

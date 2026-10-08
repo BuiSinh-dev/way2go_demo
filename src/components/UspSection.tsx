@@ -54,41 +54,46 @@ export const UspSection: React.FC = () => {
     <section className="py-16 bg-white text-[#1A2340] border-t border-slate-100 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Highlight Banner with #1A2340 Primary Color */}
-        <div className="mb-14 bg-[#00D2B8] text-white rounded-3xl p-8 sm:p-12 shadow-lg text-center relative overflow-hidden">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-8 max-w-3xl mx-auto text-balance">
-            {language === 'vi'
-              ? 'Why do over 2 million people choose Way2go'
-              : 'Why do over 2 million people choose Way2go'}
-          </h2>
+        {/* Highlight Banner with Light #EBF9FF Background and Ambient Glows */}
+        <div className="mb-14 bg-[#EBF9FF] rounded-3xl p-8 sm:p-12 shadow-xl text-center relative overflow-hidden">
+          <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00D2B8]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-10 -top-10 w-64 h-64 bg-[#ff7a5c]/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 pt-2">
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
-                <Globe2 className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
-              </div>
-              <span className="text-xs font-bold text-white mt-3">{language === 'vi' ? '200+ Quốc gia' : '200+ Countries'}</span>
-            </div>
+          <div className="relative z-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1A2340] mb-8 max-w-3xl mx-auto text-balance">
+              {language === 'vi'
+                ? 'Why do over 2 million people choose Way2go'
+                : 'Why do over 2 million people choose Way2go'}
+            </h2>
 
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
-                <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 pt-2">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                  <Globe2 className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
+                </div>
+                <span className="text-xs font-bold text-[#1A2340] mt-3">{language === 'vi' ? '200+ Quốc gia' : '200+ Countries'}</span>
               </div>
-              <span className="text-xs font-bold text-white mt-3">{language === 'vi' ? 'Kích hoạt 60s' : '60s Activation'}</span>
-            </div>
 
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
-                <Smartphone className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                  <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
+                </div>
+                <span className="text-xs font-bold text-[#1A2340] mt-3">{language === 'vi' ? 'Kích hoạt 60s' : '60s Activation'}</span>
               </div>
-              <span className="text-xs font-bold text-white mt-3">{language === 'vi' ? 'Giữ nguyên SIM' : 'Dual SIM Mode'}</span>
-            </div>
 
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
-                <ShieldCheck className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                  <Smartphone className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
+                </div>
+                <span className="text-xs font-bold text-[#1A2340] mt-3">{language === 'vi' ? 'Giữ nguyên SIM' : 'Dual SIM Mode'}</span>
               </div>
-              <span className="text-xs font-bold text-white mt-3">{language === 'vi' ? 'Hoàn tiền 100%' : '100% Refund'}</span>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-[#1A2340] flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                  <ShieldCheck className="w-8 h-8 sm:w-10 sm:h-10 text-[#1A2340]" />
+                </div>
+                <span className="text-xs font-bold text-[#1A2340] mt-3">{language === 'vi' ? 'Hoàn tiền 100%' : '100% Refund'}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -100,7 +105,7 @@ export const UspSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-white border border-[#E2E8F0] rounded-3xl p-6 hover:border-[#1A2340] transition-all text-left group shadow-xs text-[#1A2340]"
+                className="bg-[#EBF9FF] border border-[#E2E8F0] rounded-3xl p-6 hover:border-[#1A2340] transition-all text-left group shadow-xs text-[#1A2340]"
               >
                 <div className="w-12 h-12 rounded-2xl bg-slate-50 text-[#1A2340] border border-[#E2E8F0] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-2xs">
                   <Icon className="w-6 h-6" />

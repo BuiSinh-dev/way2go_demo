@@ -42,7 +42,7 @@ export const NewsSection: React.FC<Props> = (props) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {props.standalone ? (
           /* Standalone News Screen: Card Wrapper with shadow-xl md:shadow-2xl */
-          <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-xl md:shadow-2xl space-y-10 my-4 sm:my-6">
+          <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 space-y-10 my-4 sm:my-6">
             {/* Header: Centered "News" title + Search input */}
             <div className="text-center max-w-2xl mx-auto space-y-4">
               <div className="relative inline-block">
@@ -127,27 +127,22 @@ export const NewsSection: React.FC<Props> = (props) => {
             )}
 
             {/* Card Download App Banner */}
-            <div className="bg-gradient-to-br from-[#1A2340] via-[#1E294B] to-[#0F172A] rounded-3xl p-6 sm:p-8 border border-slate-700/60 shadow-xl text-white relative overflow-hidden">
-              <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00D2B8]/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -left-10 -top-10 w-64 h-64 bg-[#ff7a5c]/10 rounded-full blur-3xl pointer-events-none" />
-
+            <div
+              className="rounded-3xl px-6 shadow-xl text-white relative overflow-hidden"
+              style={{ background: "radial-gradient(circle at 0% 0%, #03B4A0, #DEF3FD)" }}
+            >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
-                <div className="lg:col-span-4 flex justify-center">
-                  <img
-                    src={downloadImageSvg}
-                    alt="Way2Go App Download"
-                    className="w-full max-w-[280px] h-auto object-contain filter drop-shadow-md"
-                  />
-                </div>
-
                 <div className="lg:col-span-8 text-left space-y-4">
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug">
+                  <h3 className="text-3xl font-extrabold text-white tracking-tight leading-snug">
                     {language === 'vi'
-                      ? 'Tải App Way2Go — Quản lý eSIM & Đổi quà miễn phí mọi lúc mọi nơi'
+                      ? (
+                        <span>Tải App Way2go
+                          <span className="block">Quản lý eSim & đổi quà miễn phí.</span></span>
+                      )
                       : 'Download Way2Go App — Easily manage eSIM & redeem rewards anywhere'}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm text-white leading-relaxed max-w-xl">
                     {language === 'vi'
                       ? 'Tải ngay ứng dụng Way2Go trên iOS và Android để kiểm tra dung lượng data thực tế, kích hoạt eSIM 1-click và nhận ngay 100 Way2Go Coins miễn phí khi đăng nhập lần đầu!'
                       : 'Get the Way2Go app on iOS & Android to monitor data usage, activate eSIMs in 1-click, and get 100 bonus Way2Go Coins on first login!'}
@@ -168,12 +163,20 @@ export const NewsSection: React.FC<Props> = (props) => {
                       href="https://play.google.com/store/apps/details?id=com.consortio.way2go&hl=vi"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-3 bg-[#1E294B] hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2.5 cursor-pointer border border-slate-600"
+                      className="px-5 py-3 bg-white text-[#1A2340] font-extrabold text-xs sm:text-sm rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2.5 cursor-pointer"
                     >
                       <img src={googlePlayIcon} alt="Google Play" className="w-5 h-5 object-contain shrink-0" />
                       <span>{language === 'vi' ? 'Tải ứng dụng Android' : 'Google Play (Android)'}</span>
                     </a>
                   </div>
+                </div>
+
+                <div className="lg:col-span-4 flex justify-center">
+                  <img
+                    src={downloadImageSvg}
+                    alt="Way2Go App Download"
+                    className="w-full max-w-[280px] h-auto object-contain filter drop-shadow-md"
+                  />
                 </div>
               </div>
             </div>

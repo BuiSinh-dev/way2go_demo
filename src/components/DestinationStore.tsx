@@ -311,87 +311,24 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
     return (
       <div className="bg-slate-50/40 min-h-screen py-6 sm:py-10 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-xl md:shadow-2xl space-y-8 my-4 sm:my-6">
+          <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 space-y-8 my-4 sm:my-6">
 
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="text-xs font-bold text-[#1A2340] bg-[#1A2340]/10 border border-[#1A2340]/20 px-3 py-1 rounded-full w-fit mx-auto tracking-wider uppercase">
-              {language === 'vi' ? 'CỬA HÀNG eSIM QUỐC TẾ' : 'GLOBAL eSIM STORE'}
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1A2340] tracking-tight">
-              {language === 'vi' ? 'Khám phá các gói eSIM theo Điểm đến' : 'Explore Travel eSIM Store'}
-            </h1>
-            <p className="text-[#1A2340]/80 text-sm sm:text-base leading-relaxed">
-              {language === 'vi'
-                ? 'Lựa chọn gói cước dữ liệu tốc độ cao tại hơn 200 quốc gia. Nhấn vào bất kỳ sản phẩm SIM nào để cấu hình chi tiết.'
-                : 'Select high-speed data eSIMs across 200+ destinations. Click any card to customize your travel package.'}
-            </p>
-
-            {/* Search bar & Select Dropdown */}
-            <div className="mt-6 max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-12 gap-2.5">
-              <div className="sm:col-span-5 relative">
-                {(() => {
-                  const selectedCatalogDest = DESTINATIONS.find((d) => d.id === catalogSelectCountry);
-                  return (
-                    <>
-                      <button
-                        type="button"
-                        onClick={() => setIsCatalogCountryOpen(!isCatalogCountryOpen)}
-                        className="w-full px-3.5 py-3 bg-white rounded-xl border border-[#E2E8F0] text-xs sm:text-sm font-semibold text-[#1A2340] shadow-xs focus:outline-none focus:ring-2 focus:ring-[#1A2340] cursor-pointer flex items-center justify-between"
-                      >
-                        <div className="flex items-center gap-2 min-w-0 pr-1 truncate">
-                          {selectedCatalogDest ? (
-                            <>
-                              <img
-                                src={`https://flagsapi.com/${selectedCatalogDest.flagCode || selectedCatalogDest.code || 'BE'}/flat/64.png`}
-                                alt={selectedCatalogDest.nameVi}
-                                className="w-5 h-3.5 object-contain rounded-xs shrink-0"
-                              />
-                              <span className="truncate">{language === 'vi' ? selectedCatalogDest.nameVi : selectedCatalogDest.nameEn}</span>
-                            </>
-                          ) : (
-                            <>
-                              <span className="shrink-0 text-base">🌐</span>
-                              <span className="truncate">{language === 'vi' ? 'Chọn quốc gia...' : 'Select country...'}</span>
-                            </>
-                          )}
-                        </div>
-                        <span className="text-[#1A2340]/60 text-xs shrink-0 ml-1">▼</span>
-                      </button>
-
-                      {isCatalogCountryOpen && (
-                        <>
-                          <div className="fixed inset-0 z-20" onClick={() => setIsCatalogCountryOpen(false)} />
-                          <div className="absolute top-full left-0 right-0 mt-1 z-30 bg-white border border-[#E2E8F0] rounded-xl shadow-xl max-h-64 overflow-y-auto py-1 text-left text-xs sm:text-sm">
-                            {DESTINATIONS.map((d) => (
-                              <button
-                                key={d.id}
-                                type="button"
-                                onClick={() => {
-                                  setCatalogSelectCountry(d.id);
-                                  setIsCatalogCountryOpen(false);
-                                  navigateToDestination(d.id);
-                                }}
-                                className={`w-full px-3.5 py-2 text-left flex items-center gap-2.5 hover:bg-[#1A2340]/5 transition-colors cursor-pointer ${catalogSelectCountry === d.id ? 'font-bold text-[#1A2340] bg-[#1A2340]/10' : 'text-slate-700'
-                                  }`}
-                              >
-                                <img
-                                  src={`https://flagsapi.com/${d.flagCode || d.code || 'BE'}/flat/64.png`}
-                                  alt={d.nameVi}
-                                  className="w-5 h-3.5 object-contain rounded-xs shrink-0"
-                                />
-                                <span>{language === 'vi' ? d.nameVi : d.nameEn}</span>
-                              </button>
-                            ))}
-                          </div>
-                        </>
-                      )}
-                    </>
-                  );
-                })()}
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <div className="text-xs font-bold text-[#1A2340] bg-[#1A2340]/10 border border-[#1A2340]/20 px-3 py-1 rounded-full w-fit mx-auto tracking-wider uppercase">
+                {language === 'vi' ? 'CỬA HÀNG eSIM QUỐC TẾ' : 'GLOBAL eSIM STORE'}
               </div>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1A2340] tracking-tight">
+                {language === 'vi' ? 'Khám phá các gói eSIM theo Điểm đến' : 'Explore Travel eSIM Store'}
+              </h1>
+              <p className="text-[#1A2340]/80 text-sm sm:text-base leading-relaxed">
+                {language === 'vi'
+                  ? 'Lựa chọn gói cước dữ liệu tốc độ cao tại hơn 200 quốc gia. Nhấn vào bất kỳ sản phẩm SIM nào để cấu hình chi tiết.'
+                  : 'Select high-speed data eSIMs across 200+ destinations. Click any card to customize your travel package.'}
+              </p>
 
-              <div className="sm:col-span-7 relative">
+              {/* Centered Search Bar */}
+              <div className="mt-6 max-w-xl mx-auto relative w-full">
                 <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
@@ -414,98 +351,101 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 )}
               </div>
             </div>
-          </div>
 
-          {/* Dark Navy Rounded Container Box Matching Image 1 */}
-          <div className="bg-[#1A2340] rounded-[32px] p-6 sm:p-8 md:p-10 shadow-lg text-white">
+            {/* Rounded Container Box with Ambient Glows */}
+            <div className="bg-[#EBF9FF] rounded-[32px] p-6 sm:p-8 md:p-10 shadow-xl text-white relative overflow-hidden">
+              <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00D2B8]/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -left-10 -top-10 w-64 h-64 bg-[#ff7a5c]/10 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Top Category Filter Tabs Bar with Cyan Underline */}
-            <div className="border-b border-slate-700/60 pb-0 mb-6">
-              <div className="flex items-center justify-start gap-8 overflow-x-auto no-scrollbar">
-                {[
-                  { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular' },
-                  { id: 'local', labelVi: 'Quốc gia', labelEn: 'Local eSIM' },
-                  { id: 'regional', labelVi: 'Khu vực (Regional)', labelEn: 'Regional' },
-                  { id: 'global', labelVi: 'Toàn cầu (Global)', labelEn: 'Global' },
-                ].map((cat) => {
-                  const isActive = catalogCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setCatalogCategory(cat.id)}
-                      className={`relative pb-3 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-2 text-sm sm:text-base font-bold ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'
-                        }`}
-                    >
-                      <span>{language === 'vi' ? cat.labelVi : cat.labelEn}</span>
-                      {isActive && (
-                        <motion.span
-                          layoutId="catalogActiveTabUnderline"
-                          className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00D2B8] rounded-full"
-                          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                        />
-                      )}
-                    </button>
-                  );
-                })}
+              <div className="relative z-10">
+
+                {/* Top Category Filter Tabs Bar with Cyan Underline */}
+                <div className="border-b border-slate-700/60 pb-0 mb-6">
+                  <div className="flex items-center justify-start gap-8 overflow-x-auto no-scrollbar">
+                    {[
+                      { id: 'popular', labelVi: 'Phổ biến', labelEn: 'Popular' },
+                      { id: 'local', labelVi: 'Quốc gia', labelEn: 'Local eSIM' },
+                      { id: 'regional', labelVi: 'Khu vực', labelEn: 'Regional' },
+                      { id: 'global', labelVi: 'Toàn cầu', labelEn: 'Global' },
+                    ].map((cat) => {
+                      const isActive = catalogCategory === cat.id;
+                      return (
+                        <button
+                          key={cat.id}
+                          onClick={() => setCatalogCategory(cat.id)}
+                          className={`relative pb-3 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-2 text-sm sm:text-base font-bold text-[#1A2340]`}
+                        >
+                          <span>{language === 'vi' ? cat.labelVi : cat.labelEn}</span>
+                          {isActive && (
+                            <motion.span
+                              layoutId="catalogActiveTabUnderline"
+                              className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00D2B8] rounded-full"
+                              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                            />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Horizontal White SIM Cards Grid with Flag Images & Prices (Matching Image 1) */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={catalogCategory + catalogSearch}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4"
+                  >
+                    {filteredCatalogDestinations.map((dest) => {
+                      const flagCode = dest.flagCode || dest.code || 'BE';
+                      const flagUrl = `https://flagsapi.com/${flagCode}/flat/64.png`;
+
+                      return (
+                        <motion.div
+                          key={dest.id}
+                          whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => navigateToDestination(dest.id)}
+                          className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl px-4 py-3.5 border border-[#E2E8F0] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
+                        >
+                          {/* Left: Flag Image + Country/Region Name */}
+                          <div className="flex items-center gap-3 min-w-0 pr-2">
+                            <img
+                              src={flagUrl}
+                              alt={dest.nameVi}
+                              className="w-8 h-6 object-contain shrink-0"
+                              onError={(e) => {
+                                (e.target as HTMLElement).style.display = 'none';
+                              }}
+                            />
+                            <div className="min-w-0">
+                              <span className="font-extrabold text-sm text-[#1A2340] truncate block">
+                                {language === 'vi' ? dest.nameVi : dest.nameEn}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Right: Price */}
+                          <div className="text-right shrink-0">
+                            <span className="font-black text-sm text-[#1A2340] tabular-nums">
+                              {formatPrice(dest.startingPriceVnd, dest.startingPriceUsd)}
+                            </span>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </motion.div>
+                </AnimatePresence>
+
               </div>
             </div>
-
-            {/* Horizontal White SIM Cards Grid with Flag Images & Prices (Matching Image 1) */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={catalogCategory + catalogSearch}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4"
-              >
-                {filteredCatalogDestinations.map((dest) => {
-                  const flagCode = dest.flagCode || dest.code || 'BE';
-                  const flagUrl = `https://flagsapi.com/${flagCode}/flat/64.png`;
-
-                  return (
-                    <motion.div
-                      key={dest.id}
-                      whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => navigateToDestination(dest.id)}
-                      className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl px-4 py-3.5 border border-[#E2E8F0] shadow-xs hover:shadow-md transition-all cursor-pointer flex items-center justify-between group"
-                    >
-                      {/* Left: Flag Image + Country/Region Name */}
-                      <div className="flex items-center gap-3 min-w-0 pr-2">
-                        <img
-                          src={flagUrl}
-                          alt={dest.nameVi}
-                          className="w-8 h-6 object-contain shrink-0"
-                          onError={(e) => {
-                            (e.target as HTMLElement).style.display = 'none';
-                          }}
-                        />
-                        <div className="min-w-0">
-                          <span className="font-extrabold text-sm text-[#1A2340] truncate block">
-                            {language === 'vi' ? dest.nameVi : dest.nameEn}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Right: Price */}
-                      <div className="text-right shrink-0">
-                        <span className="font-black text-sm text-[#1A2340] tabular-nums">
-                          {formatPrice(dest.startingPriceVnd, dest.startingPriceUsd)}
-                        </span>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </AnimatePresence>
-
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
   }
 
   // ===========================================================================
@@ -527,9 +467,9 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                 openStoreCatalog();
               }
             }}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1A2340] hover:text-[#1A2340] bg-white px-3.5 py-2 rounded-xl border border-[#E2E8F0] hover:border-[#1A2340] transition-colors cursor-pointer shadow-xs"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-[#1A2340] bg-[#FF7A5C] px-3.5 py-2 rounded-xl border border-[#E2E8F0] hover:border-[#1A2340] transition-colors cursor-pointer shadow-xs"
           >
-            <ArrowLeft className="w-3.5 h-3.5 text-[#1A2340]" />
+            <ArrowLeft className="w-3.5 h-3.5 text-white" />
             <span>
               {previousTab === 'home'
                 ? (language === 'vi' ? 'Quay lại Trang chủ' : 'Back to Home')
@@ -594,7 +534,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
           {currentDest.coveredCountriesList && currentDest.coveredCountriesList.length > 0 && (
             <div
               onClick={() => setIsCountriesModalOpen(true)}
-              className="bg-white hover:bg-slate-50 text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-4 shadow-xs flex items-center justify-between cursor-pointer transition-all group"
+              className="bg-[#EBF9FF] hover:opacity-90 text-[#1A2340] rounded-2xl border border-[#E2E8F0] p-4 shadow-xs flex items-center justify-between cursor-pointer transition-all group"
             >
               <div className="flex items-center gap-3 min-w-0 pr-2">
                 <div className="w-8 h-8 rounded-full bg-[#1A2340]/10 text-[#1A2340] flex items-center justify-center shrink-0">
@@ -651,7 +591,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                     onClick={() => setActiveCardId('daily-1gb')}
                     className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'daily-1gb'
                       ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                      : 'border-[#E2E8F0] hover:border-brand-navy/60 bg-[#EBF9FF]'
                       }`}
                   >
                     <div className="flex items-start justify-between">
@@ -685,7 +625,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                     onClick={() => setActiveCardId('daily-2gb')}
                     className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'daily-2gb'
                       ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-[#EBF9FF]'
                       }`}
                   >
                     <div className="flex items-start justify-between">
@@ -719,7 +659,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                     onClick={() => setActiveCardId('daily-3gb')}
                     className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'daily-3gb'
                       ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
-                      : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
+                      : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-[#EBF9FF]'
                       }`}
                   >
                     <div className="absolute -top-2.5 left-3">
@@ -780,7 +720,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                     onClick={() => setActiveCardId('ulm-5mbps')}
                     className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${activeCardId === 'ulm-5mbps'
                       ? 'border-[#1A2340] bg-white ring-2 ring-[#1A2340]/20 shadow-xs'
-                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-slate-50'
+                      : 'border-[#E2E8F0] hover:border-[#1A2340]/60 bg-[#EBF9FF]'
                       }`}
                   >
                     <div className="flex items-start justify-between">
@@ -817,7 +757,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                     onClick={() => setActiveCardId('ulm-10mbps')}
                     className={`p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative ${activeCardId === 'ulm-10mbps'
                       ? 'border-[#ff7a5c] bg-white ring-2 ring-[#ff7a5c]/20 shadow-xs'
-                      : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-slate-50'
+                      : 'border-[#E2E8F0] hover:border-[#ff7a5c]/60 bg-[#EBF9FF]'
                       }`}
                   >
                     <div className="absolute -top-2.5 left-3">
@@ -955,9 +895,9 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
                   {/* Compatibility check button */}
                   <button
                     onClick={() => setCompatibilityModalOpen(true)}
-                    className="w-full py-2.5 px-3 rounded-2xl bg-[#FF7A5C] hover:bg-[#e6694c] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
+                    className="w-full py-2.5 px-3 rounded-2xl bg-[#EBF9FF]  text-[#1A2340] text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
                   >
-                    <Smartphone className="w-4 h-4 text-white" />
+                    <Smartphone className="w-4 h-4 text-[#1A2340]" />
                     <span>Kiểm tra tương thích tại đây →</span>
                   </button>
 
