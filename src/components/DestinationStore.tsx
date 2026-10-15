@@ -309,7 +309,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   // ===========================================================================
   if (storeView === 'catalog') {
     return (
-      <div className="bg-slate-50/40 min-h-screen py-6 sm:py-10 text-left">
+      <div className="bg-transparent min-h-screen py-6 sm:py-10 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 space-y-8 my-4 sm:my-6">
 
@@ -453,7 +453,7 @@ export const DestinationStore: React.FC<DestinationStoreProps> = ({ standalone =
   // "Khi click vào sản phẩm sim sẽ ra màn hình như kia"
   // ===========================================================================
   return (
-    <div className="bg-[#F8FAFC] min-h-screen py-8 text-left">
+    <div className="bg-transparent min-h-screen py-8 text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         {/* Back to catalog breadcrumb */}

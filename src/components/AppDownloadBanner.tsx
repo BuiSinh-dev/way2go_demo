@@ -9,7 +9,7 @@ export const AppDownloadBanner: React.FC = () => {
   const { language } = useApp();
 
   return (
-    <section id="app-download" className="py-12 sm:py-16 bg-white border-t border-slate-100">
+    <section id="app-download" className="py-12 sm:py-16 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Soft Slate Banner matching clean white layout */}

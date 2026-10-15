@@ -11,7 +11,7 @@ export const AboutWay2go: React.FC = () => {
   const { language, setActiveTab } = useApp();
 
   return (
-    <div className="pb-16 bg-white">
+    <div className="pb-16 bg-transparent">
       {/* Top Page Header Banner */}
       <div className=" py-10 sm:py-14 text-center mb-10">
         <div className="max-w-4xl mx-auto px-4 space-y-2">

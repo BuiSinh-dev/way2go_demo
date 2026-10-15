@@ -24,7 +24,7 @@ const MainLayout: React.FC = () => {
   const { activeTab } = useApp();
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#1A2340] antialiased selection:bg-[#00D2B8] selection:text-[#1A2340]">
+    <div className="min-h-screen flex flex-col bg-transparent text-[#1A2340] antialiased selection:bg-[#00D2B8] selection:text-[#1A2340]">
       {/* 1-Row 3-Zone Navigation Header */}
       <Header />
 

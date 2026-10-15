@@ -88,7 +88,7 @@ export const VideoGuidesSection: React.FC = () => {
   const activeContent = guides[activeGuideTab];
 
   return (
-    <section id="video-guides" className="py-14 bg-white border-t border-slate-100">
+    <section id="video-guides" className="py-14 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}

@@ -24,7 +24,7 @@ export const HomePopularLocations: React.FC = () => {
   ];
 
   return (
-    <section id="popular-locations" className="py-12 bg-white text-left">
+    <section id="popular-locations" className="py-12 bg-transparent text-left">
       <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
         {/* Visite Travel Header Illustration Banner */}
         {/* <div className="flex justify-center">

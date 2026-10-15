@@ -38,7 +38,7 @@ export const NewsSection: React.FC<Props> = (props) => {
   });
 
   return (
-    <section className={`py-6 sm:py-10 ${props.standalone ? 'bg-slate-50/40' : 'bg-white border-t border-slate-100'}`}>
+    <section className="py-6 sm:py-10 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {props.standalone ? (
           /* Standalone News Screen: Card Wrapper with shadow-xl md:shadow-2xl */

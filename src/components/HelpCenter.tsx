@@ -47,7 +47,7 @@ export const HelpCenter: React.FC = () => {
 
   return (
 
-    <div className="py-6 sm:py-10 bg-slate-50/40">
+    <div className="py-6 sm:py-10 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-[32px] p-6 sm:p-8 md:p-10   space-y-12 my-4 sm:my-6">
 
