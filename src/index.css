@@ -27,7 +27,7 @@
     background-attachment: fixed;
   }
 
-  @media (min-width: 480px) {
+  /* @media (min-width: 480px) {
     body {
       background-image: url('../assets/image/common/background/bg-sm.png');
     }
@@ -67,7 +67,7 @@
     body {
       background-image: url('../assets/image/common/background/bg-xxxl.png');
     }
-  }
+  } */
 }
 
 /* Custom subtle scrollbar */
